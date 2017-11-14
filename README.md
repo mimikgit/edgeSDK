@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="https://stackedit.io/res-min/themes/base.css" />
 <body><div class="container"><h1 id="edgesdk">EdgeSDK!</h1>
 
-<link rel="logo-icon" href="https://github.com/mimik_logo.png" title="GitHub">
+<link rel="logo-icon" href="https://github.com/mimikgit/edgeSDK/blob/master/mimik_logo.png" title="GitHub">
 
 <p><strong>Table of contents</strong></p>
 
