@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="https://stackedit.io/res-min/themes/base.css" />
 <body><div class="container"><h1 id="edgesdk">EdgeSDK!</h1>
 
-<p><a href="https://github.com/mimikgit/edgeSDK/mimik-logo.png"></a> <br>
+<p><a href="https://github.com/mimikgit/edgeSDK/blob/master/mimik-logo.png"></a> <br>
 mimik edgeSDK is a downloadable software that developers can interact with through a series of API(s). The system provides the following capabilities</p>
 
 <p><strong>Table of contents</strong></p>
