@@ -1,35 +1,48 @@
-﻿
-(https://github.com/mimikgit/edgeSDK/blob/master/mimik-logo.png)
-Welcome to mimik EdgeSDK!
-===================
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EdgeSDK</title>
+<link rel="stylesheet" href="https://stackedit.io/res-min/themes/base.css" />
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body><div class="container"><h1 id="edgesdk">EdgeSDK!</h1>
 
-mimik edgeSDK is a downloadable software that developers can interact with through a series of API(s). The system provides the following capabilities
+<p><a href="https://github.com/mimikgit/edgeSDK/blob/master/mimik-logo.png"></a> <br>
+mimik edgeSDK is a downloadable software that developers can interact with through a series of API(s). The system provides the following capabilities</p>
 
-**Table of contents**
+<p><strong>Table of contents</strong></p>
 
-[TOC]
+<p><div class="toc">
+<ul>
+<li><a href="#edgesdk">EdgeSDK!</a><ul>
+<li><a href="#quick-start">Quick Start</a></li>
+<li><a href="#documentation">Documentation</a></li>
+<li><a href="#support-or-contact">Support or Contact</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</p>
 
+<h2 id="quick-start">Quick Start</h2>
 
-Quick Start
--------------
+<ol>
+<li>Signup from <a href="https://mimikgit.github.io/devportal/">https://mimikgit.github.io/devportal/</a></li>
+<li>Confirm notification message from your email account</li>
+<li>Copy license file from an invitation email to the download folder of your platform</li>
+<li>Download edgeSDK for your platform</li>
+<li>Start edgeSDK using the cridentials.</li>
+</ol>
 
-1. Signup from https://mimikgit.github.io/devportal/
-2. Confirm notification message from your email account
-3. Copy license file from an invitation email to the download folder of your platform
-4. Download edgeSDK for your platform
-5. Start edgeSDK using the cridentials.
- 
+<h2 id="documentation">Documentation</h2>
 
+<p>mimik edgeSDK documentation, included in this repo in the root directory.  The API documentation is available in the swagger <a href="https://app.swaggerhub.com/search?type=API&amp;owner=mimik">mimik swagger link</a></p>
 
-Documentation
--------------
+<h2 id="support-or-contact">Support or Contact</h2>
 
-Bootstrap's documentation, included in this repo in the root directory, 
+<p>We want to hear from you. Please contact us for question, troubleshooting, feedback or others. You can also read more about our solution on our wiki. To contact our SDK support team send us an email to support.sdk@mimik.com. Check out our website at mimik.com to learn more about our company.</p>
 
-Support or Contact
--------------
-
-We want to hear from you. Please contact us for question, troubleshooting, feedback or others. You can also read more about our solution on our wiki. To contact our SDK support team send us an email to support.sdk@mimik.com. Check out our website at mimik.com to learn more about our company.
-
-The information provided in this page is intended for informational purposes only and is subject to change without notice. Information may be changed or updated without notice. mimik may also make improvements and/or changes in the products specifications or APIs in this information at any time without notice.
-
+<p>The information provided in this page is intended for informational purposes only and is subject to change without notice. Information may be changed or updated without notice. mimik may also make improvements and/or changes in the products specifications or APIs in this information at any time without notice.</p></div></body>
+</html>
