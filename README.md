@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EdgeSDK</title>
 <link rel="stylesheet" href="https://stackedit.io/res-min/themes/base.css" />
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
-</head>
 <body><div class="container"><h1 id="edgesdk">EdgeSDK!</h1>
 
 <p><a href="https://github.com/mimikgit/edgeSDK/blob/master/mimik-logo.png"></a> <br>
