@@ -49,8 +49,7 @@
 <thead>
 <tr>
 <th><strong><a href="https://github.com/mimikgit/edgeSDK/wiki/Installation-Guide">Installation Guide</a></strong></th>
-<th><strong><a href="<th><strong><a href="https://github.com/mimikgit/edgeSDK/wiki/Installation-Guide">Installation Guide</a></strong></th>
-">Technical Documentation</a></strong></th>
+<th><strong><a href="https://github.com/mimikgit/edgeSDK/wiki/Installation-Guide">Technical Documentation</a></strong></th>
 <th><strong><a href="https://github.com/mimikgit/edgeSDK/wiki/Examples">Examples</a></strong></th>
 <th><strong><a href="https://github.com/mimikgit/edgeSDK/wiki/QandA">Q&A</a></strong></th>
 </tr>
