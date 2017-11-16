@@ -37,7 +37,7 @@
 <li>Copy license file from an invitation email to the download folder of your platform.</li>
 <li>Download edgeSDK for your platform.</li>
 <li>Start edgeSDK using the credentials.</li>
-<li>Follow installation guide for your platform. <a href= "https://github.com/mimikgit/edgeSDK/wiki/edgeSDK-Installation-Guide/">Installation Guide</a></li>
+<li>Follow installation guide for your platform. <a href= "https://github.com/mimikgit/edgeSDK/wiki/Installation-Guide/">Installation Guide</a></li>
 </ol>
 
 <h2 id="documentation">Documentation</h2>
@@ -48,15 +48,15 @@
 <table>
 <thead>
 <tr>
-<th><strong><a href="https://github.com/mimikgit/edgeSDK/wiki/">Technical Docs</a></strong></th>
-<th><strong><a href="https://github.com/mimikgit/edgeSDK/wiki/edgeSDK-Installation-Guide">Installation Guide</a></strong></th>
+<th><strong><a href="https://github.com/mimikgit/edgeSDK/wiki/Technical-Documentation">Technical Docs</a></strong></th>
+<th><strong><a href="https://github.com/mimikgit/edgeSDK/wiki/Installation-Guide">Installation Guide</a></strong></th>
 <th><strong><a href="https://github.com/mimikgit/edgeSDK/wiki/Examples">Examples</a></strong></th>
 <th><strong><a href="https://github.com/mimikgit/edgeSDK/wiki/QandA">Q&A</a></strong></th>
 </tr>
 
 <h2 id="support-or-contact">Support or Contact</h2>
 
-<p>We want to hear from you. Please contact us for question, troubleshooting, feedback or others. You can also read more about our solution on our wiki. To contact our SDK support team send us an email to support.sdk@mimik.com. Check out our website at mimik.com to learn more about our company.</p>
+<p>We want to hear from you. Please contact us for question, troubleshooting, feedback or others. You can also read more about our solution on our wiki. To contact our SDK support team send us an email to <a class="email-link" href="mailto:support.sdk@mimik.com"> support.sdk@mimik.com</a> Check out our website at mimik.com to learn more about our company.</p>
 
 <p>The information provided in this page is intended for informational purposes only and is subject to change without notice. Information may be changed or updated without notice. mimik may also make improvements and/or changes in the products specifications or APIs in this information at any time without notice.</p></div></body>
 </html>
