@@ -22,6 +22,7 @@
 <ul>
 <li><a href="#quick-start">Quick Start</a></li>
 <li><a href="#documentation">Documentation</a></li>
+<li><a href="#user-content-find-out-more">Find out more</a></li>
 <li><a href="#support-or-contact">Support or Contact</a></li>
 </ul>
 </li>
@@ -33,10 +34,9 @@
 
 <ol>
 <li>Signup from <a href="https://mimikgit.github.io/devportal/">https://mimikgit.github.io/devportal/</a></li>
-<li>Confirm notification message from your email account.</li>
-<li>Copy license file from an invitation email to the download folder of your platform.</li>
+<li>Confirm the notification message in your email inbox.</li>
+<li>Copy the license file from an invitation email to the download folder of your platform.</li>
 <li>Download edgeSDK for your platform.</li>
-<li>Start edgeSDK using the credentials.</li>
 <li>Follow installation guide for your platform. <a href= "https://github.com/mimikgit/edgeSDK/wiki/Installation-Guide/">Installation Guide</a></li>
 </ol>
 
@@ -53,6 +53,14 @@
 <th><strong><a href="https://github.com/mimikgit/edgeSDK/wiki/Examples">Examples</a></strong></th>
 <th><strong><a href="https://github.com/mimikgit/edgeSDK/wiki/QandA">Q&A</a></strong></th>
 </tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/snowplow/snowplow/wiki/SnowPlow-technical-documentation"><img src="https://camo.githubusercontent.com/8c6159b25596bb5a534a95784f8c7bd38fefe95a/68747470733a2f2f64336936666d7331636d316a30692e636c6f756466726f6e742e6e65742f6769746875622f696d616765732f74656368646f63732e706e67" alt="i1" data-canonical-src="https://d3i6fms1cm1j0i.cloudfront.net/github/images/techdocs.png" style="max-width:100%;"></a></td>
+<td><a href="https://github.com/snowplow/snowplow/wiki/Setting-up-SnowPlow"><img src="https://camo.githubusercontent.com/0390397513935043e56a7829a27810eee31458d9/68747470733a2f2f64336936666d7331636d316a30692e636c6f756466726f6e742e6e65742f6769746875622f696d616765732f73657475702e706e67" alt="i2" data-canonical-src="https://d3i6fms1cm1j0i.cloudfront.net/github/images/setup.png" style="max-width:100%;"></a></td>
+<td><a href="https://github.com/snowplow/snowplow/wiki/Product-roadmap"><img src="https://camo.githubusercontent.com/80cb14d5c90978bd9ac999eaaeedb559a7621eb7/68747470733a2f2f64336936666d7331636d316a30692e636c6f756466726f6e742e6e65742f6769746875622f696d616765732f726f61646d61702e706e67" alt="i3" data-canonical-src="https://d3i6fms1cm1j0i.cloudfront.net/github/images/roadmap.png" style="max-width:100%;"></a></td>
+<td><a href="https://github.com/snowplow/snowplow/wiki/Contributing"><img src="https://camo.githubusercontent.com/b0be97a372fd4a9c0b0478066e70526d869da250/68747470733a2f2f64336936666d7331636d316a30692e636c6f756466726f6e742e6e65742f6769746875622f696d616765732f636f6e747269627574696e672e706e67" alt="i4" data-canonical-src="https://d3i6fms1cm1j0i.cloudfront.net/github/images/contributing.png" style="max-width:100%;"></a></td>
+</tr></tbody></table>
 
 <h2 id="support-or-contact">Support or Contact</h2>
 
