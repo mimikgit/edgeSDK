@@ -5,21 +5,21 @@ This example contains simple "Hello World" microservices. Please following instr
     ./src     the folder store "Hello World" example
     ./build    the folder store compliled java sript 
 
-## Download and install Jmeter 
-* Download the Jmeter and unzip to {home}/apache-jmeter folder 
-     http://http://jmeter.apache.org/download_jmeter.cgi
-
-## Setup environment variables ##
-  create a jmeter_env_setting.sh file which include 
+## Build example microservice 
+Run build script under example directory
 ```  
-#!/bin/bash
-export MID_URL={ the mid server URL, example mid-dev1.mimik360.com }
-export MPO_URL={ the mpo server URL, example mpo-dev1.mimikdev.com }
-export USERS_TOKEN_FILE={ the users token data file } 
-export DEV_US_DATABASE_IP={ the MongoDb ip setting }
-export DEV_US_DATABASE_NAME={ the MongoDb database name }
-export SERVER_DEPLOY_TYPE={ the deploy type, example dev1 }
-export MID_ADMIN_TOKEN={ the mID server admin user token }
+npm run-script build
+```  
+Verify that index.js is copied under build directory
+ 
+
+
+## Run example microservice ##
+
+create "example" directory under /opt/mimik/microservices
+``mkdir /opt/mimik/microservices/example``
+Copy index.js build from /example/build directory to /opt/mimik/microservices/example directory
+ 
 ```  
 
   run the command 
