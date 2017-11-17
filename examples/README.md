@@ -1,13 +1,9 @@
 # README #
-This repository is for script to run the Jmeter to do the load test for mimik back-end server
+This example contains simple "Hello World" microservices. Please following instructions to 
 
 ## The Repository Folders ##
-    ./jmx     the folder store jmeter config file 
-    ./data    the folder store test users data
-    ./tools   the folder store the util tools such as clen database, create users
-    ./logs    the folder store the Jmeter logs (this folder will not sync to repository)
-    ./output  the folder store the test result (this folder will not sync to repository)
-    *.sh      the shell script to run the Jmeter 
+    ./src     the folder store "Hello World" example
+    ./build    the folder store compliled java sript 
 
 ## Download and install Jmeter 
 * Download the Jmeter and unzip to {home}/apache-jmeter folder 
