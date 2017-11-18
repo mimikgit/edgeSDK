@@ -34,13 +34,9 @@ cd /opt/mimik/edge
 Verify that "Hello World" example microservices registered and works properly by calling following curl commands:
 ``` 
 curl -i http://localhost:8083/mds/v1/nodes
---
-
-Check that example-v1 service registered in the result as shown below.
-
 
 curl -i http://localhost:8083/example/v1/hello
-
+``` 
 
 ## Q & A ##
 Q:
