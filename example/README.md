@@ -6,6 +6,10 @@ This example contains simple "Hello World" microservices. Please following instr
     ./build    the folder store compliled java sript 
 
 ## Build example microservice 
+Run npm install command for packages
+```  
+npm install
+```  
 Run build script under example directory
 ```  
 npm run-script build
