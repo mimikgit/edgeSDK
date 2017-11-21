@@ -11,7 +11,7 @@
   <link rel="dns-prefetch" href="https://github-cloud.s3.amazonaws.com">
   <link rel="dns-prefetch" href="https://user-images.githubusercontent.com/">
 <div align="center">
-  <img src="https://github.com/mimikgit/edgeSDK/blob/master/mimik_logo.png"><br><br>
+  <img src="https://github.com/mimikgit/edgeSDK/blob/master/docs/pictures/mimik_logo.png"><br><br>
 </div>
 <link rel="stylesheet" href="https://stackedit.io/res-min/themes/base.css" />
 <body><div class="container"><h1 id="edgesdk">EdgeSDK!</h1>
