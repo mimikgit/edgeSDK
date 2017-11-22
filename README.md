@@ -38,7 +38,7 @@
 <li>Copy the license file from an invitation email to the download folder of your platform.</li>
 <li>Download edgeSDK for your platform.</li>
 <li>Follow installation guide for your platform. <a href= "https://github.com/mimikgit/edgeSDK/wiki/Installation-Guide/">Installation Guide</a></li>
-<li>Install and run "Hello World" example microservice on edgeSDK <a href= "https://github.com/mimikgit/edgeSDK/wiki/Example-Microservice">Example Microservice </a></li>
+<li>Install and run "Hello World" example microservice on edgeSDK <a href= "https://github.com/mimikgit/edgeSDK/wiki/How-to-install-Example-Microservice-on-Linux-Raspbiance">Example Microservice </a></li>
 </ol>
 
 <h2 id="documentation">Documentation</h2>
