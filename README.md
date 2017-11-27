@@ -52,7 +52,7 @@
 <th><strong><a href="https://github.com/mimikgit/edgeSDK/wiki/Installation-Guide">Installation Guide</a></strong></th>
 <th><strong><a href="https://github.com/mimikgit/edgeSDK/wiki/Installation-Guide">Technical Documentation</a></strong></th>
 <th><strong><a href="https://github.com/mimikgit/edgeSDK/wiki/How-to-install-Example-Microservice">Examples</a></strong></th>
-<th><strong><a href="https://github.com/mimikgit/edgeSDK/wiki/QandA">Q&A</a></strong></th>
+<th><strong><a href="https://github.com/mimikgit/edgeSDK/wiki/Q&A">Q&A</a></strong></th>
 </tr>
 </thead>
 <tbody>
