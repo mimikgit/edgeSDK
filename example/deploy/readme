@@ -1,0 +1,16 @@
+
+Adding a image to the mimik container
+curl -i -F "image=@drive.tar" http://localhost:8083/mcm/v1/images
+
+
+Creating a container from the image uploaded
+curl -i -d '{"name": "drive", "image": "drive", "env": {"MCM.BASE_API_PATH": "/drive/v1"}}' http://localhost:8083/mcm/v1/containers
+
+Delete a container
+curl -i -X DELETE http://localhost:8083/mcm/v1/containers/drive
+
+
+Delete a image
+curl -i -X DELETE http://localhost:8083/mcm/v1/images/drive
+
+
