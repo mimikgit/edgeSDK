@@ -1,6 +1,6 @@
-
+m
 Adding a image to the mimik container
-curl -i -F "image=@drive.tar" http://localhost:8083/mcm/v1/images
+curl -i -F "image=@example.tar" http://localhost:8083/mcm/v1/images
 
 
 Creating a container from the image uploaded
