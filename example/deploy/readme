@@ -4,7 +4,7 @@ curl -i -F "image=@example.tar" http://localhost:8083/mcm/v1/images
 
 
 Creating a container from the image uploaded
-curl -i -d '{"name": "drive", "image": "drive", "env": {"MCM.BASE_API_PATH": "/drive/v1"}}' http://localhost:8083/mcm/v1/containers
+curl -i -d '{"name": "drive", "image": "example", "env": {"MCM.BASE_API_PATH": "/example/v1"}}' http://localhost:8083/mcm/v1/containers
 
 Delete a container
 curl -i -X DELETE http://localhost:8083/mcm/v1/containers/drive
