@@ -1,0 +1,33 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  font-family: sans-serif;
+  color: #525252;
+}
+
+a {
+  text-decoration: none;
+  color: #cb3837;
+}
+
+button {
+  margin: 5px;
+  padding: 5px;
+}
+
+.container {
+  text-align: center;
+}
+
+#devicelist {
+  text-align: justify;
+}
