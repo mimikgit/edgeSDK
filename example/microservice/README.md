@@ -43,11 +43,11 @@ more .mcmUserToken
 ```
 Install the example.tar image on edgeSDK mCM container using bearer token
 ```  
-curl -i -H 'Authorization: Bearer xAfKAu0XjebI159xy3mK' -F "image=@example.tar" http://localhost:8083/mcm/v1/images
+curl -i -H 'Authorization: Bearer xAfKAu0XjebI159xy3mK' -F "image=@example-v1.tar" http://localhost:8083/mcm/v1/images
 ```
 Initialize example microservice in edgeSDK mCM contatiner using bearer token
 ```
-curl -i -H 'Authorization: Bearer xAfKAu0XjebI159xy3mK' -d '{"name": "example-v1", "image": "example", "env": {"BEAM": "http://127.0.0.1:8083/beam/v1","MCM.BASE_API_PATH": "/example/v1", "MCM.WEBSOCKET_SUPPORT": "false", "MFD": "https://mfd-eu.mimik360.com/mFD/v1", "MPO": "https://mpo.mimik360.com/mPO/v1", "uMDS": "http://127.0.0.1:8083/mds/v1"}
+curl -i -H 'Authorization: Bearer xAfKAu0XjebI159xy3mK' -d '{"name": "example-v1", "image": "example-v1", "env": {"BEAM": "http://127.0.0.1:8083/beam/v1","MCM.BASE_API_PATH": "/example/v1", "MCM.WEBSOCKET_SUPPORT": "false", "MFD": "https://mfd-eu.mimik360.com/mFD/v1", "MPO": "https://mpo.mimik360.com/mPO/v1", "uMDS": "http://127.0.0.1:8083/mds/v1"}
 }' http://localhost:8083/mcm/v1/containers
 ```
 
