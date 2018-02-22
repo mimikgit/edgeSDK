@@ -2,8 +2,7 @@
   "extends": "airbnb",
   "globals": {
     "mimikModule": true,
-    "Duktape": true,
-    "TextDecoder": true
+    "Duktape": true
   },
   "rules": {
       "linebreak-style": "off",
