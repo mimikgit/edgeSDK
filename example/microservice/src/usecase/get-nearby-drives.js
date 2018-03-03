@@ -54,18 +54,12 @@ export default class GetNearbyDrives {
       }
     })
     .next((nodes) => {
-      const linkLocal = (nodes && nodes.localLinkNetwork) || {
-        nodes: [],
-      };
-
+      const linkLocal = (nodes &&
+        Array.isArray(nodes.localLinkNetwork.nodes) &&
+        nodes.localLinkNetwork) ||
+        new Error('failed to search for devices');
       return linkLocal;
     })
-    .next((linkLocal) => {
-      if (Array.isArray(linkLocal.nodes)) {
-        return NodesMapper.transformMdsNodes(linkLocal.nodes);
-      }
-
-      return [];
-    });
+    .next(linkLocal => NodesMapper.transformMdsNodes(linkLocal.nodes));
   }
 }
