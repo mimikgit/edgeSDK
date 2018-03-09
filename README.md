@@ -10,58 +10,99 @@
   <link rel="dns-prefetch" href="https://avatars3.githubusercontent.com">
   <link rel="dns-prefetch" href="https://github-cloud.s3.amazonaws.com">
   <link rel="dns-prefetch" href="https://user-images.githubusercontent.com/">
-<div align="center">
-  <img src="https://github.com/mimikgit/edgeSDK/blob/master/docs/pictures/mimik_logo.png"><br><br>
-</div>
+
 <link rel="stylesheet" href="https://stackedit.io/res-min/themes/base.css" />
-<body><div class="container"><h1 id="edgesdk">EdgeSDK!</h1>
-<link rel="logo-icon" href="https://github.com/mimikgit/edgeSDK/blob/master/mimik_logo.png" title="mimik">
+<body><div class="container">
 
-<p><strong>Table of contents</strong></p>
-<p><div class="toc">
+
+<h2 id="edgeSDK">What is the edgeSDK</h2>
+<p>The mimik edgeSDK provides a collection of RESTful APIs enabling developers to turn computing devices (mobile, tablets, PCs, IoT devices and more) into edge cloud servers and network them together. </p>
+<p>The mimik platform provides ad-hoc formations of clusters based on network, proximity and account, allowing communication between the nodes within and across the cluster within and across networks and nodes. </p>
+<p> On top of this communication fabric, mimik provides a light container management technology that allows developers to manage their microservices and enable communication of microservices within and across networks and nodes. It also includes a sample <a href="https://github.com/mimikgit/edgeSDK/wiki/Installation-Guide">application </a> and <a href="https://github.com/mimikgit/edgeSDK/wiki/How-to-install-Example-Microservice">microservice </a> to demonstrate the interactions with the APIs.</p>
+
+<a href="https://mimik.com/developers/">Learn more</a>
+
+
+<h2 id="quick-start">Get Started</h2>
+<p>You can setup the edgeSDK with examples on the following platforms:</p>
+
 <ul>
-<li><a href="#quick-start">Quick Start</a></li>
-<li><a href="#documentation">Documentation</a></li>
-<li><a href="#user-content-find-out-more">Find out more</a></li>
-<li><a href="#support-or-contact">Support or Contact</a></li>
+    <li>  <a href="https://github.com/mimikgit/edgeSDK/wiki/How-to-install-and-use-%22edgeSDK-app%22-on-Android">Android (5.0+) </a></li>
+    <li>  <a href="https://github.com/mimikgit/edgeSDK/wiki/How-to-install-edgeSDK-package-on-Linux-Ubuntu"> Linux - Ubuntu (16.04+) </a></li>
+    <li>  <a href="https://github.com/mimikgit/edgeSDK/wiki/How-to-install-edgeSDK-on-Raspberry-Pi-(Raspbian-8.1)"> Linux - Raspbian (8.1+) </a></li>
+    <li>  <a href="https://github.com/mimikgit/edgeSDK/wiki/How-to-install-and-use-%22edgeSDK%22-on-Windows"> Windows (10)</a></li>
 </ul>
-</li>
+<p>The edgeSDK is also avaliable on these platforms (without examples): </p>
+<ul>
+    <li>iOS (9.0+) </li>
+    <li>Linux - Debian </li>
+    <li>mac OS X (El Capitan+) </li>
+
 </ul>
-</div>
-</p>
 
-<h2 id="quick-start">Quick Start</h2>
+<h2 id="documentation">Learn more about the mimik edgeSDK</h2>
+<h3>Platform architecture</h3>
 
-<ol>
-<li>Signup from <a href="https://mimikgit.github.io/devportal/">https://mimikgit.github.io/devportal/</a></li>
-<li>Confirm the notification message in your email inbox.</li>
-<li>Copy the license file from an invitation email to the download folder of your platform.</li>
-<li>Download edgeSDK for your platform.</li>
-<li>Follow installation guide for your platform. <a href= "https://github.com/mimikgit/edgeSDK/wiki/Installation-Guide/">Installation Guide</a></li>
-<li>Install and run "Hello World" example microservice on edgeSDK <a href= "https://github.com/mimikgit/edgeSDK/wiki/How-to-install-Example-Microservice">Example Microservice </a></li>
-</ol>
+<figure>
+<img src="https://i1.wp.com/mimik.com/wp-content/uploads/2017/07/Plattform-diagram-e1499950721254.png"/>
+<figcaption>Microservice management platform and runtime environment on edge devices</figcaption>
+</figure>
 
-<h2 id="documentation">Documentation</h2>
+<h3 id="microservices">Microservices</h3>
+<p>To show case the capabilities of the edgeSDK we have created a few microservices as examples in how to develop a microservice on our environment.</p>
 
-<p>mimik edgeSDK documentation, included in  <a href="https://github.com/mimikgit/edgeSDK/wiki">wiki page</a> of this repo.  The API documentation is also available in the swagger <a href="https://app.swaggerhub.com/search?type=API&amp;owner=mimik">mimik swagger API Doc</a></p>
+<ul>
+  <li><a href="https://github.com/mimikgit/mDrive">mDrive</a> abstracts access to storage available on edge nodes&nbsp;and provides distributed file management via a popular API.</li>
+  <li><a href="https://github.com/mimikgit/mBeam">mBeam</a> beams content from a node to node(s) and/or to service(s), peer-to-peer, one-to-one or&nbsp;one-to-many</li>
+  <li><a href="https://github.com/mimikgit/mSuperdrive">mSuperdrive API</a> provides the core logic of <a href="#access">mimik access</a> media services through the provided API well as showing all nodes (nearby, on the same Wi-Fi, remote and also friend’s ) that are equipped with <a href="#access">mimik access</a>. </li>
+</ul>
 
-<h2><a href="#find-out-more" aria-hidden="true" class="anchor" id="user-content-find-out-more"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Find out more</h2>
-<table>
-<thead>
-<tr>
-<th><strong><a href="https://github.com/mimikgit/edgeSDK/wiki/Installation-Guide">Installation Guide</a></strong></th>
-<th><strong><a href="https://github.com/mimikgit/edgeSDK/wiki/Installation-Guide">Technical Documentation</a></strong></th>
-<th><strong><a href="https://github.com/mimikgit/edgeSDK/wiki/How-to-install-Example-Microservice">Examples</a></strong></th>
-<th><strong><a href="https://github.com/mimikgit/edgeSDK/wiki/Q&A">Q&A</a></strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="https://github.com/mimikgit/edgeSDK/wiki/Installation-Guide"><img src="https://camo.githubusercontent.com/8c6159b25596bb5a534a95784f8c7bd38fefe95a/68747470733a2f2f64336936666d7331636d316a30692e636c6f756466726f6e742e6e65742f6769746875622f696d616765732f74656368646f63732e706e67" alt="i1" data-canonical-src="https://d3i6fms1cm1j0i.cloudfront.net/github/images/techdocs.png" style="max-width:100%;"></a></td>
-<td><a href="https://github.com/mimikgit/edgeSDK/wiki/Technical-Documentation"><img src="https://camo.githubusercontent.com/0390397513935043e56a7829a27810eee31458d9/68747470733a2f2f64336936666d7331636d316a30692e636c6f756466726f6e742e6e65742f6769746875622f696d616765732f73657475702e706e67" alt="i2" data-canonical-src="https://d3i6fms1cm1j0i.cloudfront.net/github/images/setup.png" style="max-width:100%;"></a></td>
-<td><a href="https://github.com/mimikgit/edgeSDK/wiki/Examples"><img src="https://camo.githubusercontent.com/80cb14d5c90978bd9ac999eaaeedb559a7621eb7/68747470733a2f2f64336936666d7331636d316a30692e636c6f756466726f6e742e6e65742f6769746875622f696d616765732f726f61646d61702e706e67" alt="i3" data-canonical-src="https://d3i6fms1cm1j0i.cloudfront.net/github/images/roadmap.png" style="max-width:100%;"></a></td>
-<td><a href="https://github.com/mimikgit/edgeSDK/wiki/Q&A"><img src="https://camo.githubusercontent.com/b0be97a372fd4a9c0b0478066e70526d869da250/68747470733a2f2f64336936666d7331636d316a30692e636c6f756466726f6e742e6e65742f6769746875622f696d616765732f636f6e747269627574696e672e706e67" alt="i4" data-canonical-src="https://d3i6fms1cm1j0i.cloudfront.net/github/images/contributing.png" style="max-width:100%;"></a></td>
-</tr></tbody></table>
+<p> Build your own microservice using the edgeSDK JavaScript programming API for develop and deploy their microservices.
+  </p><p><a href="https://github.com/mimikgit/edgeSDK/wiki/How-to-use-mimik-serverless-JavaScript-programming-API">Learn how to use the Javascript Serverless Programming API </a> </p>
+
+
+
+
+<h3 id="api"> APIs</h3>
+
+<p>Information on mimik API components are accesible on SwaggerHub</p>
+
+<ul>
+<li><a href="https://app.swaggerhub.com/apis/mimik/mDS">mDS: The mimik discovery API</a></li>
+
+<li><a href="https://app.swaggerhub.com/apis/mimik/mSS">mSS: The mimik Signaling Service API</a></li>
+
+<li><a href="https://app.swaggerhub.com/apis/mimik/mPO">mPO: The mimik Profile Server API</a></li>
+
+<li><a href="https://app.swaggerhub.com/apis/mimik/mST">mST: The mimik server to server token service</a></li>
+
+<li><a href="https://app.swaggerhub.com/apis/mimik/mID">mID: The mimik ID and user management API</a></li>
+</ul>
+
+
+<h3 id="access">mimik access</h3>
+<p>mimik access is an application built on top of mimik edgeSDK showcasing the power of distributed edge cloud. Information on mimik access API componetes are avaliable on SwaggerHub</p>
+
+<ul>
+<li><a href="https://app.swaggerhub.com/apis/mimik/mFD">mFD: The mimik friends Server API for mimik services</a></li>
+
+<li><a href="https://app.swaggerhub.com/apis/mimik/mTS">mTS: The mimik Thumbnail Service</a></li>
+
+<li><a href="https://app.swaggerhub.com/apis/mimik/mTV">mTV: TV QrCode Service API</a></li>
+</ul>
+
+<p><a href="http://access.mimik.com">Learn more about mimik access</a></p>
+
+<h3 id="extra">We also have more reading materials on our website:</h3>
+
+<ul>
+
+<li><a href="https://mimik.com/siavash-alamouti-keynote-at-ieee-pimrc17">Decentralization provides choice, consent and control and is the only way to achieve digital freedom.</a></li>
+
+<li><a href="https://mimik.com/cloud-decentralization-trustless-revolution">Cloud Decentralization &amp; the Trustless Revolution</a></li>
+<li><a href="https://mimik.com/use-cases">Use cases</a></li>
+</ul>
+
 
 <h2 id="support-or-contact">Support or Contact</h2>
 
