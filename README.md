@@ -18,35 +18,36 @@
 <h2 id="edgeSDK">What is the edgeSDK</h2>
 <p>The mimik edgeSDK provides a collection of RESTful APIs enabling developers to turn computing devices (mobile, tablets, PCs, IoT devices and more) into edge cloud servers and network them together. </p>
 <p>The mimik platform provides ad-hoc formations of clusters based on network, proximity and account, allowing communication between the nodes within and across the cluster within and across networks and nodes. </p>
-<p> On top of this communication fabric, mimik provides a light container management technology that allows developers to manage their microservices and enable communication of microservices within and across networks and nodes. It also includes a sample <a href="https://github.com/mimikgit/edgeSDK/wiki/Installation-Guide">application </a> and <a href="https://github.com/mimikgit/edgeSDK/wiki/How-to-install-Example-Microservice">microservice </a> to demonstrate the interactions with the APIs.</p>
+<p> On top of this communication fabric, mimik provides a light container management technology that allows developers to manage their microservices and enable communication of microservices within and across networks and nodes. Also included are sample <a href="https://github.com/mimikgit/edgeSDK/wiki/Installation-Guide">applications </a> and <a href="https://github.com/mimikgit/edgeSDK/wiki/How-to-install-Example-Microservice">microservice </a> to demonstrate the interactions with the APIs.</p>
 
 <a href="https://mimik.com/developers/">Learn more</a>
 
 
 <h2 id="quick-start">Get Started</h2>
-<p>You can setup the edgeSDK with examples on the following platforms:</p>
+<!-- what we will cover/ whats involved; what  -->
+
+<p>Select a platform from the list below and follow the instructions to learn: how to run the edgeSDK, how to build and deploy microservices, and how to run an example application using the edgeSDK and microservices. </p>
+<!-- <p>You can setup the edgeSDK on the following platforms:</p> -->
+
 
 <ul>
-    <li>  <a href="https://github.com/mimikgit/edgeSDK/wiki/How-to-install-and-use-%22edgeSDK-app%22-on-Android">Android (5.0+) </a></li>
-    <li>  <a href="https://github.com/mimikgit/edgeSDK/wiki/How-to-install-edgeSDK-package-on-Linux-Ubuntu"> Linux - Ubuntu (16.04+) </a></li>
-    <li>  <a href="https://github.com/mimikgit/edgeSDK/wiki/How-to-install-edgeSDK-on-Raspberry-Pi-(Raspbian-8.1)"> Linux - Raspbian (8.1+) </a></li>
-    <li>  <a href="https://github.com/mimikgit/edgeSDK/wiki/How-to-install-and-use-%22edgeSDK%22-on-Windows"> Windows (10)</a></li>
-</ul>
-<p>The edgeSDK is also avaliable on these platforms (without examples): </p>
-<ul>
+    <!-- <li>  <a href="https://github.com/mimikgit/edgeSDK/wiki/How-to-install-and-use-%22edgeSDK-app%22-on-Android">Android (5.0+) </a></li>
     <li>iOS (9.0+) </li>
-    <li>Linux - Debian </li>
+    <li>Linux - Debian </li> -->
+    <li> <a href="https://github.com/mimikgit/edgeSDK/wiki/How-to-install-edgeSDK-package-on-Linux-Ubuntu"> Linux - Ubuntu (16.04+) </a></li>
+   <!-- <li> <a href="https://github.com/mimikgit/edgeSDK/wiki/How-to-install-edgeSDK-on-Raspberry-Pi-(Raspbian-8.1)"> Linux - Raspbian (8.1+) </a></li>
     <li>mac OS X (El Capitan+) </li>
-
+    <li>  <a href="https://github.com/mimikgit/edgeSDK/wiki/How-to-install-and-use-%22edgeSDK%22-on-Windows"> Windows (10)</a></li> -->
 </ul>
 
 <h2 id="documentation">Learn more about the mimik edgeSDK</h2>
-<h3>Platform architecture</h3>
+<!-- 
+<h3>Platform architecture</h3>´
 
 <figure>
 <img src="https://i1.wp.com/mimik.com/wp-content/uploads/2017/07/Plattform-diagram-e1499950721254.png"/>
 <figcaption>Microservice management platform and runtime environment on edge devices</figcaption>
-</figure>
+</figure> -->
 
 <h3 id="microservices">Microservices</h3>
 <p>To show case the capabilities of the edgeSDK we have created a few microservices as examples in how to develop a microservice on our environment.</p>
@@ -54,7 +55,7 @@
 <ul>
   <li><a href="https://github.com/mimikgit/mDrive">mDrive</a> abstracts access to storage available on edge nodes&nbsp;and provides distributed file management via a popular API.</li>
   <li><a href="https://github.com/mimikgit/mBeam">mBeam</a> beams content from a node to node(s) and/or to service(s), peer-to-peer, one-to-one or&nbsp;one-to-many</li>
-  <li><a href="https://github.com/mimikgit/mSuperdrive">mSuperdrive API</a> provides the core logic of <a href="#access">mimik access</a> media services through the provided API well as showing all nodes (nearby, on the same Wi-Fi, remote and also friend’s ) that are equipped with <a href="#access">mimik access</a>. </li>
+  <li><a href="https://github.com/mimikgit/mSuperdrive">mSuperdrive</a> provides the core logic of <a href="#access">mimik access</a> media services through the provided API well as showing all nodes (nearby, on the same Wi-Fi, remote and also friend’s ) that are equipped with <a href="#access">mimik access</a>. </li>
 </ul>
 
 <p> Build your own microservice using the edgeSDK JavaScript programming API for develop and deploy their microservices.
@@ -93,7 +94,7 @@
 
 <p><a href="http://access.mimik.com">Learn more about mimik access</a></p>
 
-<h3 id="extra">We also have more reading materials on our website:</h3>
+<h3 id="extra">Reference Materials</h3>
 
 <ul>
 
@@ -104,7 +105,7 @@
 </ul>
 
 
-<h2 id="support-or-contact">Support or Contact</h2>
+<h2 id="support-or-contact">Contact us</h2>
 
 <p>We want to hear from you. Please contact us for question, troubleshooting, feedback or others. You can also read more about our solution on our wiki. To contact our SDK support team send us an email to <a class="email-link" href="mailto:support.sdk@mimik.com"> support.sdk@mimik.com</a> Check out our website at mimik.com to learn more about our company.</p>
 
