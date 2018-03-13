@@ -24,20 +24,18 @@
 
 
 <h2 id="quick-start">Get Started</h2>
-<!-- what we will cover/ whats involved; what  -->
 
 <p>Select a platform from the list below and follow the instructions to learn: how to run the edgeSDK, how to build and deploy microservices, and how to run an example application using the edgeSDK and microservices. </p>
-<!-- <p>You can setup the edgeSDK on the following platforms:</p> -->
-
 
 <ul>
-    <!-- <li>  <a href="https://github.com/mimikgit/edgeSDK/wiki/How-to-install-and-use-%22edgeSDK-app%22-on-Android">Android (5.0+) </a></li>
-    <li>iOS (9.0+) </li>
-    <li>Linux - Debian </li> -->
-    <li> <a href="https://github.com/mimikgit/edgeSDK/wiki/How-to-install-edgeSDK-package-on-Linux-Ubuntu"> Linux - Ubuntu (16.04+) </a></li>
-   <!-- <li> <a href="https://github.com/mimikgit/edgeSDK/wiki/How-to-install-edgeSDK-on-Raspberry-Pi-(Raspbian-8.1)"> Linux - Raspbian (8.1+) </a></li>
-    <li>mac OS X (El Capitan+) </li>
-    <li>  <a href="https://github.com/mimikgit/edgeSDK/wiki/How-to-install-and-use-%22edgeSDK%22-on-Windows"> Windows (10)</a></li> -->
+  <ul>
+    <li><a href="(https://github.com/mimikgit/edgeSDK/wiki/How-to-run-edgeSDK-on-Android">Android 5.0+ </a></li>    
+    <li><a href="https://github.com/mimikgit/edgeSDK/wiki/How-to-run-edgeSDK-on-iOS">iOS 9.0+ </a></li>    
+    <li><a href="https://github.com/mimikgit/edgeSDK/wiki/How-to-run-edgeSDK-on-Linux-Ubuntu">Linux - Ubuntu 16.04 LTS</a></li>    
+    <li><a href="(https://github.com/mimikgit/edgeSDK/wiki/How-to-run-edgeSDK-on-Linux-Debian">Linux - Debian</a></li>    
+    <li><a href="https://github.com/mimikgit/edgeSDK/wiki/How-to-run-edgeSDK-on-Raspberry-Pi">Raspberry Pi - Raspbian 8.1 </a></li>    
+    <li><a href="https://github.com/mimikgit/edgeSDK/wiki/How-to-run-edgeSDK-on-macOS">macOS El Captaine +</a></li>    
+    <li><a href="https://github.com/mimikgit/edgeSDK/wiki/How-to-run-edgeSDK-on-Windows">Windows 10</a></li>    </ul>
 </ul>
 
 <h2 id="documentation">Learn more about the mimik edgeSDK</h2>
