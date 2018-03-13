@@ -34,7 +34,7 @@
     <li><a href="https://github.com/mimikgit/edgeSDK/wiki/How-to-run-edgeSDK-on-Linux-Ubuntu">Linux - Ubuntu 16.04 LTS</a></li>    
     <li><a href="(https://github.com/mimikgit/edgeSDK/wiki/How-to-run-edgeSDK-on-Linux-Debian">Linux - Debian</a></li>    
     <li><a href="https://github.com/mimikgit/edgeSDK/wiki/How-to-run-edgeSDK-on-Raspberry-Pi">Raspberry Pi - Raspbian 8.1 </a></li>    
-    <li><a href="https://github.com/mimikgit/edgeSDK/wiki/How-to-run-edgeSDK-on-macOS">macOS El Captaine +</a></li>    
+    <li><a href="https://github.com/mimikgit/edgeSDK/wiki/How-to-run-edgeSDK-on-macOS">mac OS (El Capitan+)</a></li>    
     <li><a href="https://github.com/mimikgit/edgeSDK/wiki/How-to-run-edgeSDK-on-Windows">Windows 10</a></li>    </ul>
 </ul>
 
