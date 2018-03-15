@@ -100,8 +100,7 @@
 <li><a href="https://mimik.com/use-cases">Use cases</a></li>
 </ul>
 
-
-<h2 id="license"></h2> 
+<h2 id="license">License</h2> 
 
 <p>Unless otherwise noted, use of the mimik edgeSDK is licensed under our <a href="https://mimikgit.github.io/devportal/edgeSDKLicenseAgreement.html">License Agreement</a> and the code shown on GitHub is available under the <a href="http://opensource.org/licenses/MIT">MIT License</a>.</p>
 
