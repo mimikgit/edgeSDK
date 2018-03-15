@@ -16,9 +16,7 @@
 
 
 <h2 id="edgeSDK">What is the edgeSDK</h2>
-<p>The mimik edgeSDK provides a collection of RESTful APIs enabling developers to turn computing devices (mobile, tablets, PCs, IoT devices and more) into edge cloud servers and network them together. </p>
-<p>The mimik platform provides ad-hoc formations of clusters based on network, proximity and account, allowing communication between the nodes within and across the cluster within and across networks and nodes. </p>
-<p> On top of this communication fabric, mimik provides a light container management technology that allows developers to manage their microservices and enable communication of microservices within and across networks and nodes. Also included are sample <a href="https://github.com/mimikgit/edgeSDK/wiki/Installation-Guide">applications </a> and <a href="https://github.com/mimikgit/edgeSDK/wiki/How-to-install-Example-Microservice">microservice </a> to demonstrate the interactions with the APIs.</p>
+<p>The mimik edgeSDK provides a light container management technology that allows developers to manage their microservices and enable communication of microservices within and across networks and nodes. Also included are sample <a href="https://github.com/mimikgit/edgeSDK/wiki/Installation-Guide#how-to-use-example-edgesdk-applications">applications </a> and <a href="https://github.com/mimikgit/edgeSDK/wiki/How-to-install-Example-Microservice">microservices</a> to demonstrate the interactions with the APIs.</p>
 
 <a href="https://mimik.com/developers/">Learn more</a>
 
@@ -102,6 +100,10 @@
 <li><a href="https://mimik.com/use-cases">Use cases</a></li>
 </ul>
 
+
+<h2 id="license"></h2> 
+
+<p>Unless otherwise noted, use of the mimik edgeSDK is licensed under our <a href="https://mimikgit.github.io/devportal/edgeSDKLicenseAgreement.html">License Agreement</a> and the code shown on GitHub is available under the <a href="http://opensource.org/licenses/MIT">MIT License</a>.</p>
 
 <h2 id="support-or-contact">Contact us</h2>
 
