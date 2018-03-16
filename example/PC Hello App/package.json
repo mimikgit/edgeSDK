@@ -43,7 +43,8 @@
   },
   "dependencies": {
     "eslint": "^4.17.0",
-    "fs-jetpack": "^1.2.0"
+    "fs-jetpack": "^1.2.0",
+    "npm": "^5.7.1"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.39",
