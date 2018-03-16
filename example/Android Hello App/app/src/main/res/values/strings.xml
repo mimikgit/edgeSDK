@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Mimik Example</string>
+    <string name="hello_message_placeholder">Hello messages will arrive here.</string>
+    <string name="device_name">Device Name</string>
+    <string name="missing_license">A valid license must be set in NodeListActivity.java.</string>
+</resources>
