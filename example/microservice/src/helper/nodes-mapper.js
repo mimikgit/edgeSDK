@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import find from 'lodash/find';
 
 export default class NodesMapper {
   static getRouting(node) {
@@ -9,7 +9,7 @@ export default class NodesMapper {
 
     const json = JSON.stringify(route);
 
-    const proxy = _.find(node.addresses, addr => addr.type === 'proxy');
+    const proxy = find(node.addresses, addr => addr.type === 'proxy');
     return {
       id: Duktape.enc('base64', json),
       port: proxy && proxy.routingPort,
@@ -18,9 +18,9 @@ export default class NodesMapper {
   }
 
   static getUrl(node) {
-    const pub = _.find(node.addresses, addr => addr.type === 'public');
-    const proxy = _.find(node.addresses, addr => addr.type === 'proxy');
-    const local = _.find(node.addresses, addr => addr.type === 'local');
+    const pub = find(node.addresses, addr => addr.type === 'public');
+    const proxy = find(node.addresses, addr => addr.type === 'proxy');
+    const local = find(node.addresses, addr => addr.type === 'local');
 
     if (pub && pub.url && pub.url.href && pub.url.href.startsWith('https://')) {
       return pub.url.href;
@@ -37,10 +37,10 @@ export default class NodesMapper {
     try {
       const copy = [];
       nodes.forEach((node) => {
-        const Example = _.find(node.services, srv => srv.serviceType === 'example-v1');
-        if (Example) {
-          const name = _.find(node.attributes, att => att.name === 'name');
-          const os = _.find(node.characteristics, att => att.name === 'os');
+        const example = find(node.services, srv => srv.serviceType === 'example-v1');
+        if (example) {
+          const name = find(node.attributes, att => att.name === 'name');
+          const os = find(node.characteristics, att => att.name === 'os');
           copy.push({
             id: node.nodeId || node.id, // adapting v2 and v1
             accountId: node.accountId || node.account.id, // adapting v2 and v1
