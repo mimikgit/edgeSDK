@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Hello World!</title>
+  <style>
+    code {
+      white-space: pre-wrap;
+      /* Since CSS 2.1 */
+      white-space: -moz-pre-wrap;
+      /* Mozilla, since 1999 */
+      white-space: -pre-wrap;
+      /* Opera 4-6 */
+      white-space: -o-pre-wrap;
+      /* Opera 7 */
+      word-wrap: break-word;
+      /* Internet Explorer 5.5+ */
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Hello World!</h1>
+  <!-- All of the Node.js APIs are available in this renderer process. -->
+  We are using Node.js
+  <script>document.write(process.versions.node)</script>, Chromium
+  <script>document.write(process.versions.chrome)</script>, and Electron
+  <script>document.write(process.versions.electron)</script>.
+
+  <div>
+    
+    <a href="<%=oauthDomain%>/auth?&scope=<%=oauthScope%>&response_type=code&client_id=test&code_challenge=czD7gtNh2SowYqxpN5OSf5a6wIiszEZ9AvRHGvwIJS4&code_challenge_method=S256&redirect_uri=com.mimik%3A%2F%2Fauthorization_code&state=123xya">
+      OAuth login - Client 1
+    </a>
+
+  </div>
+
+  <div id='main'> </div>
+
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+  <script>
+    // You can also require other files to run in this process
+    require('./renderer.js')
+  </script>
+</body>
+
+</html>
