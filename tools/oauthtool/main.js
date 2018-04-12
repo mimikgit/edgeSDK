@@ -19,6 +19,16 @@ const crypto = require('crypto');
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 
+// Please update  your clientID ( Application ID displayed in mimik developer portal for the app )
+
+const devClientId = process.env.CLIENT_ID; //'test';
+
+// Please update  your ridirect url  ( use ridirect uri entered in mimik developer portal for the app )
+
+
+const devRidirectUri = process.env.RIDIRECT_URI; // 'com.mimik://authorization_code';
+
+
 ////////////////////////////////////////////////
 
 const OAUTH_DOMAIN = 'https://mid.mimik360.com';
@@ -88,8 +98,8 @@ function createWindow () {
       form: {
         grant_type: 'authorization_code',
         code: query.code,
-        redirect_uri: 'com.mimik://authorization_code',
-        client_id: query.state === '123xya' ? 'test' : 'test2',
+        redirect_uri: devRidirectUri,
+        client_id: devClientId,
         code_verifier: 'SqRg3wQWke2YSwMydkdilNHURfmmnt-Vlbvf8s2Ri58'
       }
     };
