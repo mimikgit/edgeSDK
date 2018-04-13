@@ -1,3 +1,6 @@
 index.html
 .DS_Store
 edgeSDK.wiki/
+mimik-gh-edgeSDK.code-workspace
+oauthtool/node_modules/*
+jsonrpctool/node_modules/*
