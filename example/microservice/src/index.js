@@ -61,9 +61,9 @@ app.get('/drives', (req, res) => {
   const type = (query && query.type) || 'nearby';
 
   let action;
-  if (!(query && query.userAccessToken)) {
-    action = new Action(cb => cb(new ApiError(403, 'userAccessToken must not be null')));
-  } else {
+//  if (!(query && query.userAccessToken)) {
+//    action = new Action(cb => cb(new ApiError(403, 'userAccessToken must not be null')));
+//  } else {
     switch (type) {
       case 'nearby':
         action = getNearByDrives.buildAction();
@@ -76,7 +76,7 @@ app.get('/drives', (req, res) => {
         action = new Action(cb => cb(new Error(`"${type}" type is not supported`)));
         break;
     }
-  }
+//  }
   action
     .next((data) => {
       const dataList = { type, data };
