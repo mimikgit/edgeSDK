@@ -1,0 +1,5 @@
+# Ignore imported dependencies
+node_modules
+
+# Ignore git stuff
+.git

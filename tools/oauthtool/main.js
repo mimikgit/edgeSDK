@@ -31,7 +31,7 @@ const devRidirectUri = process.env.RIDIRECT_URI; // 'com.mimik://authorization_c
 
 ////////////////////////////////////////////////
 
-const OAUTH_DOMAIN = 'https://mid.mimik360.com';
+const OAUTH_DOMAIN = 'https://mid-dev.mimikdev.com';
 const SCOPES = [
        'edge:mcm',
        'write:me', 
@@ -53,6 +53,8 @@ const SCOPES = [
        'edge:account:associate',
        'openid', ]; // 'edge:account:unassociate'
 
+ejse.data('redirectURI', devRidirectUri);
+ejse.data('clientId', devClientId);
 ejse.data('oauthDomain', OAUTH_DOMAIN);
 ejse.data('oauthScope', SCOPES.map(u => encodeURIComponent(u)).join('+'));
 
