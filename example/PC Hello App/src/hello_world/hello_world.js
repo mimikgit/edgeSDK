@@ -1,13 +1,20 @@
 import fs from 'fs';
+import WebSocket from 'ws';
+import JsonRPC from 'simple-jsonrpc-js';
 import { remote } from 'electron';
 
 const { app } = remote;
 
-const LOCAL_URL = 'http://localhost:8083';
+const EDGE_SDK_IP = '127.0.0.1'; // '172.22.2.23'; // Assume the edge SDK is running locally
+const EDGE_SDK_PORT = 8083; // Currently the edge SDK default port is 8083
+
+const LOCAL_URL = `http://${EDGE_SDK_IP}:${EDGE_SDK_PORT}`; // "http://127.0.0.1:8083"
+const LOCAL_EDGE_WS_URL = `ws://${EDGE_SDK_IP}:${EDGE_SDK_PORT}/ws/edge-service-api/v1`;
 
 // Gets the token from .mcmUserToken file
 function getToken() {
-  return 'GET The actual token from the .mcmUserToken file';
+  const token = JSON.parse(sessionStorage.getItem('token'));
+  return token.access_token;
 }
 
 // return a text for greeting
@@ -84,6 +91,174 @@ function fetchPOST(containerData, Url) {
     .catch((error) => {
       console.log(error);
     });
+}
+
+function isObject(obj) {
+  return (typeof obj === 'object' && obj !== null);
+}
+
+function StatusError(message) {
+  return message;
+}
+
+function wsResponse(data) {
+  const result = {};
+  result.data = {};
+  if (isObject(data)) {
+    result.state = 'OK';
+    result.data = data;
+    // result.AccountMatch = data.accountId === userId;
+    result.Empty = !(data && data.accountId !== '');
+    return result;
+  }
+  result.state = 'NOTOK';
+  throw StatusError(result);
+}
+
+function wsError(error) {
+  if (error && error.state) {
+    return error;
+  }
+  const result = {};
+  result.state = 'ERROR';
+  result.error = error;
+  return result;
+}
+
+export function accountAssociation(cb) {
+  const token = JSON.parse(sessionStorage.getItem('token'));
+  const ws = new WebSocket(LOCAL_EDGE_WS_URL);
+  const jrpc = new JsonRPC();
+  ws.jrpc = jrpc;
+  ws.jrpc.toStream = (_msg) => {
+    ws.send(_msg);
+  };
+
+  ws.on('open', () => {
+    // console.log('associateAccount socket open ');
+    jrpc.call('associateAccount', [token.access_token]).then((result) => {
+      // console.log('associateAccount result: ', result);
+      const data = wsResponse({ accountId: result });
+      cb(data);
+      setImmediate(() => {
+        ws.onmessage = undefined;
+        ws.close();
+      });
+    }).catch((e) => {
+      console.log('catch error:', e);
+      setImmediate(() => {
+        ws.onmessage = undefined;
+        ws.close();
+      });
+      cb(wsError(e));
+    });
+  });
+
+  ws.on('message', (msgData) => {
+    // const msg = JSON.parse(msgData);
+    // console.log('associateAccount socket message: ', msg);
+    jrpc.messageHandler(msgData);
+  });
+
+  ws.on('error', (err) => {
+    // console.log('edge ws onerror', err);
+    cb(wsError(err));
+  });
+
+  ws.on('close', () => {
+    // console.log('edge ws close');
+  });
+}
+
+export function getMe(cb) {
+  const token = JSON.parse(sessionStorage.getItem('token'));
+  const ws = new WebSocket(LOCAL_EDGE_WS_URL);
+  const jrpc = new JsonRPC();
+  ws.jrpc = jrpc;
+  ws.jrpc.toStream = (_msg) => {
+    ws.send(_msg);
+  };
+
+  ws.on('open', () => {
+    // console.log('getMe socket open');
+    jrpc.call('getMe', [token.access_token]).then((result) => {
+      // console.log('getMe result: ', result);
+      const data = wsResponse(result);
+      cb(data);
+      setImmediate(() => {
+        ws.onmessage = undefined;
+        ws.close();
+      });
+    }).catch((e) => {
+      console.log('catch error:', e);
+      setImmediate(() => {
+        ws.onmessage = undefined;
+        ws.close();
+      });
+      cb(wsError(e));
+    });
+  });
+
+  ws.on('message', (msgData) => {
+    // const msg = JSON.parse(msgData);
+    // console.log('getMe socket message: ', msg);
+    jrpc.messageHandler(msgData);
+  });
+
+  ws.on('error', (err) => {
+    // console.log('edge ws onerror', err);
+    cb(wsError(err));
+  });
+
+  ws.on('close', () => {
+    // console.log('edge ws close');
+  });
+}
+
+export function undoAccountAssociation(cb) {
+  const token = JSON.parse(sessionStorage.getItem('token'));
+
+  const ws = new WebSocket(LOCAL_EDGE_WS_URL);
+  const jrpc = new JsonRPC();
+  ws.jrpc = jrpc;
+  ws.jrpc.toStream = (_msg) => {
+    ws.send(_msg);
+  };
+
+  ws.on('open', () => {
+    // console.log('unassociateAccount socket open');
+    jrpc.call('unassociateAccount', [token.access_token]).then((result) => {
+      // console.log('unassociateAccount result: ', result);
+      const data = wsResponse({ accountId: result });
+      cb(data);
+      setImmediate(() => {
+        ws.onmessage = undefined;
+        ws.close();
+      });
+    }).catch((e) => {
+      // console.log('catch error:', e);
+      setImmediate(() => {
+        ws.onmessage = undefined;
+        ws.close();
+      });
+      cb(wsError(e));
+    });
+  });
+
+  ws.on('message', (msgData) => {
+    // const msg = JSON.parse(msgData);
+    // console.log('unassociateAccount socket message: ', msg);
+    jrpc.messageHandler(msgData);
+  });
+
+  ws.on('error', (err) => {
+    // console.log('edge ws onerror', err);
+    cb(wsError(err));
+  });
+
+  ws.on('close', () => {
+    // console.log('edge ws close');
+  });
 }
 
 // Get the list of images return response via call back
