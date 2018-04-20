@@ -1,4 +1,4 @@
-package com.mimik.example;
+package com.mimik.example.edgeservice;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -15,13 +15,11 @@ import java.util.Map;
 
 public class EdgeServiceModule {
 
-    IEdgeService mService = null;
-
+    public static final String TAG = "EdgeServiceModule";
     private final Context context;
     private final String licenseString;
-
     private final Map<String, String> options;
-
+    IEdgeService mService = null;
     private boolean mBound;
 
     private ServiceConnection mConnection = new ServiceConnection() {
@@ -47,8 +45,8 @@ public class EdgeServiceModule {
     };
 
     public EdgeServiceModule(Context context,
-                           String licenseString,
-                           Map<String, String> options) {
+                             String licenseString,
+                             Map<String, String> options) {
         this.context = context;
         this.licenseString = licenseString;
         this.options = options;
@@ -57,6 +55,7 @@ public class EdgeServiceModule {
 
     public void start() {
         if (!mBound) {
+            Log.d(TAG, "start");
             Intent intent = new Intent("com.mimik.edgeservice.ACTION_BIND");
             intent.setPackage("com.mimik.edgeservice");
             context.getApplicationContext().bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
@@ -73,18 +72,5 @@ public class EdgeServiceModule {
             context.getApplicationContext().unbindService(mConnection);
             mBound = false;
         }
-    }
-
-    public String getMcmLicense() {
-        if (mBound) {
-            String ret = null;
-            try {
-                ret = mService.getMcmLicense();
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
-            return ret;
-        }
-        return null;
     }
 }

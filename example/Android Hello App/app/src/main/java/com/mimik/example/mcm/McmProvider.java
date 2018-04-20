@@ -1,4 +1,4 @@
-package com.mimik.example;
+package com.mimik.example.mcm;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -125,6 +125,8 @@ public class McmProvider {
 
     public Call<ContainerInfo> addImage(String filename, final InputStream image) {
         if (image == null) { return null; }
+
+        // Code for reading the file stream
         final int contentLength;
 
         try {
