@@ -1,0 +1,18 @@
+---
+title: CSS stylesheet
+---
+// test
+@import "variables.scss";
+@import "mixins.scss";
+@import "breakpoints.scss";
+
+// Global CSS
+@import "global.scss";
+// Components
+@import "masthead.scss";
+@import "home.scss";
+@import "documentation.scss";
+// @import "pricing.scss";
+@import "icons.scss";
+@import "call-to-action.scss";
+@import "footer.scss";
