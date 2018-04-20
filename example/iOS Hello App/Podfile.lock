@@ -1,0 +1,37 @@
+PODS:
+  - Alamofire (4.7.1)
+  - AppAuth (0.92.0)
+  - edgeSDK-iOS (0.0.74)
+  - JWTDecode (2.1.1)
+  - Starscream (3.0.5)
+  - SwiftyJSON (4.0.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - AppAuth
+  - edgeSDK-iOS
+  - JWTDecode
+  - Starscream
+  - SwiftyJSON
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Alamofire
+    - AppAuth
+    - JWTDecode
+    - Starscream
+    - SwiftyJSON
+  https://github.com/mimikgit/cocoaPodSpecEdge.git:
+    - edgeSDK-iOS
+
+SPEC CHECKSUMS:
+  Alamofire: 68d7d521118d49c615a8d2214d87cdf525599d30
+  AppAuth: 3f4f1d6d85ad631d0bbf15ffcdc10c447face97a
+  edgeSDK-iOS: ffadcbafd6602afbda580dcbca000b75418f2d19
+  JWTDecode: 83e8b381aafe27158d9f692cbdca2b12d61d460c
+  Starscream: faf918b2f2eff7d5dd21180646bf015a669673bd
+  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
+
+PODFILE CHECKSUM: c550fb327758d04781f8dddf114f0c633abc4fd0
+
+COCOAPODS: 1.5.0
