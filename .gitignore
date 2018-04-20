@@ -4,3 +4,10 @@ edgeSDK.wiki/
 mimik-gh-edgeSDK.code-workspace
 oauthtool/node_modules/*
 jsonrpctool/node_modules/*
+docs/_site/*
+docs/Gemfile
+docs/Gemfile.lock
+docs/node_modules/*
+docs/*.gem
+docs/.sass-cache
+docs/.vscode
