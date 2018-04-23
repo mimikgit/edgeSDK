@@ -26,7 +26,7 @@ const devClientId = process.env.CLIENT_ID; //'test';
 // Please update  your ridirect url  ( use ridirect uri entered in mimik developer portal for the app )
 
 
-const devRidirectUri = process.env.RIDIRECT_URI; // 'com.mimik://authorization_code';
+const devRidirectUri = process.env.REDIRECT_URI; // 'com.mimik://authorization_code';
 
 
 ////////////////////////////////////////////////
