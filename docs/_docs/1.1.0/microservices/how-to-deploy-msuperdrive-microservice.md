@@ -26,15 +26,11 @@ Download the latest release of the mDrive microservice. This guide will start fr
 
 ```cd ~/Downloads ```
 
-```https://github.com/mimikgit/mDrive/releases/latest```
+```https://github.com/mimikgit/mSuperdrive/releases/latest```
 
-Extract the package
+Extract the package and copy the superdrive tar file to your edgeSDK installation directory
 
-```tar xvzf superdrive-v1.tar.gz```
-
-Copy the mSuperdrive tar file to your edgeSDK installation directory
-
-```sudo cp -a superdrive-v1.tar /opt/mimik/edge/microservices/mSuperdrive/```
+```sudo tar -xvzf superdrive-v1.tar.gz -C /opt/mimik/edge/microservices```
 
 ## Start edgeSDK
 
@@ -60,7 +56,7 @@ Install the superdrive-v1.tar image using the following command.
 
 Initialize superdrive microservice
 
-```curl -i -H 'Authorization: Bearer yourAccessTokenhere' -d '{"name": "superdrive-v1", "image": "superdrive-v1", "env": {"superdrive": "http://127.0.0.1:8083/superdrive/v1","MCM.BASE_API_PATH": "/superdrive/v1", "MCM.WEBSOCKET_SUPPORT": "false", "MFD": "https://mfd.mimik360.com/mFD/v1", "MPO": "https://mpo.mimik360.com/mPO/v1", "uMDS": "http://127.0.0.1:8083/mds/v1"} }' http://localhost:8083/mcm/v1/containers```
+```curl -i -H 'Authorization: Bearer yourAccessTokenHere' -d '{"name": "superdrive-v1", "image": "superdrive-v1", "env": {"superdrive": "http://127.0.0.1:8083/superdrive/v1","MCM.BASE_API_PATH": "/superdrive/v1", "MCM.WEBSOCKET_SUPPORT": "false", "MFD": "https://mfd.mimik360.com/mFD/v1", "MPO": "https://mpo.mimik360.com/mPO/v1", "uMDS": "http://127.0.0.1:8083/mds/v1"} }' http://localhost:8083/mcm/v1/containers```
 
 Verify that mSuperdrive microservice registered and works properly by calling following curl commands:
 

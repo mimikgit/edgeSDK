@@ -19,8 +19,8 @@ You will need the following software installed on your system.
 
 - [Docker Community Edition](https://www.docker.com/community-edition#/download) for your target development platform(s)
 - [https://www.npmjs.com/](NPM) v5.7.1
-- [https://nodejs.org](NodeJS) v 8.9.4
--edgeSDK is installed on your target development platform and and associated to your developer account
+- [https://nodejs.org](NodeJS) v8.9.4
+- edgeSDK is installed on your target development platform and and associated to your developer account
 
 ## Instructions
 

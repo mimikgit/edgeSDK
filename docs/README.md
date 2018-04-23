@@ -1,6 +1,6 @@
 # Documentation
 
-edgeSDK documentation, included in this repo in the root directory, is built with [Jekyll](https://jekyllrb.com). The docs may alos be run locally.
+edgeSDK documentation, included in this repo in the root directory, is built with [Jekyll](https://jekyllrb.com). The docs may be run locally.
 
 ## Prerequisites
 
@@ -11,9 +11,9 @@ To run our documentation locally you will need a copy of following software inst
 
 ## Installation
 
-- Install[Bundler](https://bundler.io) with ```gem install bundler```
+- Install [Bundler](https://bundler.io) with ```gem install bundler```
 - Run ```bundle install``` to install the Ruby dependencies, like Jekyll.
-        - **Windows Users:** Read [this guide](https://jekyllrb.com/docs/windows/) to install Jekyll
+- **Windows Users:** Read [this guide](https://jekyllrb.com/docs/windows/) to install Jekyll
 
 ## Running documentation locally
 
