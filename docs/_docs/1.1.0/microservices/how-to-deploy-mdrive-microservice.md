@@ -28,7 +28,7 @@ Download the latest release of the mDrive microservice. This guide will start fr
 
 ```https://github.com/mimikgit/mDrive/releases/latest```
 
-Extract the package and the drive tar file to your edgeSDK installation directory
+Extract the package and copy the drive tar file to your edgeSDK installation directory
 
 ```sudo tar -xvzf drive-v1.tar.gz -C /opt/mimik/edge/microservices/```
 
@@ -48,7 +48,7 @@ Navigate to the where the drive-v1.tar file
 
 ```cd /opt/mimik/edge/microservices/mDrive/```
 
-Install the drive-v1.tar image using the following command. 
+Install the drive-v1.tar image using the following command.
 
 - **Note:** Replace 'yourAccessTokenHere' with the "access_token" object created during account association for your target platform.
 

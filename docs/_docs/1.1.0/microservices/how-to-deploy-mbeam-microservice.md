@@ -91,7 +91,6 @@ Install the beam-v1.tar image using the following command. **Note:*-Replace 'you
 
 ```curl -i -H 'Authorization: Bearer yourAccessTokenHere' -F  "image=@beam-v1.tar" http://localhost:8083/mcm/v1/images```
 
-
 Initialize beam microservice
 
 ``` curl -i -H 'Authorization: Bearer yourAccessTokenhere' -d '{"name": "beam-v1", "image": "beam-v1", "env": {"BEAM": "http://127.0.0.1:8083/beam/v1","MCM.BASE_API_PATH": "/beam/v1", "MCM.WEBSOCKET_SUPPORT": "false", "MFD": "https://mfd.mimik360.com/mFD/v1", "MPO": "https://mpo.mimik360.com/mPO/v1", "uMDS": "http://127.0.0.1:8083/mds/v1"} }' http://localhost:8083/mcm/v1/containers``` 
