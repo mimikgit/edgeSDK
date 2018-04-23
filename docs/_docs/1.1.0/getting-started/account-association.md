@@ -43,7 +43,7 @@ Set your clientID using the Application ID displayed in mimik Developer Portal f
 
 Set your REDIRECTURI  using the redirect uri entered in mimik Developer Portal for your application
 
-```export REDIRECT="addYourURIHere" ```
+```export REDIRECT_URI="addYourURIHere"```
 
 Run the app
 
