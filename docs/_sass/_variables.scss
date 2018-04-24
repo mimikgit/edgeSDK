@@ -1,0 +1,60 @@
+// Variables
+
+
+$on-mobile: 576px !default;
+$on-tablet: 768px !default;
+$on-desktop: 992px !default;
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: $on-mobile,
+  md: $on-tablet,
+  lg: $on-desktop,
+  xl: 1200px
+) !default;
+
+$white: #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #DBE3E5 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #868e96 !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212121 !default;
+$black: #303030 !default;
+
+$blue: #007bff !default;
+$indigo: #6610f2 !default;
+$purple: #6f42c1 !default;
+$pink: #e83e8c !default;
+$red: #dc3545 !default;
+$orange: #fd7e14 !default;
+// $mimik-primary:$blue !default;
+$mimik-secondary: #ee4036 !default;
+$mimik-primary:$mimik-secondary !default;
+$yellow: #F5A700 !default;
+$green: #28a745 !default;
+$mimik-green: #3cadb5 !default;
+$teal: #20c997 !default;
+$cyan: #17a2b8 !default;
+
+$primary: $mimik-primary !default;
+$secondary: $gray-600 !default;
+$success: $green !default;
+$info: $cyan !default;
+$warning: $yellow !default;
+$danger: $red !default;
+$light: $gray-100 !default;
+$dark: $gray-900 !default;
+
+
+$header-height: 60px !default;
+$header-border-width: 2px !default;
+
+$doc-mobile-padding: 15px !default;
+$doc-tablet-padding: 2% !default;
+$doc-desktop-padding: 3% !default;
+$doc-menu-width: 260px !default;
+$documentation-margin: 40px !default;

@@ -64,18 +64,18 @@ app.get('/drives', (req, res) => {
 //  if (!(query && query.userAccessToken)) {
 //    action = new Action(cb => cb(new ApiError(403, 'userAccessToken must not be null')));
 //  } else {
-    switch (type) {
-      case 'nearby':
-        action = getNearByDrives.buildAction();
-        break;
-      case 'account':
-        action = getMyDrives.buildAction();
-        break;
+  switch (type) {
+    case 'nearby':
+      action = getNearByDrives.buildAction();
+      break;
+    case 'account':
+      action = getMyDrives.buildAction();
+      break;
 
-      default:
-        action = new Action(cb => cb(new Error(`"${type}" type is not supported`)));
-        break;
-    }
+    default:
+      action = new Action(cb => cb(new Error(`"${type}" type is not supported`)));
+      break;
+  }
 //  }
   action
     .next((data) => {

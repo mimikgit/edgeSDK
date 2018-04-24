@@ -1,0 +1,40 @@
+// Mixins
+// Background Cover Mixin
+@mixin background-cover {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+// Font Mixins
+@mixin body-font {
+  font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+@mixin media-query-max($devices-width) {
+  @media screen and (max-width: $devices-width) {
+    @content;
+  }
+}
+
+@mixin media-query-min($devices-width) {
+  @media screen and (min-width: $devices-width) {
+    @content;
+  }
+}
+
+@mixin flex-valign($valign) {
+  display: flex;
+  display: -webkit-flex;
+  align-items: $valign;
+}
+
+@mixin clearfix() {
+  &::before,
+  &::after {
+    content: "";
+    clear: both;
+    display: block;
+  }
+}

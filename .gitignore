@@ -2,5 +2,12 @@ index.html
 .DS_Store
 edgeSDK.wiki/
 mimik-gh-edgeSDK.code-workspace
-oauthtool/node_modules/*
-jsonrpctool/node_modules/*
+tools/oauthtool/node_modules/*
+tools/jsonrpctool/node_modules/*
+docs/node_modules/*
+docs/_site/*
+docs/.sass-cache/*
+docs/.vscode/*
+docs/*.gem
+docs/Gemfile.lock
+
