@@ -29,6 +29,8 @@ Clone the edgeSDK project from GitHub somewhere accessible on your home director
 
 Copy the example microservice to your edgeSDK installation directory
 
+```sudo mkdir /opt/mimik/edge/microservices/ && sudo mkdir /opt/mimik/edge/microservices/example ```
+
 ```sudo cp -a edgeSDK/example/microservice/. /opt/mimik/edge/microservices/example```
 
 ## The Repository Folders

@@ -33,7 +33,7 @@ socket.onclose = function(event) {
 //usage
 //after connect
 
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyNDU2NDg4MTE0NTY2MzY3MjkxIiwiYXpwIjoiMjI5MDMyMzkwOTA2Mzc0NDM3MyIsImp0aSI6IjJlODJiNmIyNGRkNDg0ZTg2NGQiLCJzY29wZSI6InJlYWQ6bWUgd3JpdGU6bWUgcmVhZDp1c2VycyByZWFkOmZyaWVuZExpc3QgZGVsZXRlOmZyaWVuZCByZWFkOnJlcXVlc3RGcmllbmRMaXN0IHJlYWQ6ZnJpZW5kUmVxdWVzdExpc3QgYWRkOnJlcXVlc3RGcmllbmQgZGVsZXRlOnJlcXVlc3RGcmllbmQgdXBkYXRlOmZyaWVuZFJlcXVlc3QgZGVsZXRlOmZyaWVuZFJlcXVlc3QgdXBkYXRlOm1lIiwibmJmIjoxNTE4NjQ0OTY1LCJleHAiOjE1MzQxOTY5NjUsImlzcyI6Imh0dHBzOi8vbWlkLm1pbWlrMzYwLmNvbS9tSUQvdjEvb2F1dGgvdG9rZW4iLCJhdWQiOiJodHRwczovL21pbWlrIn0.GdR6NHbhJtE43fVQRdsq85MQnKleXtPj4Ief62V2h_g";
+const token = process.env.ACCESS_TOKEN;
 
 socket.onopen = function () {
     //calls
@@ -44,8 +44,8 @@ socket.onopen = function () {
             socket.close();
         });
     }).catch(e => {
-       console.log(e);
-       setImmediate(function () {
+    console.log(e);
+    setImmediate(function () {
             socket.onmessage = undefined;
             socket.close();
         });

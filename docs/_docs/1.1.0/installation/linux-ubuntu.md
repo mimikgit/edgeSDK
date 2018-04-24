@@ -27,17 +27,35 @@ You will need the following software installed on your system.
 
 ## Instructions
 
-From a terminal window navigate to the root directory of your development environment (we assume a new terminal window start from your user home directory
+Open a new terminal window. This guide will start from the user Downloads directory
 
-```cd /```
+```cd ~/Downloads```
+
+Next clone the edgeSDK GitHub repository
+
+```git clone https://github.com/mimikgit/edgeSDK.git```
+
+Download the latest Linux package from the edgeSDK release page into the Downloads directory
+
+```https://github.com/mimikgit/edgeSDK/releases/latest```
+
+<!-- todo - oneliner with curl, wget to download from api.github.com/repo* -->
 
 Create opt/mimik/edge directory structure
 
 ```sudo mkdir -p /opt/mimik/edge```
 
-Change directory permissions of the directory created in the last step and verify change is applied.
+Change directory permissions of the directory created in the last step and verify change is applied
 
 ```sudo chmod a+w -R /opt/mimik/edge | ls -ld /opt/mimik/edge```
+
+Unzip then copy mimik edge package to the directory created in the last step
+
+```unzip ~/Downloads/edge_linux.zip -d ~/Downloads/edge_linux && sudo cp -a ~/Downloads/edge_linux/. /opt/mimik/edge/  && ls -la /opt/mimik/edge```
+
+Next copy the edgeSDK license configuration to the edgeSDK installation directory
+
+```sudo cp -a ~/Downloads/edgeSDK/tools/mimikEdge.lic /opt/mimik/edge/ ```
 
 Change from current directory to opt/mimik/edge
 
