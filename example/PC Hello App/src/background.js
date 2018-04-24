@@ -56,8 +56,8 @@ const state =
         .substring(2, 15);
 
 const audience = 'generic-edge';
-const authUrl = `${MID_URI}/auth?audience=${audience}&scope=${scope}&response_type=code&APP_ID=${clientId}&code_challenge=${challenge}&code_challenge_method=S256&redirect_uri=${redirect}&state=${state}`;
-const authUnassociateUrl = `${MID_URI}/auth?audience=${audience}&scope=${unassociateScope}&response_type=code&APP_ID=${clientId}&code_challenge=${challenge}&code_challenge_method=S256&redirect_uri=${redirect}&state=${state}`;
+const authUrl = `${MID_URI}/auth?audience=${audience}&scope=${scope}&response_type=code&client_id=${clientId}&code_challenge=${challenge}&code_challenge_method=S256&redirect_uri=${redirect}&state=${state}`;
+const authUnassociateUrl = `${MID_URI}/auth?audience=${audience}&scope=${unassociateScope}&response_type=code&client_id=${clientId}&code_challenge=${challenge}&code_challenge_method=S256&redirect_uri=${redirect}&state=${state}`;
 
 // console.log(`v: ${verifier} / c: ${challenge}`);
 
@@ -120,7 +120,7 @@ app.on('ready', () => {
           code: query.query.code,
           redirect_uri: REDIRECT_URI,
           code_verifier: verifier,
-          APP_ID: clientId,
+          client_id: clientId,
         },
       };
 
