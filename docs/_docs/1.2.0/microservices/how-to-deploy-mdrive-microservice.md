@@ -60,9 +60,7 @@ Initialize drive microservice
 
 Verify that mDrive microservice registered and works properly by calling following curl commands:
 
-```curl -i http://localhost:8083/drive/v1/files``
-
-![curl response](/assets/images/documentation/mDrive_response_play_queue.png)
+```curl -i http://localhost:8083/drive/v1/files```
 
 The screen log shows that this method returns an empty objected called "data". View our [SwaggerHub](https://app.swaggerhub.com/apis/mimik/mDrive) definition for more information how different mDrive calls work.
 
