@@ -1,13 +1,15 @@
 ---
 layout: docs
-title: How to run edgeSDK example app on macOS
+title: How to run edgeSDK example app on Ubuntu
 type: example apps
-order: 05
+order: 04
 ---
 
 ## Objectives
 
-These instructions contain a example application for Linux environments to help you understand how to package the edgeSDK and send commands through microservices.
+Use the example application for Linux devices to understand how interactions between application, microservice, and edgeSDK work.
+
+Here you can see the message sequence between app, microservice and edgeSDK:
 
 ## Prerequisites
 
@@ -30,17 +32,24 @@ Switch to the folder where the example app resides.
 
 ```cd example/PC\ Hello\ App/```
 
+
 Install the node dependencies by running the following command:
 
 ```npm install```
 
 ## Start edgeSDK
 
-Use the [macOS edgeSDK installation guide](/docs/1.2.0/installation/macos.html) then open the directory where you installed this package, and double click to start the edgeSDK.
+Use the [Linux edgeSDK installation guide](/docs/1.2.0/.2.0/installation/linux-ubuntu.html) then in a new terminal window change from current directory to opt/mimik/edge
+
+```cd /opt/mimik/edge```
+
+Start edgeSDK
+
+```./edge```
 
 ## Example microservice
 
-You also need the location of the [example-v1.tar](/docs/1.2.0/microservices/how-to-deploy-example-microservice.html) container image.
+You also need the location of the [example-v1.tar](/docs/1.2.0/.2.0/microservices/how-to-deploy-example-microservice.html) container image.
 
 If you cloned the [edgeSDK GitHub](https://github.com/mimikgit/edgeSDK) repo, you can use the "npm run package" command and the code will ascertain the correct location.
 
@@ -104,6 +113,7 @@ After  the following message flow is used to retrieve account cluster nodes:
 1. User selects one of the nodes and then sample app calls hello method with select node's' url to get a message from this node.
 1. Show the hello world response
 
+
 ## Recommended guides
 
-- [mimik serverless JavaScript programming API](/docs/1.2.0/resources/how-to-use-mimik-serverless-javascript-programming-api.html)
+- [mimik serverless JavaScript programming API](/docs/1.2.0/.2.0/resources/how-to-use-mimik-serverless-javascript-programming-api.html)

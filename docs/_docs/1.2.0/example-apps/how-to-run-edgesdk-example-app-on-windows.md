@@ -1,13 +1,13 @@
 ---
 layout: docs
-title: How to run edgeSDK example app on macOS
+title: How to run edgeSDK example app on Windows
 type: example apps
-order: 05
+order: 08
 ---
 
 ## Objectives
 
-These instructions contain a example application for Linux environments to help you understand how to package the edgeSDK and send commands through microservices.
+These instructions contain a example application for Windows 10 environments to help you understand how to package the edgeSDK and send commands through microservices.
 
 ## Prerequisites
 
@@ -36,7 +36,7 @@ Install the node dependencies by running the following command:
 
 ## Start edgeSDK
 
-Use the [macOS edgeSDK installation guide](/docs/1.2.0/installation/macos.html) then open the directory where you installed this package, and double click to start the edgeSDK.
+Use the [Windows edgeSDK installation guide](/docs/1.2.0/installation/windows.html) then open the directory where you installed this package, and double click to start the edgeSDK.
 
 ## Example microservice
 
@@ -76,8 +76,6 @@ The above two commands would produce one of the following installation files in 
 - For macOS: mimik Sample App--mac.dmg
 - For Windows: mimik Sample App Setup .exe
 - For Linux: mimik-sample-app--x86_64.AppImage
-
-The source code is commented inline for further details.
 
 ## Summary
 

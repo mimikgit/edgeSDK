@@ -1,6 +1,14 @@
+---
+layout: docs
+title: How to install proximity microservice
+type: microservices
+type: microservices
+order: 05
+---
+
 ## Objectives
 
-This example "Hello World" microservice helps you understand how to deploy a microservice to the edgeSDK runtime and call methods to discover nodes in a link local and account clusters.
+This guide to help you understand how to deploy a microservice to the edgeSDK runtime and call methods to discover nodes based on proximity.
 
 ## Prerequisite
 
@@ -20,6 +28,8 @@ Clone the edgeSDK project from GitHub somewhere accessible on your home director
 ```git clone https://github.com/mimikgit/edgeSDK.git```
 
 Copy the example microservice to your edgeSDK installation directory
+
+```sudo mkdir /opt/mimik/edge/microservices/ && sudo mkdir /opt/mimik/edge/microservices/example```
 
 ```sudo cp -a edgeSDK/example/microservice/. /opt/mimik/edge/microservices/example```
 
@@ -89,7 +99,7 @@ Initialize example microservice
 
 Call Hello and nearby endpoints from microservice
 
-![hello and nearby response](https://developers.mimik.com/assets/images/documentation/sample_app_message_sequence.png)
+![hello and nearby response](/assets/images/documentation/sample_app_message_sequence.png)
 
 
 ```curl -i -H 'Authorization: Bearer yourAccessTokenHere' http://localhost:8083/example/v1/drives?type=nearby```
@@ -107,6 +117,6 @@ Call Hello and get account cluster nodes from microservice
 
 ## Recommended guides
 
-- [How to run edgeSDK example app on Linux Ubuntu 16.04](https://developers-dev.mimikdev.com//docs/1.2.0/example-apps/how-to-run-edgesdk-example-app-on-Linux-Ubuntu.html)
-- [How to install and run mBeam microservice](https://developers-dev.mimikdev.com//docs/1.2.0/microservices/how-to-deploy-mbeam-microservice.html)
-- [mimik serverless JavaScript programming API](https://developers-dev.mimikdev.com//docs/1.2.0/resources/how-to-use-mimik-serverless-javascript-programming-api.html)
+- [How to run edgeSDK example app on Linux Ubuntu 16.04](/docs/1.2.0/example-apps/how-to-run-edgesdk-example-app-on-Linux-Ubuntu.html)
+- [How to install and run mBeam microservice](/docs/1.2.0/microservices/how-to-deploy-mbeam-microservice.html)
+- [mimik serverless JavaScript programming API](/docs/1.2.0/resources/how-to-use-mimik-serverless-javascript-programming-api.html)

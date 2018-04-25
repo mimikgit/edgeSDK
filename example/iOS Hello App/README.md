@@ -4,7 +4,7 @@ Use the example application for iOS devices to understand how interactions betwe
 
 ## Installation
 
-First download and install the [edgeSDK for iOS](https://developers-dev.mimikdev.com/docs/1.1.0/installation/ios.html) on to the mobile device you will test with
+First download and install the [edgeSDK for iOS](https://developers-dev.mimikdev.com/docs/1.2.0/installation/ios.html) on to the mobile device you will test with
 
 On your computer use the command line to clone the edgeSDK project from GitHub somewhere accessible on your user home directory. This guide starts from the Downloads folder
 
@@ -34,7 +34,7 @@ Next start the edgeSDK service
 
 Tap associate to link your developer account to this edgeSDK runtime
 
-Press load Load&mu;Services button to deploy the [example microservice](https://developers-dev.mimikdev.com/docs/1.1.0/microservices/how-to-deploy-example-microservice.html) on this device
+Press load Load&mu;Services button to deploy the [example microservice](https://developers-dev.mimikdev.com/docs/1.2.0/microservices/how-to-deploy-example-microservice.html) on this device
 
 Once deployed you can scan for devices by pressing GetNodes and see the list of devices the edgeSDK can discovery nearby.
 
@@ -67,4 +67,4 @@ After  the following message flow is used to retrieve account cluster nodes:
 
 ## Recommended guides
 
-- [mimik serverless JavaScript programming API](https://developers-dev.mimikdev.com/docs/1.1.0/resources/how-to-use-mimik-serverless-javascript-programming-api.html)
+- [mimik serverless JavaScript programming API](https://developers-dev.mimikdev.com/docs/1.2.0/resources/how-to-use-mimik-serverless-javascript-programming-api.html)
