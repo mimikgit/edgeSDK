@@ -49,17 +49,17 @@ Start edgeSDK
 
 ## Example microservice
 
-You also need the location of the [example-v1.tar](/docs/1.1.0/microservices/how-to-deploy-example-microservice.html) container image. 
+You also need the location of the [example-v1.tar](/docs/1.1.0/microservices/how-to-deploy-example-microservice.html) container image.
 
-If you installed this example locally from the package you create using the "npm run package" command, the code will ascertain the correct location.
+If you cloned the [edgeSDK GitHub](https://github.com/mimikgit/edgeSDK) repo, you can use the "npm run package" command and the code will ascertain the correct location.
 
-You can also hard code the path to the folder containing the  example-v1.tar file in the addImage function by assigning the path to the containersPath
+Otherwise open the src/hello_world/hello_world.js file, go to line 285, and hard code the path to the folder containing the example-v1.tar file in the addImage function by assigning the path to the containersPath variable.
 
 ## Account Association
 
-Next log in to [mimik Developer Portal](http://developers-dev.mimikdev.com/dev) and create a new native app
+Login to [mimik Developer Portal](http://developers-dev.mimikdev.com/dev) and create a new native app
 
-Modify the following constants in the background.js using the App ID and Redirect URI provided for your app in the mimik Developer Portal:
+Modify the following constants in the src/background.js file using the App ID and Redirect URI provided for your app in the mimik Developer Portal:
 
 ```const APP_ID```
 
@@ -68,7 +68,7 @@ Modify the following constants in the background.js using the App ID and Redirec
 ```const REDIRECT_URI```
 
 
-To run the code in a development environment use the following command:
+Enter the following command to build the example app in a development environment:
 
 ```npm start```
 
