@@ -4,7 +4,7 @@ Use the example application for Android devices to understand how interactions b
 
 ## Installation
 
-First download and install the [edgeSDK for Android](https://developers-dev.mimikdev.com/docs/1.1.0/installation/android.html) on to the mobile device you will test with
+First download and install the [edgeSDK for Android](https://developers.mimik360.com/docs/1.1.0/installation/android.html) on to the mobile device you will test with
 
 On your computer use the command line to clone the edgeSDK project from GitHub somewhere accessible on your user home directory. This guide starts from the Downloads folder
 
@@ -32,7 +32,7 @@ The app will show feedback that the edgeSDK acquired your user token
 
 Associate your account
 
-Press dock to deploy the [example microservice](https://developers-dev.mimikdev.com/docs/1.1.0/microservices/how-to-deploy-example-microservice.html) to this device
+Press dock to deploy the [example microservice](https://developers.mimik360.com/docs/1.1.0/microservices/how-to-deploy-example-microservice.html) to this device
 
 Once deployed you can scan for devices and see the list of devices the edgeSDK can discovery nearby.
 
@@ -42,7 +42,7 @@ Tap on any of the devices to see a hello world response at the bottom of your sc
 
 Below is message sequence between example app, microservice and edgeSDK:
 
-![app registration](https://developers-dev.mimikdev.com/assets/images/documentation/Hello App registration.png)
+![app registration](https://developers.mimik360.com/assets/images/documentation/Hello App registration.png)
 
 1. First the example app associates edgeSDK with accountID
 1. Developer registers its sample app to mimik developer portal and receives the account information and account key
@@ -51,7 +51,7 @@ Below is message sequence between example app, microservice and edgeSDK:
 
 After  the following message flow is used to retrieve account cluster nodes:
 
-![account cluster](https://developers-dev.mimikdev.com/assets/images/documentation/example microservice account cluster.png)
+![account cluster](https://developers.mimik360.com/assets/images/documentation/example microservice account cluster.png)
 
 1. Sample app first calls account service from example microservice to retrieve account cluster nodes from the BES using the authorization key of associated account
 1. mPO requests the nodes information  including BEP references of account cluster nodes.
@@ -65,4 +65,4 @@ After  the following message flow is used to retrieve account cluster nodes:
 
 ## Recommended guides
 
-- [mimik serverless JavaScript programming API](https://developers-dev.mimikdev.com/docs/1.1.0/resources/how-to-use-mimik-serverless-javascript-programming-api.html)
+- [mimik serverless JavaScript programming API](https://developers.mimik360.com/docs/1.1.0/resources/how-to-use-mimik-serverless-javascript-programming-api.html)
