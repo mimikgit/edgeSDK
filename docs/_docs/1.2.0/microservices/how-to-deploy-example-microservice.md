@@ -115,6 +115,15 @@ Call Hello and get account cluster nodes from microservice
 
 ```curl -i -H 'Authorization: Bearer yourAccessTokenHere' http://localhost:8083/example/v1/drives?type=account```
 
+
+## Discover nodes in a proximity cluster cluster
+
+Sample app uses example microservice to find account cluster nodes and then call "Hello World" methods provided by these nodes. The content of "Hello World" JSON object could be changed based on the presentation that we will have on app.
+
+Call Hello and get account cluster nodes from microservice
+
+```curl -i -H 'Authorization: Bearer yourAccessTokenHere' http://localhost:8083/example/v1/drives?type=proximity```
+
 ## Recommended guides
 
 - [How to run edgeSDK example app on Linux Ubuntu 16.04](/docs/1.2.0/example-apps/how-to-run-edgesdk-example-app-on-Linux-Ubuntu.html)

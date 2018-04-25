@@ -55,11 +55,11 @@ In the first couple of lines of the log, you see the access method e.g. Get, Pos
 
 ## Account association
 
-Use the [account association](/docs/ing-started/account-association.html) guide link your Developer Account to your edgeSDK allowing you to discover and make calls to devices belonging to the account cluster.
+Use the [account association](/docs/1.2.0/getting-started/account-association.html) guide link your Developer Account to your edgeSDK allowing you to discover and make calls to devices belonging to the account cluster.
 
-Download the example application  [PC example app](https://github.com/mimikgit/edgeSDK/tree/master/example/PC%20Hello%20App) and use the [documentation](/docs/ple-apps/how-to-run-edgesdk-example-app-on-macos.html)  for a quick end to end demo of this process.
+Download the example application  [PC example app](https://github.com/mimikgit/edgeSDK/tree/master/example/PC%20Hello%20App) and use the [documentation](/docs/1.2.0/example-apps/how-to-run-edgesdk-example-app-on-macos.html)  for a quick end to end demo of this process.
 
 ## Recommended guides
 
-- [How to install and run example microservice](/docs/oservices/How-to-deploy-example-microservice.html)
-- [How to run edgeSDK example app on macOS ](/docs/ple-apps/how-to-run-edgeSDK-example-app-on-macos.html)
+- [How to install and run example microservice](/docs/1.2.0/microservices/How-to-deploy-example-microservice.html)
+- [How to run edgeSDK example app on macOS ](/docs/1.2.0/example-apps/how-to-run-edgeSDK-example-app-on-macos.html)
