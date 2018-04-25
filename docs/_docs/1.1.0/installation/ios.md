@@ -23,15 +23,17 @@ This guide assumes that:
 
 ## Instructions
 
-First download the iOS edgeSDK Cocoapod from our [Github Repository(https://github.com/mimikgit/cocoaPodEdge)]
+First download the iOS edgeSDK Cocoapod from our [Github Repository(https://github.com/mimikgit/cocoapod-edge-prod.git)]
 
 To install it, simply add the following lines to your Podfile:
 
 ```source 'https://github.com/CocoaPods/Specs.git'```
 
-```source 'https://github.com/mimikgit/cocoaPodSpecEdge.git'```
+```source https://github.com/mimikgit/cocoapod-edge-specs.git'```
 
-```pod 'edgeSDK-iOS', '0.0.56'```
+```cd edgeSDK-ios```
+
+```pod 'edgeSDK-iOS', '0.0.83'```
 
 ## Account association
 
@@ -42,4 +44,4 @@ Download the example application  [PC example app](https://github.com/mimikgit/e
 ## Recommended guides
 
 - [How to deploy a microservice to the edgeSDK](/docs/1.1.0/microservices/how-to-deploy-example-microservice.html)
-- [How to run edgeSDK example app on iOS](/docs/1.1.0/example-apps/how-to-run-edgeSDK-example-app-on-iOS.html) 
+- [How to run edgeSDK example app on iOS](/docs/1.1.0/example-apps/how-to-run-edgeSDK-example-app-on-iOS.html)
