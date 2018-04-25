@@ -8,9 +8,10 @@ import ApiError from '../helper/api-error';
 import { extractToken, addAuthorizationHeader } from '../helper/authorization-helper';
 
 export default class GetMyDrives {
-  constructor(getNearByDrives, mpo, http, edge, authorization, userToken) {
+  constructor(getNearByDrives, mpo, localMds, http, edge, authorization, userToken) {
     this.getNearByDrives = getNearByDrives;
     this.mpo = mpo;
+    this.localMds = localMds;
     this.http = http;
     this.edge = edge;
     this.authorization = authorization;
@@ -63,31 +64,94 @@ export default class GetMyDrives {
   }
 
   getMpoDevices() {
-    const { http, mpo, authorization, userToken, edge } = this;
-    const authHeader = addAuthorizationHeader(userToken);
+    const { http, mpo, authorization, localMds, userToken, edge } = this;
+    const accessToken = extractToken(authorization);
+
+    if (mpo) {
+      const authHeader = addAuthorizationHeader(userToken);
+      return new Action(
+        (cb) => {
+          http.request(({
+            url: `${mpo}/users/me?include=devices`,
+            authorization: authHeader,
+            success: (result) => {
+              cb(result.data);
+            },
+            error: (err) => {
+              console.log(`mpo error: ${err.message}`);
+              const message = JSON.parse(err.message);
+              cb(new ApiError(message.statusCode || 400, err.message));
+            },
+          }));
+        },
+      ).next((json) => {
+        try {
+          const data = JSON.parse(json);
+          return data;
+        } catch (e) {
+          return new Error(e.message);
+        }
+      }).next(data => GetMyDrives.transform(data, edge, authorization));
+    }
+
     return new Action(
       (cb) => {
         http.request(({
-          url: `${mpo}/users/me?include=devices`,
-          authorization: authHeader,
+          url: `${localMds}/nodes?clusters=account`,
           success: (result) => {
             cb(result.data);
           },
           error: (err) => {
-            console.log(`mpo error: ${err.message}`);
-            const message = JSON.parse(err.message);
-            cb(new ApiError(message.statusCode || 400, err.message));
+            cb(new Error(err.message));
           },
         }));
       },
     ).next((json) => {
       try {
-        const data = JSON.parse(json);
-        return data;
+        const nodes = JSON.parse(json);
+        return JSON.stringify(nodes.data);
       } catch (e) {
         return new Error(e.message);
       }
-    }).next(data => GetMyDrives.transform(data, edge, authorization));
+    }).next(encryptedJson => new Action(
+      (cb) => {
+        edge.decryptEncryptedNodesJson({
+          type: 'local',
+          token: accessToken,
+          data: encryptedJson,
+          success: (result) => {
+            cb(result.data);
+          },
+          error: (err) => {
+            cb(new Error(err.message));
+          },
+        });
+      }))
+      .next((json) => {
+        try {
+          const nodes = JSON.parse(json);
+          console.log(JSON.stringify(nodes, null, 2));
+          return nodes;
+        } catch (e) {
+          return new Error(e.message);
+        }
+      })
+      .next((nodes) => {
+        const data = {
+          data: {
+            id: nodes.account.accountId,
+          },
+          include: {
+            devices: {
+              data: {
+                account: nodes.account,
+              },
+            },
+          },
+        };
+
+        return GetMyDrives.transform(data, edge, authorization);
+      });
   }
 
   buildAction(_nearbyAction) {
@@ -103,7 +167,6 @@ export default class GetMyDrives {
         const nodes1 = keyBy(n.filter(node => node.accountId === accountId), 'id');
         const nodes2 = keyBy(a, 'id');
         return values(mergeWith(nodes1, nodes2, oldVal => oldVal));
-
         // return _(n)
         //   .filter(node => node.accountId === accountId)
         //   .keyBy('id')
