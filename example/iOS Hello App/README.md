@@ -20,25 +20,25 @@ Install the required cocoapods
 
 ```pod install```
 
-Start Xcode and open the example app project. **Note** You must use a real device, not emulator, to build the example. edgeSDK functionality will not operate on the emulator devices.
+Start Xcode 9.3+ and open the example_microservice_app project. **Note** You must use a real device, not an emulator to build the example. edgeSDK functionality will not operate on emulated devices.
 
 ## Using the app
 
-Once the application is running on your test device a few functions you can test out
+Once the application is running on your test device there are a few functions you can test.
 
-First press the login button and use your Developer Account credentials to login
+First press the StartEdge button to start the edgeSDK service
 
-Allow the example application the requested authorization
+After about five seconds press the Login button and allow the example application to use the authorization webpage by selecting Continue on the iOS popup dialogue
 
-Next start the edgeSDK service
+Then login using your Developer Account credentials and select Allow to exit the authorization webpage
 
-Tap associate to link your developer account to this edgeSDK runtime
+Tap Associate to link your developer account to this edgeSDK runtime
 
-Press load Load&mu;Services button to deploy the [example microservice](https://developers.mimik360.com/docs/1.1.0/microservices/how-to-deploy-example-microservice.html) on this device
+Press Load&mu;Services button to deploy the [example microservice](https://developers.mimik360.com/docs/1.1.0/microservices/how-to-deploy-example-microservice.html) on this device
 
-Once deployed you can scan for devices by pressing GetNodes and see the list of devices the edgeSDK can discovery nearby.
+Once deployed you can scan for devices by pressing GetNodes and see the list of devices edgeSDK can discover nearby. It works best if you have two device running the example app on the same network.
 
-Tap on any of the devices to see a hello world response at the bottom of your screen.
+Tap any of the discovered devices to see a Hello WORLD!!! response at the bottom of your screen.
 
 ## Summary
 
