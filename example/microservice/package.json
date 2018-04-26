@@ -12,6 +12,7 @@
   "dependencies": {
     "action-js": "^4.3.0",
     "lodash": "^4.17.4",
+    "parseurl": "^1.3.2",
     "query-string": "^4.3.4",
     "router": "^1.3.0"
   },

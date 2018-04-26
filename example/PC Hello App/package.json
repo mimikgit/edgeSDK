@@ -2,7 +2,7 @@
   "name": "mimik-sample-app",
   "productName": "mimik Sample App",
   "description": "mimik Sample App demonstrating mimik container manager",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "author": "mimik technology inc. <info@mimik.com> (https://mimik.com)",
   "copyright": "© 2018, mimik technology inc.",
@@ -42,9 +42,13 @@
     "package": "webpack --config=build/webpack.app.config.js --env=production && electron-builder"
   },
   "dependencies": {
-    "eslint": "^4.17.0",
-    "fs-jetpack": "^1.2.0",
-    "npm": "^5.7.1"
+    "eslint": "^4.19.1",
+    "fs-jetpack": "^1.3.0",
+    "query-string": "^6.0.0",
+    "request": "^2.85.0",
+    "request-promise": "^4.2.2",
+    "simple-jsonrpc-js": "0.0.10",
+    "ws": "^5.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.39",
@@ -55,17 +59,21 @@
     "chai": "^4.1.2",
     "css-loader": "^0.28.9",
     "electron": "1.8.4",
-    "electron-builder": "^19.56.0",
-    "electron-mocha": "^5.0.0",
+    "electron-builder": "^20.8.1",
+    "electron-mocha": "^6.0.1",
     "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.8.0",
-    "friendly-errors-webpack-plugin": "^1.6.1",
-    "mocha": "^5.0.0",
-    "source-map-support": "^0.5.3",
+    "eslint-plugin-import": "^2.11.0",
+    "friendly-errors-webpack-plugin": "^1.7.0",
+    "mocha": "^5.1.0",
+    "source-map-support": "^0.5.4",
     "spectron": "^3.8.0",
-    "style-loader": "^0.20.1",
+    "style-loader": "^0.20.3",
     "webpack": "^3.10.0",
-    "webpack-merge": "^4.1.1",
-    "webpack-node-externals": "^1.6.0"
+    "webpack-merge": "^4.1.2",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "devEngines": {
+    "node": ">=8.x",
+    "npm": ">=5.7"
   }
 }

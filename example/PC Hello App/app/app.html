@@ -3,14 +3,35 @@
 <head>
   <meta charset="utf-8">
   <title>mimik Sample App</title>
+  <style>
+    .message {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: crimson;
+      color: antiquewhite;
+      border-radius: 0 0 5px 5px;
+      top: 0;
+      left: 5px;
+      right: 5px;
+      height: 48px;
+      z-index: 10;
+    }
+  </style>
 </head>
 <body>
+  <div class="message" style="display: none;"></div>
   <!-- Just the contents of the app, there should not be any need to modify anything here -->
   <div id="app" class="container" style="display: none;">
       <h1 id="greet"></h1>
+      <button id="login" type="button">Login</button>
+      <button id="associate" type="button" disabled="disabled">Associate</button>
+      <!-- <button id="load-micro-services" type="button" disabled="disabled">Load µService</button> -->
       <button id="add-image" type="button" disabled="disabled">Add Example Image</button>
       <button id="add-container" type="button" disabled="disabled">Add Example Container</button>
       <button id="get-devices" type="button" disabled="disabled">Get devices</button>
+      <button id="unassociate" type="button" disabled="disabled">Unassociate</button>
       <div id="devicelist">
         The device will appear here.
   </div>

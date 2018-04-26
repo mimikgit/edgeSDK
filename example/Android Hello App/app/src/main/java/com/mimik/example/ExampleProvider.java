@@ -3,7 +3,12 @@ package com.mimik.example;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.io.IOException;
+
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -18,24 +23,21 @@ public class ExampleProvider {
             .disableHtmlEscaping()
             .create();
 
-    interface MimikExampleService {
-        // Get a list of nearby devices
-        @GET("drives")
-        Call<DeviceListObject> getDevices(@Query("type") String type);
-
-        // Get a message from a device
-        @GET("example/v1/hello")
-        Call<HelloMessage> getMessage();
-    }
-
     // Get list of devices
-    public static Call<DeviceListObject> getDevices() {
-        //TODO: Refactor the service builder (url can be a parameter)
-            // Choosing not to, since the api url should not need to be passed in every time
+    public static Call<DeviceListObject> getDevices(final String edgeAccessToken, final String userAccessToken) {
         final HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
         final OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(logging)
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public Response intercept(final Chain chain) throws IOException {
+                        Request newRequest = chain.request().newBuilder()
+                                .addHeader("Authorization", "Bearer " + edgeAccessToken)
+                                .build();
+                        return chain.proceed(newRequest);
+                    }
+                })
                 .build();
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -45,7 +47,7 @@ public class ExampleProvider {
                 .build();
 
         MimikExampleService service = retrofit.create(MimikExampleService.class);
-        return service.getDevices("nearby");
+        return service.getDevices("nearby", userAccessToken);
     }
 
     // Get message from a device
@@ -64,5 +66,15 @@ public class ExampleProvider {
 
         MimikExampleService service = retrofit.create(MimikExampleService.class);
         return service.getMessage();
+    }
+
+    interface MimikExampleService {
+        // Get a list of nearby devices
+        @GET("drives")
+        Call<DeviceListObject> getDevices(@Query("type") String type, @Query("userAccessToken") String userAccessToken);
+
+        // Get a message from a device
+        @GET("example/v1/hello")
+        Call<HelloMessage> getMessage();
     }
 }

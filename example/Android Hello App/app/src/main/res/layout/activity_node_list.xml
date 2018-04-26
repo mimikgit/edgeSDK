@@ -6,25 +6,86 @@
     android:layout_height="match_parent"
     tools:context="com.mimik.example.NodeListActivity">
 
-    <ListView
-        android:id="@+id/listView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/textView" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_marginTop="10dp"
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/buttonLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:text="@string/hello_message_placeholder"
-        android:textSize="20sp"/>
+        app:flexWrap="wrap">
 
-    <ProgressBar
-        android:id="@+id/progressBar"
+        <Button
+            android:id="@+id/button_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_start" />
+
+        <Button
+            android:id="@+id/button_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_login" />
+
+        <Button
+            android:id="@+id/button_associate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_associate" />
+
+        <Button
+            android:id="@+id/button_mcm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_mcm" />
+
+        <Button
+            android:id="@+id/button_scan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_scan" />
+
+        <Button
+            android:id="@+id/button_unassociate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_unassociate" />
+
+        <Button
+            android:id="@+id/button_stop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_stop" />
+    </com.google.android.flexbox.FlexboxLayout>
+
+    <RelativeLayout
         android:layout_width="match_parent"
+
         android:layout_height="match_parent"
-        android:layout_margin="100dp"
-        android:visibility="visible"/>
+        android:layout_below="@+id/buttonLayout"
+        android:layout_marginTop="-1dp">
+
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_above="@id/textView"/>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="10dp"
+            android:text="@string/hello_message_placeholder"
+            android:textSize="20sp" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="100dp"
+            android:visibility="visible" />
+    </RelativeLayout>
+
 </RelativeLayout>

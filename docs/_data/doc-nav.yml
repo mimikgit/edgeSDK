@@ -1,0 +1,39 @@
+- title: Getting Started
+  pages:
+    - title: Welcome
+    - title: Creating a Developer Account
+    - title: Account Association 
+
+- title: Installation
+  pages:
+    - title: Android
+    - title: iOS
+    - title: Linux Debian
+    - title: Linux Ubuntu
+    - title: macOS
+    - title: Raspberry Pi
+    - title: Windows
+
+- title: Microservices
+  pages:
+    - title: How to deploy Example microservice
+    - title: How to deploy mBeam microservice
+    - title: How to deploy mDrive microservice
+    - title: How to deploy mSuperdrive microservice
+
+- title: Example apps
+  pages:
+    - title: How to run edgeSDK example app on Android
+    - title: How to run edgeSDK example app on iOS
+    - title: How to run edgeSDK example app on Linux Debian
+    - title: How to run edgeSDK example app on Linux Ubuntu
+    - title: How to run edgeSDK example app on macOS
+    - title: How to run edgeSDK example app on Raspberry Pi
+    - title: How to run edgeSDK example app on Windows
+
+
+- title: Resources
+  pages:
+    - title: How to use mimik serverless JavaScript programming API
+    - title: Q and A
+    - title: Technical Documentation

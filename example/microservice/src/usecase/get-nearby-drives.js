@@ -1,15 +1,19 @@
 import Action from 'action-js';
 import NodesMapper from '../helper/nodes-mapper';
+import { extractToken } from '../helper/authorization-helper';
 
 export default class GetNearbyDrives {
-  constructor(localMds, http, edge) {
+  constructor(localMds, http, authorization, edge) {
     this.localMds = localMds;
     this.http = http;
     this.edge = edge;
+    this.authorization = authorization;
   }
 
   buildAction() {
-    const { localMds, http, edge } = this;
+    const { localMds, http, authorization, edge } = this;
+    const accessToken = extractToken(authorization);
+
     return new Action(
       (cb) => {
         http.request(({
@@ -35,6 +39,7 @@ export default class GetNearbyDrives {
       (cb) => {
         edge.decryptEncryptedNodesJson({
           type: 'local',
+          token: accessToken,
           data: encryptedJson,
           success: (result) => {
             cb(result.data);

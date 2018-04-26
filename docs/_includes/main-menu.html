@@ -1,0 +1,34 @@
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+    <a href="/" class="navbar-brand" ><img src="{{ '/assets/images/logo.svg' | relative_url }}" width="121" height="50"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenuMobile" aria-controls="mainMenuMobile" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="mainMenuMobile">
+            {% for link in site.data.main-nav %} {% if link.url contains 'http' %} {% assign domain = '' %} {% else %} {% assign domain = site.url %} {% endif %}
+      <ul class="nav navbar-nav ml-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="https://github.com/mimikgit/edgeSDK/releases/latest" >Download</a>
+            </li>
+          <li class="nav-item">
+              <a class="nav-link" href="{{ '/docs.html' | relative_url }}" >Documentation</a>
+            </li>
+            {% endfor %}
+<!-- 
+            <li class="nav-item dropdown">
+                <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="md-versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  v1.1.0
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="md-versions">
+                  <a class="dropdown-item " href="{{ '/docs/1.1.0/edgeSDK/how-to-run-edgesdk-on-android.html | absolute_url }}">Latest (1.1.x)</a>
+                  <a class="dropdown-item" href="{{ '/docs/1.0.0/edgeSDK/how-to-run-edgesdk-on-android.html | absolute_url }}">1.0.0</a>
+    
+                </div>
+              </li> -->
+
+        <li class="nav-item ">
+          <a class="btn btn-primary btn-block" href="/dev">Get Started</a>
+        </li>
+      </ul>
+    </div>
+  </nav>

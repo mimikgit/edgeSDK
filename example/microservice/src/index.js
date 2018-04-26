@@ -1,8 +1,9 @@
 import Router from 'router';
 import queryString from 'query-string';
 import Action from 'action-js';
-
+import parseUrl from 'parseurl';
 import GetNearbyDrives from './usecase/get-nearby-drives';
+import GetMyDrives from './usecase/get-my-drives';
 import ApiError from './helper/api-error';
 
 const app = Router({
@@ -14,18 +15,23 @@ function toJson(obj) {
 }
 
 function mimikInject(context, req) {
-  const { uMDS } = context.env;
+  const { MPO, uMDS } = context.env;
   const edge = context.edge;
   const http = context.http;
-//  const authorization = req.authorization;
-  if (req === undefined) ;
+  const authorization = req.authorization;
+  parseUrl(req);
+  const query = queryString.parse(req._parsedUrl.query);
+  const userToken = (query && query.userAccessToken) || '';
 
-  const getNearByDrives = new GetNearbyDrives(uMDS, http, edge);
+  const getNearByDrives = new GetNearbyDrives(uMDS, http, authorization, edge);
 
+  const getMyDrives = new GetMyDrives(getNearByDrives, MPO, http,
+    edge, authorization, userToken);
 
   return ({
     ...context,
     getNearByDrives,
+    getMyDrives,
   });
 }
 
@@ -49,22 +55,28 @@ mimikModule.exports = (context, req, res) => {
 };
 
 app.get('/drives', (req, res) => {
-  const { getNearByDrives } = req.mimikContext;
+  const { getNearByDrives, getMyDrives } = req.mimikContext;
 
   const query = queryString.parse(req._parsedUrl.query);
   const type = (query && query.type) || 'nearby';
 
   let action;
+//  if (!(query && query.userAccessToken)) {
+//    action = new Action(cb => cb(new ApiError(403, 'userAccessToken must not be null')));
+//  } else {
   switch (type) {
     case 'nearby':
       action = getNearByDrives.buildAction();
+      break;
+    case 'account':
+      action = getMyDrives.buildAction();
       break;
 
     default:
       action = new Action(cb => cb(new Error(`"${type}" type is not supported`)));
       break;
   }
-
+//  }
   action
     .next((data) => {
       const dataList = { type, data };

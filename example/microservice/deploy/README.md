@@ -1,11 +1,11 @@
 Get the mcm Bearer token from .mcm-token file located under the same directory in where edgeSDK binary located 
 
 Adding a image to the mimik container
-curl -i -H 'Authorization: Bearer pBQvQQXdxLHalgdOvaCv' -F "image=@example-v1.tar" http://localhost:8083/mcm/v1/images
+curl -i -H 'Authorization: Bearer xAfKAu0XjebI159xy3mK' -F "image=@example-v1.tar" http://localhost:8083/mcm/v1/images
 
 
 Creating a container from the image uploaded
-curl -i -H 'Authorization: Bearer pBQvQQXdxLHalgdOvaCv' -d '{"name": "example-v1", "image": "example-v1.tar", "env": {"BEAM": "http://127.0.0.1:8083/beam/v1","MCM.BASE_API_PATH": "/example/v1", "MCM.WEBSOCKET_SUPPORT": "false", "MFD": "https://mfd-eu-pro2.mimik360.com/mFD/v1", "MPO": "https://mpo-eu-pro2.mimik360.com/mPO/v1", "uMDS": "http://127.0.0.1:8083/mds/v1"}
+curl -i -H 'Authorization: Bearer xAfKAu0XjebI159xy3mK' -d '{"name": "example-v1", "image": "example-v1", "env": {"BEAM": "http://127.0.0.1:8083/beam/v1","MCM.BASE_API_PATH": "/example/v1", "MCM.WEBSOCKET_SUPPORT": "false", "MFD": "https://mfd-dev.mimikdev.com/mFD/v1", "MPO": "https://mpo-dev.mimikdev.com/mPO/v1", "uMDS": "http://127.0.0.1:8083/mds/v1"}
 }' http://localhost:8083/mcm/v1/containers
 
 Delete a container
