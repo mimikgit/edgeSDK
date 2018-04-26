@@ -13,6 +13,7 @@ class JsonRPCRequest: NSObject, WebSocketAdvancedDelegate {
     
     public enum JsonRPCMethod : String {
         case getMe = "getMe"
+        case getEdgeIdToken = "getEdgeIdToken"
         case associateAccount = "associateAccount"
         case unassociateAccount = "unassociateAccount"
         case unknown = "unknown"
@@ -23,9 +24,10 @@ class JsonRPCRequest: NSObject, WebSocketAdvancedDelegate {
     var id: String = UUID().uuidString
     var parameters: [String] = []
     var requestJSON: JSON?
+    var completionHandler: ((Any)->Void)?
     
     internal lazy var edgeServiceSocket: WebSocket = {
-        let socket = WebSocket.init(request: URLRequest.init(url: URL.init(string: "ws://"+edgeServiceIPPort+"/ws/edge-service-api/v1")!))
+        let socket = WebSocket.init(request: URLRequest.init(url: URL.init(string: "ws://"+kEdgeServiceIPPort+"/ws/edge-service-api/v1")!))
         socket.advancedDelegate = self
         return socket
     }()
@@ -59,16 +61,22 @@ class JsonRPCRequest: NSObject, WebSocketAdvancedDelegate {
             }
 
             return [edgeToken]
+        case .getEdgeIdToken:
+            return []
         }
     }
     
     func executeRequest(completion: @escaping (Any) -> Void) {
         self.edgeServiceSocket.connect()
-        completion("OK")
+        self.completionHandler = completion
     }
     
-    func parseAndPostResult(json: JSON, completion: @escaping (Any) -> Void) {
+    func parseAndPostResult(json: JSON) -> Void {
         var string: String = ""
+        
+        guard let storedCompletionHandler = self.completionHandler else {
+            return
+        }
         
         switch self.method {
         case .getMe:
@@ -78,19 +86,21 @@ class JsonRPCRequest: NSObject, WebSocketAdvancedDelegate {
                     let result = JSON.init(subJson)
                     if result != JSON.null {
                         string = result["accountId"].stringValue
-                        completion(string)
+                        storedCompletionHandler(string)
                     }
                 }
             }
             break
         case .associateAccount, .unassociateAccount:
+
             if json != JSON.null {
+                
                 let resultJSON = json["result"]
                 let errorJSON = json["error"]
                 
                 if resultJSON != JSON.null {
                     string = resultJSON["accountId"].stringValue
-                    completion(string)
+                    storedCompletionHandler(string)
                 }
                 else if errorJSON != JSON.null {
                     string = errorJSON["data"].stringValue
@@ -98,13 +108,27 @@ class JsonRPCRequest: NSObject, WebSocketAdvancedDelegate {
                         return
                     }
                     
-                    completion(CustomError.errorWithMessage(message: string))
+                    storedCompletionHandler(CustomError.errorWithMessage(message: string))
                 }
                 else {
-                    completion(CustomError.errorWithMessage(message: "Unknown Error"))
+                    storedCompletionHandler(CustomError.errorWithMessage(message: "Unknown Error"))
                 }
             }
         case .unknown:
+            break
+        case .getEdgeIdToken:
+
+            if json != JSON.null {
+                let subJson = json["result"]
+                if subJson != JSON.null {
+                    let result = JSON.init(subJson)
+                    if result != JSON.null {
+                        string = result["id_token"].stringValue
+                    
+                        storedCompletionHandler(string)
+                    }
+                }
+            }
             break
         }
         
@@ -117,25 +141,23 @@ class JsonRPCRequest: NSObject, WebSocketAdvancedDelegate {
     }
     
     internal func processResponseForId(responseJSON: JSON, responseId: String) -> Void {
-        self.parseAndPostResult(json: responseJSON) { (result) in
-            
-        }
+        self.parseAndPostResult(json: responseJSON)
     }
     
     public func websocketDidConnect(socket: WebSocket) {
-        print("🌈🌈🌈 JsonRPCRequest websocketDidConnect: \(self.edgeServiceSocket.currentURL)")
-        print("🌈🌈🌈 JsonRPCRequest sending to edgeServiceSocket: \(self.requestJSON?.rawString() ?? "")")
+        print("JsonRPCRequest websocketDidConnect: \(self.edgeServiceSocket.currentURL)")
+        print("JsonRPCRequest sending to edgeServiceSocket: \(self.requestJSON?.rawString() ?? "")")
         self.edgeServiceSocket.write(string: self.requestJSON!.rawString()!)
     }
     
     public func websocketDidDisconnect(socket: WebSocket, error: Error?) {
-        print("🌈🌈🌈 JsonRPCManager websocketDidDisconnect: \(self.edgeServiceSocket.currentURL)")
+        print("JsonRPCManager websocketDidDisconnect: \(self.edgeServiceSocket.currentURL)")
     }
     
     public func websocketDidReceiveMessage(socket: WebSocket, text: String, response: WebSocket.WSResponse) {
         
         if !text.contains("parse error - unexpected") {
-            print("🌈🌈🌈 JsonRPCManager websocketDidReceiveMessage: \(text)")
+            print("JsonRPCManager websocketDidReceiveMessage: \(text)")
         }
         
         let json = JSON.init(parseJSON: text)

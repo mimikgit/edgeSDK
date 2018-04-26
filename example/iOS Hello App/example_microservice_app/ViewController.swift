@@ -30,13 +30,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         
         self.button01.isEnabled = true
-        self.button01.setTitle("Login", for: UIControlState.normal)
-        self.button01.setTitle("Login", for: UIControlState.disabled)
-        
+        self.button01.setTitle("StartEdge", for: UIControlState.normal)
+        self.button01.setTitle("StartEdge", for: UIControlState.disabled)
+
         self.button02.isEnabled = false
-        self.button02.setTitle("StartEdge", for: UIControlState.normal)
-        self.button02.setTitle("StartEdge", for: UIControlState.disabled)
-        
+        self.button02.setTitle("Login", for: UIControlState.normal)
+        self.button02.setTitle("Login", for: UIControlState.disabled)
+
         self.button03.isEnabled = false
         self.button03.setTitle("Associate", for: UIControlState.normal)
         self.button03.setTitle("Associate", for: UIControlState.disabled)
@@ -67,6 +67,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBAction func button01Action(_ sender: UIButton) {
         
         self.button01.isEnabled = false
+        self.bottomInfoLabel.text = "Starting edgeSDK..."
+        
+        //
+        // initiates the edgeSDK startup sequence
+        // MMKEdgeManager singleton class holds a reference to the edgeProvider instance after initialization
+        //
+        
+        MMKEdgeManager.sharedInstance.startEdge { (result) in
+            print("startEdge result: \(result)")
+            self.bottomInfoLabel.text = "edgeSDK is running."
+            self.button02.isEnabled = true
+            self.button07.isEnabled = true
+        }
+    }
+    
+    @IBAction func button02Action(_ sender: UIButton) {
+        
+        self.button02.isEnabled = false
         self.bottomInfoLabel.text = "OID login is in progress..."
         
         //
@@ -78,27 +96,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         MMKAuthenticationManager.sharedInstance.login(viewController: self) { (result) in
             print("OID login result: \(result)")
             self.bottomInfoLabel.text = "OID login finished."
-            
-            self.button01.isEnabled = !MMKAuthenticationManager.sharedInstance.isAuthorized(type: .edge)
-            self.button02.isEnabled = true
-        }
-    }
-    
-    @IBAction func button02Action(_ sender: UIButton) {
-        
-        self.button02.isEnabled = false
-        self.bottomInfoLabel.text = "Starting edgeSDK..."
-        
-        //
-        // initiates the edgeSDK startup sequence
-        // MMKEdgeManager singleton class holds a reference to the edgeProvider instance after initialization
-        //
-        
-        MMKEdgeManager.sharedInstance.startEdge { (result) in
-            print("startEdge result: \(result)")
-            self.bottomInfoLabel.text = "edgeSDK is running."
+            self.button02.isEnabled = !MMKAuthenticationManager.sharedInstance.isAuthorized(type: .edge)
             self.button03.isEnabled = true
-            self.button07.isEnabled = true
         }
     }
     
@@ -148,7 +147,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 return
         }
         
-        let link = exampleMicroServiceNearbyNodesLink
+        let link = kExampleMicroServiceNearbyNodesLink
         
         self.edgeNodes.removeAll()
         self.tableView.reloadData()
@@ -189,7 +188,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // if successfull attempts to unassociate via a JSON-RPC protocol call through a WebSocket connection to the edgeSDK instance
         //
         
-        MMKAuthenticationManager.sharedInstance.reset(viewController: self) { (result) in
+        MMKAuthenticationManager.sharedInstance.resetEdge(viewController: self) { (result) in
             print("OID reset result: \(result)")
             self.bottomInfoLabel.text = "OID reset finished."
             
@@ -273,7 +272,7 @@ fileprivate extension ViewController {
     
     func callHelloAtEdgeNode(node: MMKEdgeNode) {
         
-        let link = node.urlString!+exampleMicroServiceHelloEndpoint
+        let link = node.urlString!+kExampleMicroServiceHelloEndpoint
         self.bottomInfoLabel.text = "Calling hello on "+node.name!
         print("☘️☘️☘️ calling hello at node: \(link)")
         

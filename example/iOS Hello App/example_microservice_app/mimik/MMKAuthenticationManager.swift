@@ -19,15 +19,15 @@ final public class MMKAuthenticationManager: NSObject {
     let kAuthStateEdgeKey: String = "com.mimik.exampleapp.authStateEdge"
     let kProfileNickNameSetKey: String = "com.mimik.exampleapp.profileNickNameSetKey"
     let kBackEndTokenKey: String = "com.mimik.exampleapp.backEndTokenKey"
-    let kIssuer: String = "https://mid-dev.mimikdev.com"
-    let kRedirectURL: URL = URL.init(string: "com.exampleapp://exampleredirect")!
+    let kAuthorizationCodeIssuer: String = "https://mid.mimik360.com"
+    let kRedirectURL: URL = URL.init(string: "com.exampleapp://example-authorization-code")!
+    var authorizationServiceConfiguration: OIDServiceConfiguration?
     
     //
-    // this is where you'd put your own application registration id from the developer portal
+    // this is where you'd put your own application id from the developer portal (https://developers-stg.mimik360.com)
     // for now we'll use mimik's internal registration id for this example application
     //
-    
-    let kClientId: String = "7f620c9b-4250-4228-b751-b46777781c73"
+    let kClientId: String = "fe6b7dca-a3ac-427e-a5c0-c0f0523c5baa"
     
     public enum AuthStateType: String {
         case edge = "edge"
@@ -46,7 +46,7 @@ final public class MMKAuthenticationManager: NSObject {
     
     fileprivate var currentAuthorizationFlow: OIDAuthorizationFlowSession?
     fileprivate var authStateEdge: OIDAuthState?
-    fileprivate var accountAssociateRequest: JsonRPCRequest?
+    fileprivate var jsonRPCRequest: JsonRPCRequest?
 }
 
 public extension MMKAuthenticationManager {
@@ -57,8 +57,12 @@ public extension MMKAuthenticationManager {
     // https://developer.apple.com/documentation/safariservices/sfauthenticationsession
     //
     func login(viewController: UIViewController, completion: @escaping (Any) -> Void){
-        self.getAndStoreAllTokens(viewController: viewController) { (result) in
-            completion("OK")
+        
+        self.getEdgeIdToken { (edgeIdToken) in
+            
+            self.getAndStoreAllTokens(viewController: viewController, edgeIdToken: edgeIdToken, completion: { (result) in
+                completion("OK")
+            })
         }
     }
     
@@ -67,9 +71,13 @@ public extension MMKAuthenticationManager {
     // https://openid.github.io/AppAuth-iOS/
     // https://developer.apple.com/documentation/safariservices/sfauthenticationsession
     //
-    func reset(viewController: UIViewController, completion: @escaping (Any) -> Void){
-        self.getUnassociateToken(viewController: viewController) { (result) in
-            completion("OK")
+    func resetEdge(viewController: UIViewController, completion: @escaping (Any) -> Void){
+        
+        self.getEdgeIdToken { (edgeIdToken) in
+            
+            self.getUnassociateToken(viewController: viewController, edgeIdToken: edgeIdToken, completion: { (result) in
+                completion("OK")
+            })
         }
     }
     
@@ -77,8 +85,8 @@ public extension MMKAuthenticationManager {
     // initiates edgeSDK account association process via a JSON-RPC protocol through a WebSocket connection to the edgeSDK instance
     //
     func accountAssociate(completion: @escaping (Any) -> Void){
-        self.accountAssociateRequest = JsonRPCRequest.init(method: .associateAccount, parameters: nil)
-        self.accountAssociateRequest?.executeRequest(completion: { (result) in
+        self.jsonRPCRequest = JsonRPCRequest.init(method: .associateAccount, parameters: nil)
+        self.jsonRPCRequest?.executeRequest(completion: { (result) in
             completion(result)
         })
     }
@@ -87,8 +95,8 @@ public extension MMKAuthenticationManager {
     // initiates edgeSDK account unassociation process via a JSON-RPC protocol through a WebSocket connection to the edgeSDK instance
     //
     func accountUnassociate(completion: @escaping (Any) -> Void){
-        self.accountAssociateRequest = JsonRPCRequest.init(method: .unassociateAccount, parameters: nil)
-        self.accountAssociateRequest?.executeRequest(completion: { (result) in
+        self.jsonRPCRequest = JsonRPCRequest.init(method: .unassociateAccount, parameters: nil)
+        self.jsonRPCRequest?.executeRequest(completion: { (result) in
             completion(result)
         })
     }
@@ -148,9 +156,18 @@ public extension MMKAuthenticationManager {
 }
 
 fileprivate extension MMKAuthenticationManager {
-    func getAndStoreAllTokens(viewController: UIViewController, completion: @escaping (Any) -> Void) {
+    func getEdgeIdToken(completion: @escaping (String) -> Void) {
         
-        self.getAndStoreEdgeToken(action: .login, viewController: viewController) { (result) in
+        self.jsonRPCRequest = JsonRPCRequest.init(method: .getEdgeIdToken, parameters: nil)
+        self.jsonRPCRequest?.executeRequest(completion: { (result) in
+            completion(result as! String)
+        })
+    }
+    
+    
+    func getAndStoreAllTokens(viewController: UIViewController, edgeIdToken:String, completion: @escaping (Any) -> Void) {
+        
+        self.getAndStoreEdgeToken(action: .login, viewController: viewController, edgeIdToken: edgeIdToken) { (result) in
             
             self.getAndStoreBackEndToken(completion: { (result) in
                 completion("OK")
@@ -158,25 +175,30 @@ fileprivate extension MMKAuthenticationManager {
         }
     }
     
-    func getUnassociateToken(viewController: UIViewController, completion: @escaping (Any) -> Void) {
+    func getUnassociateToken(viewController: UIViewController, edgeIdToken:String, completion: @escaping (Any) -> Void) {
         
-        self.getAndStoreEdgeToken(action: .reset, viewController: viewController) { (result) in
+        self.getAndStoreEdgeToken(action: .reset, viewController: viewController, edgeIdToken: edgeIdToken) { (result) in
             completion("OK")
         }
     }
     
-    func getAndStoreEdgeToken(action: AuthStateActionType, viewController: UIViewController, completion: @escaping (Any) -> Void) {
+    func getAndStoreEdgeToken(action: AuthStateActionType, viewController: UIViewController, edgeIdToken:String, completion: @escaping (Any) -> Void) {
         
         do {
-            OIDAuthorizationService.discoverConfiguration(forIssuer: URL(string: self.kIssuer)!, completion: { (configuration, error) in
+            OIDAuthorizationService.discoverConfiguration(forIssuer: URL(string: self.kAuthorizationCodeIssuer)!, completion: { (configuration, error) in
+
+                self.authorizationServiceConfiguration = configuration
                 
                 if configuration != nil && error == nil {
+                    
+                    let additionalParameters: [String:String] = ["edgeIdToken":edgeIdToken]
+                    
                     let request: OIDAuthorizationRequest = OIDAuthorizationRequest.init(configuration: configuration!,
                                                                                         clientId: self.kClientId,
                                                                                         scopes: self.scopesForEdgeAuthToken(action: action),
                                                                                         redirectURL: self.kRedirectURL,
                                                                                         responseType: OIDResponseTypeCode,
-                                                                                        additionalParameters: nil)
+                                                                                        additionalParameters: additionalParameters)
                     
                     self.currentAuthorizationFlow = OIDAuthState.authState(byPresenting: request, presenting: viewController) { authState, error in
                         
@@ -202,8 +224,11 @@ fileprivate extension MMKAuthenticationManager {
     func getAndStoreBackEndToken(completion: @escaping (Any) -> Void) {
         
         if self.isAuthorized(type: .edge) {
-            let link = "https://mid-dev.mimikdev.com/token"
-            let url: URL = URL.init(string: link)!
+            guard let url = self.authorizationServiceConfiguration?.tokenEndpoint else {
+                assertionFailure()
+                return
+            }
+            
             let parameters: [String: Any] =  [
                 "grant_type" : "exchange_edge_token",
                 "token" : self.edgeToken()!,
