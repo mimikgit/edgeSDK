@@ -25,7 +25,7 @@ Use your computer to clone or download the edgeSDK GitHub repository.
 
 ```git clone https://github.com/mimikgit/edgeSDK.git```
 
-Next use the [OAuthflow application](https://github.com/mimikgit/edgeSDK/tree/master/tools/oauthtool) to get the required EDGE_ACCESS_TOKEN and USER_ACCESS_TOKEN  ( Note: Use appID and SECRET displayed on  Developer Portal for your app )
+Next use the [OAuthflow application](https://github.com/mimikgit/edgeSDK/tools/oauthtool) to get the required EDGE_ACCESS_TOKEN and USER_ACCESS_TOKEN  ( Note: Use appID and SECRET displayed on  Developer Portal for your app )
 
 Create your test application as a native type from mimik Developer Portal
 
