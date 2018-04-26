@@ -73,9 +73,9 @@ To test and package run the following command:
 
 The above two commands would produce one of the following installation files in the dist folder based on the OS that source is hosted on:
 
-- For macOS: mimik Sample App--mac.dmg
-- For Windows: mimik Sample App Setup .exe
-- For Linux: mimik-sample-app--x86_64.AppImage
+- For macOS: mimik Sample App-1.2.0-mac.dmg
+- For Windows: mimik Sample App Setup 1.2.0.exe
+- For Linux: mimik-sample-app-1.2.0-x86_64.AppImage
 
 ## Summary
 

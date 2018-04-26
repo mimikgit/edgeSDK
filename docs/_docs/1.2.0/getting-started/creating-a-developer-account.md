@@ -52,6 +52,6 @@ After login and authorization you will be redirected to the home screen of the D
 
 ## Recommended guides
 
-- [How to install edgeSDK on Linux Ubuntu](/docs/1.2.0/.2.0/installation/linux-ubuntu.html)
-- [How to install edgeSDK on Android](/docs/1.2.0/.2.0/installation/android.html)
-- [How to install edgeSDK on iOS](/docs/1.2.0/.2.0/installation/ios.html)
+- [How to install edgeSDK on Linux Ubuntu](/docs/1.2.0/installation/linux-ubuntu.html)
+- [How to install edgeSDK on Android](/docs/1.2.0/installation/android.html)
+- [How to install edgeSDK on iOS](/docs/1.2.0/installation/ios.html)

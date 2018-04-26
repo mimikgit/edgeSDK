@@ -36,11 +36,11 @@ Install the node dependencies by running the following command:
 
 ## Start edgeSDK
 
-Use the [macOS edgeSDK installation guide](/docs/1.2.0/.2.0/installation/macos.html) then open the directory where you installed this package, and double click to start the edgeSDK.
+Use the [macOS edgeSDK installation guide](/docs/1.2.0/installation/macos.html) then open the directory where you installed this package, and double click to start the edgeSDK.
 
 ## Example microservice
 
-You also need the location of the [example-v1.tar](/docs/1.2.0/.2.0/microservices/how-to-deploy-example-microservice.html) container image.
+You also need the location of the [example-v1.tar](/docs/1.2.0/microservices/how-to-deploy-example-microservice.html) container image.
 
 If you cloned the [edgeSDK GitHub](https://github.com/mimikgit/edgeSDK) repo, you can use the "npm run package" command and the code will ascertain the correct location.
 
@@ -106,4 +106,4 @@ After  the following message flow is used to retrieve account cluster nodes:
 
 ## Recommended guides
 
-- [mimik serverless JavaScript programming API](/docs/1.2.0/.2.0/resources/how-to-use-mimik-serverless-javascript-programming-api.html)
+- [mimik serverless JavaScript programming API](/docs/1.2.0/resources/how-to-use-mimik-serverless-javascript-programming-api.html)

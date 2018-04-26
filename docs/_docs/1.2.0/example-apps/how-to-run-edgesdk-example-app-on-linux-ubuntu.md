@@ -39,7 +39,7 @@ Install the node dependencies by running the following command:
 
 ## Start edgeSDK
 
-Use the [Linux edgeSDK installation guide](/docs/1.2.0/.2.0/installation/linux-ubuntu.html) then in a new terminal window change from current directory to opt/mimik/edge
+Use the [Linux edgeSDK installation guide](/docs/1.2.0/installation/linux-ubuntu.html) then in a new terminal window change from current directory to opt/mimik/edge
 
 ```cd /opt/mimik/edge```
 
@@ -49,7 +49,7 @@ Start edgeSDK
 
 ## Example microservice
 
-You also need the location of the [example-v1.tar](/docs/1.2.0/.2.0/microservices/how-to-deploy-example-microservice.html) container image.
+You also need the location of the [example-v1.tar](/docs/1.2.0/microservices/how-to-deploy-example-microservice.html) container image.
 
 If you cloned the [edgeSDK GitHub](https://github.com/mimikgit/edgeSDK) repo, you can use the "npm run package" command and the code will ascertain the correct location.
 
@@ -82,9 +82,9 @@ To test and package run the following command:
 
 The above two commands would produce one of the following installation files in the dist folder based on the OS that source is hosted on:
 
-- For macOS: mimik Sample App--mac.dmg
-- For Windows: mimik Sample App Setup .exe
-- For Linux: mimik-sample-app--x86_64.AppImage
+- For macOS: mimik Sample App-1.2.0-mac.dmg
+- For Windows: mimik Sample App Setup 1.2.0.exe
+- For Linux: mimik-sample-app-1.2.0-x86_64.AppImage
 
 The source code is commented inline for further details.
 
@@ -116,4 +116,4 @@ After  the following message flow is used to retrieve account cluster nodes:
 
 ## Recommended guides
 
-- [mimik serverless JavaScript programming API](/docs/1.2.0/.2.0/resources/how-to-use-mimik-serverless-javascript-programming-api.html)
+- [mimik serverless JavaScript programming API](/docs/1.2.0/resources/how-to-use-mimik-serverless-javascript-programming-api.html)

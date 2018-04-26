@@ -62,6 +62,8 @@ Verify that mSuperdrive microservice registered and works properly by calling fo
 
 ```curl -i http://localhost:8083/drives```
 
+![curl response](/assets/images/documentation/mSuperdrive_response_play_queue.png)
+
 The screen log shows that this method returns an empty objected called "data". View our [SwaggerHub](https://app.swaggerhub.com/apis/mimik/mSuperdrive) definition for more information how different mSuperdrive calls work.
 
 ## Recommended guides

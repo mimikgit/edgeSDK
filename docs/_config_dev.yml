@@ -29,7 +29,6 @@ twitter_username: mimktech
 github_username:  mimikgit
 
 environment: dev
-
 safe: false
 
 # Build settings

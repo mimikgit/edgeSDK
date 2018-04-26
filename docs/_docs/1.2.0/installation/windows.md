@@ -30,7 +30,7 @@ On your local environment create two directories:
 
 ```"C:/mimik/edge/microservices"```
 
-Download the [latest v+](https://github.com/mimikgit/edgeSDK/releases) Windows edgeSDK from your desktop into the "C:/mimik/edge" folder.
+Download the [latest v1.2.0+](https://github.com/mimikgit/edgeSDK/releases) Windows edgeSDK from your desktop into the "C:/mimik/edge" folder.
 
 Goto "C:/mimik/edge" directory and click on  edge.exe to start edgeSDK
 

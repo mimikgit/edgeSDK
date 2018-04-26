@@ -9,8 +9,10 @@ title: CSS stylesheet
 // Global CSS
 @import "global.scss";
 // Components
-@import "masthead.scss";
+// @import "masthead.scss";
 @import "home.scss";
+@import "mobile-menu.scss";
+
 @import "documentation.scss";
 // @import "pricing.scss";
 @import "icons.scss";
