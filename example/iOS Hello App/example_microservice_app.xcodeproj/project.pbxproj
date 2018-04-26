@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3D2A2A63627E85B90EB14A35 /* Pods_example_microservice_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6D744AA34DC03B9269B685E /* Pods_example_microservice_app.framework */; };
-		616EFC90207D490200E2DC94 /* JsonRPCRequestQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616EFC8D207D490200E2DC94 /* JsonRPCRequestQuery.swift */; };
 		616EFC91207D490200E2DC94 /* JsonRPCRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616EFC8E207D490200E2DC94 /* JsonRPCRequest.swift */; };
 		618BDCF7207E6EF800B46E44 /* MMKEdgeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618BDCF6207E6EF800B46E44 /* MMKEdgeManager.swift */; };
 		618BDCF9207E6F9F00B46E44 /* MMKAuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618BDCF8207E6F9F00B46E44 /* MMKAuthenticationManager.swift */; };
@@ -37,7 +36,6 @@
 /* Begin PBXFileReference section */
 		314A9AAB7A3B93C7A7CCF2C4 /* Pods-example_microservice_app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-example_microservice_app.release.xcconfig"; path = "Pods/Target Support Files/Pods-example_microservice_app/Pods-example_microservice_app.release.xcconfig"; sourceTree = "<group>"; };
 		61393045201A7675003C0DFC /* example_microservice_app-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "example_microservice_app-Bridging-Header.h"; sourceTree = "<group>"; };
-		616EFC8D207D490200E2DC94 /* JsonRPCRequestQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonRPCRequestQuery.swift; sourceTree = "<group>"; };
 		616EFC8E207D490200E2DC94 /* JsonRPCRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonRPCRequest.swift; sourceTree = "<group>"; };
 		618BDCF6207E6EF800B46E44 /* MMKEdgeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMKEdgeManager.swift; sourceTree = "<group>"; };
 		618BDCF8207E6F9F00B46E44 /* MMKAuthenticationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMKAuthenticationManager.swift; sourceTree = "<group>"; };
@@ -66,19 +64,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		616EFC8C207D490200E2DC94 /* JsonRPC */ = {
-			isa = PBXGroup;
-			children = (
-				616EFC8E207D490200E2DC94 /* JsonRPCRequest.swift */,
-				616EFC8D207D490200E2DC94 /* JsonRPCRequestQuery.swift */,
-			);
-			path = JsonRPC;
-			sourceTree = "<group>";
-		};
 		618BDCFC207E705B00B46E44 /* mimik */ = {
 			isa = PBXGroup;
 			children = (
-				616EFC8C207D490200E2DC94 /* JsonRPC */,
+				616EFC8E207D490200E2DC94 /* JsonRPCRequest.swift */,
 				618BDCF6207E6EF800B46E44 /* MMKEdgeManager.swift */,
 				618BDCF8207E6F9F00B46E44 /* MMKAuthenticationManager.swift */,
 				618BDCFA207E703000B46E44 /* MMKEdgeNode.swift */,
@@ -107,8 +96,8 @@
 		61DA4E74201A5B19009AFF4D /* example_microservice_app */ = {
 			isa = PBXGroup;
 			children = (
-				61DA4E77201A5B19009AFF4D /* ViewController.swift */,
 				61DA4E75201A5B19009AFF4D /* AppDelegate.swift */,
+				61DA4E77201A5B19009AFF4D /* ViewController.swift */,
 				61EE03822056EDA000091BDA /* example-v1.tar */,
 				618BDCFC207E705B00B46E44 /* mimik */,
 				61DA4E79201A5B19009AFF4D /* Main.storyboard */,
@@ -265,7 +254,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				616EFC90207D490200E2DC94 /* JsonRPCRequestQuery.swift in Sources */,
 				618BDCF9207E6F9F00B46E44 /* MMKAuthenticationManager.swift in Sources */,
 				616EFC91207D490200E2DC94 /* JsonRPCRequest.swift in Sources */,
 				618BDCF7207E6EF800B46E44 /* MMKEdgeManager.swift in Sources */,
