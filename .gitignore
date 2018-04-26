@@ -10,4 +10,6 @@ docs/.sass-cache/*
 docs/.vscode/*
 docs/*.gem
 docs/Gemfile.lock
-
+example/iOS Hello App/Pods/*
+example/iOS Hello App/example_microservice_app.xcodeproj/xcuserdata/*
+example/iOS Hello App/example_microservice_app.xcworkspace/xcuserdata/*
