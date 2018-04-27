@@ -55,7 +55,7 @@ Unzip then copy mimik edge package to the directory created in the last step
 
 Next copy the edgeSDK license configuration to the edgeSDK installation directory
 
-```sudo cp -a ~/Downloads/edgeSDK/tools/mimikEdge.lic /opt/mimik/edge/ ```
+```sudo cp -a ~/Downloads/edgeSDK/tools/mimikEdge.lic /opt/mimik/edge/```
 
 Change from current directory to opt/mimik/edge
 

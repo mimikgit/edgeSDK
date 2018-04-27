@@ -33,7 +33,7 @@ Go to oauthtool directory
 
 ```cd tools/oauthtool```
 
-Install packages
+Install dependencies
 
 ```npm install```
 
@@ -41,13 +41,18 @@ Set your clientID using the Application ID displayed in mimik Developer Portal f
 
 ```export CLIENT_ID="addYourIDHere"```
 
-Set your REDIRECTURI  using the redirect uri entered in mimik Developer Portal for your application
+Set your REDIRECTURI using the redirect uri entered in mimik Developer Portal for your application
 
 ```export REDIRECT_URI="addYourURIHere"```
+
 
 Run the app
 
 ```npm start```
+
+<div class="alert alert-warning" role="alert">
+<strong>Heads up!</strong> The oauthtool is built on top of the <a href="https://github.com/electron/electron-quick-start">Electron quick start app </a> may not start  SSH. We recommend to use this tool on device that has a display that you can physically access, like the computer you are using to SSH in with!
+</div>
 
 Click on Allow button to authorize the application
 
