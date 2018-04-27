@@ -11,7 +11,7 @@ Use the example application for iOS devices to understand how interactions betwe
 
 ## Installation
 
-First download and install the [edgeSDK for iOS](1.1.0/installation/ios.html) on to the mobile device you will test with
+First download and install the [edgeSDK for iOS](/docs/1.1.0/installation/ios.html) on to the mobile device you will test with
 
 On your computer use the command line to clone the edgeSDK project from GitHub somewhere accessible on your user home directory. This guide starts from the Downloads folder
 
@@ -74,4 +74,4 @@ After  the following message flow is used to retrieve account cluster nodes:
 
 ## Recommended guides
 
-- [mimik serverless JavaScript programming API](1.1.0/resources/how-to-use-mimik-serverless-javascript-programming-api.html)
+- [mimik serverless JavaScript programming API](/docs/1.1.0/resources/how-to-use-mimik-serverless-javascript-programming-api.html)
