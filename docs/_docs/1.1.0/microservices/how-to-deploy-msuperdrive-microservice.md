@@ -60,9 +60,7 @@ Initialize superdrive microservice
 
 Verify that mSuperdrive microservice registered and works properly by calling following curl commands:
 
-```curl -i http://localhost:8083/drives```
-
-![curl response](/assets/images/documentation/mSuperdrive_response_play_queue.png)
+```curl  -i -H 'Authorization: Bearer yourAccessTokenHere' "http://localhost:8083/superdrive/v1/drives?type=nearby&userAccessToken='useThisStringAsTokenAsStringWhenTesting'"```
 
 The screen log shows that this method returns an empty objected called "data". View our [SwaggerHub](https://app.swaggerhub.com/apis/mimik/mSuperdrive) definition for more information how different mSuperdrive calls work.
 

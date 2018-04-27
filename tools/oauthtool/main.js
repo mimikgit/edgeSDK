@@ -31,7 +31,7 @@ const devRidirectUri = process.env.REDIRECT_URI; // 'com.mimik://authorization_c
 
 ////////////////////////////////////////////////
 
-const OAUTH_DOMAIN = 'https://mid-dev.mimikdev.com';
+const OAUTH_DOMAIN = 'https://mid.mimik360.com';
 const SCOPES = [
        'edge:mcm',
        'write:me', 

@@ -12,11 +12,13 @@ import Alamofire
 import SwiftyJSON
 import edgeSDK_iOS
 
-let edgeServicePort:String = "8042"
-let edgeServiceLink:String = "http://127.0.0.1:"+edgeServicePort
-let edgeServiceIPPort:String = "127.0.0.1:"+edgeServicePort
-let exampleMicroServiceNearbyNodesLink:String = edgeServiceLink+"/example/v1/drives?type=nearby"
-let exampleMicroServiceHelloEndpoint:String = "/example/v1/hello"
+let kEdgeServicePort:String = "8042"
+let kEdgeServiceLink:String = "http://127.0.0.1:"+kEdgeServicePort
+let kEdgeServiceIPPort:String = "127.0.0.1:"+kEdgeServicePort
+let kExampleMicroServiceNearbyNodesLink:String = kEdgeServiceLink+"/example/v1/drives?type=nearby"
+let kExampleMicroServiceHelloEndpoint:String = "/example/v1/hello"
+let kFriendsBackend: String = "https://mfd.mimik360.com"
+let kProfileBackend: String = "https://mpo.mimik360.com"
 
 final public class MMKEdgeManager: NSObject {
     
@@ -24,30 +26,22 @@ final public class MMKEdgeManager: NSObject {
     var edgeProvider: edgeSDK_iOS?
     
     fileprivate let bundledMicroServices: [MicroService] = [.example]
-    
     let edge_deviceId: String = UIDevice.current.name.contains("iPad") ? "iPad-UUID-12345678" : "iPhone-UUID-12345678"
 }
 
 public extension MMKEdgeManager {
     func startEdge(completion: @escaping (Any) -> Void) {
-        
-        if MMKAuthenticationManager.sharedInstance.isAuthorized(type: .edge) {
-            
-            guard let edge_accountId = MMKAuthenticationManager.sharedInstance.accountId() else {
-                return
-            }
-            
-            print("starting edgeSDK with accountId:\(edge_accountId) deviceId:\(edge_deviceId) workingDir:\(self.edgeServiceWorkingDirectoryPath() )")
-            
-            if self.edgeProvider == nil {
-                self.edgeProvider = edgeSDK_iOS.init(accountId: edge_accountId, deviceId: edge_deviceId, workingDir: self.edgeServiceWorkingDirectoryPath())
-            }
 
-            self.edgeProvider?.startEdge()
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                completion("edgeSDK started")
-            }
+        print("starting edgeSDK with deviceId:\(edge_deviceId) workingDir:\(self.edgeServiceWorkingDirectoryPath() )")
+        
+        if self.edgeProvider == nil {
+            self.edgeProvider = edgeSDK_iOS.init(deviceId: edge_deviceId, workingDir: self.edgeServiceWorkingDirectoryPath())
+        }
+        
+        self.edgeProvider?.startEdge()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            completion("edgeSDK started")
         }
     }
     
@@ -76,11 +70,11 @@ public extension MMKEdgeManager {
 }
 
 fileprivate extension MMKEdgeManager {
-    fileprivate enum MicroService: String {
+    enum MicroService: String {
         case example = "example-v1"
     }
     
-    fileprivate enum MicroServiceElement: String {
+    enum MicroServiceElement: String {
         case image = "images"
         case container = "containers"
     }
@@ -91,7 +85,7 @@ fileprivate extension MMKEdgeManager {
             return
         }
         
-        let link = edgeServiceLink+"/mcm/v1/"+microServiceElement.rawValue
+        let link = kEdgeServiceLink+"/mcm/v1/"+microServiceElement.rawValue
         let headers = ["Authorization" : "Bearer \(edgeToken)" ]
         
         Alamofire.request(link, method: .get, parameters: nil, encoding: URLEncoding.default, headers: headers).responseJSON { response in
@@ -111,7 +105,7 @@ fileprivate extension MMKEdgeManager {
             return
         }
         
-        let link = edgeServiceLink+"/mcm/v1/images"
+        let link = kEdgeServiceLink+"/mcm/v1/images"
         let data = self.microServiceBinaryDataFromBundledFile(microService: microService)
         let headers = ["Authorization" : "Bearer \(edgeToken)" ]
         
@@ -150,7 +144,7 @@ fileprivate extension MMKEdgeManager {
             return
         }
         
-        let link = edgeServiceLink+"/mcm/v1/containers"
+        let link = kEdgeServiceLink+"/mcm/v1/containers"
         let url: URL = URL.init(string: link)!
         let parameters = self.loadContainerParameters(microService: microService)
         
@@ -191,12 +185,12 @@ fileprivate extension MMKEdgeManager {
                     "name": "example-v1",
                     "image": "example-v1",
                     "env": [
-                        "BEAM": edgeServiceLink+"/beam/v1",
+                        "BEAM": kEdgeServiceLink+"/beam/v1",
                         "MCM.BASE_API_PATH": "/example/v1",
                         "MCM.WEBSOCKET_SUPPORT": "false",
-                        "MFD": "https://mfd-dev.mimikdev.com/mFD/v1",
-                        "MPO": "https://mpo-dev.mimikdev.com/mPO/v1",
-                        "uMDS": edgeServiceLink+"/mds/v1"
+                        "MFD": kFriendsBackend+"/mFD/v1",
+                        "MPO": kProfileBackend+"/mPO/v1",
+                        "uMDS": kEdgeServiceLink+"/mds/v1"
                     ]
             ]
         }
@@ -208,7 +202,7 @@ fileprivate extension MMKEdgeManager {
             return
         }
 
-        let link = edgeServiceLink+"/mcm/v1/"+microServiceElement.rawValue+"/"+microService.rawValue
+        let link = kEdgeServiceLink+"/mcm/v1/"+microServiceElement.rawValue+"/"+microService.rawValue
         let headers = ["Authorization" : "Bearer \(edgeToken)" ]
         
         Alamofire.request(link, method: .delete, parameters: nil, encoding: URLEncoding.default, headers: headers).responseJSON { response in
