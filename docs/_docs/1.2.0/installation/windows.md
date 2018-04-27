@@ -26,9 +26,13 @@ This guide assumes that:
 
 On your local environment create two directories:
 
-``` "C:/mimik/edge"```
+```bash "
+C:/mimik/edge"
+```
 
-```"C:/mimik/edge/microservices"```
+```bash 
+"C:/mimik/edge/microservices"
+```
 
 Download the [latest v1.2.0+](https://github.com/mimikgit/edgeSDK/releases) Windows edgeSDK from your desktop into the "C:/mimik/edge" folder.
 
@@ -40,7 +44,9 @@ Once you run the edge on this machine, a series of screen output show the status
 
 You can also use the curl command as below in a new terminal and be able to see the following screen log shown below:
 
-``` curl -i http://localhost:8083/mds/v1/nodes```
+```bash 
+curl -i http://localhost:8083/mds/v1/nodes
+```
 
 ![](/assets/images/documentation/windows_curl_response.png)
 

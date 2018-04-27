@@ -4,6 +4,7 @@ edgeSDK.wiki/
 mimik-gh-edgeSDK.code-workspace
 tools/oauthtool/node_modules/*
 tools/jsonrpctool/node_modules/*
+docs/package-lock.json
 docs/node_modules/*
 docs/_site/*
 docs/.sass-cache/*
@@ -13,3 +14,5 @@ docs/Gemfile.lock
 example/iOS Hello App/Pods/*
 example/iOS Hello App/example_microservice_app.xcodeproj/xcuserdata/*
 example/iOS Hello App/example_microservice_app.xcworkspace/xcuserdata/*
+package-lock.json
+node_modules/*

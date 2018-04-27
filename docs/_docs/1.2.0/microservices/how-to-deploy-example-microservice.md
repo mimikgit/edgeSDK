@@ -23,15 +23,23 @@ You will need the following software installed on your system.
 
 Clone the edgeSDK project from GitHub somewhere accessible on your home directory. This guide will start from the Downloads folder
 
-```cd ~/Downloads```
+```bash 
+cd ~/Downloads
+```
 
-```git clone https://github.com/mimikgit/edgeSDK.git```
+```bash 
+git clone https://github.com/mimikgit/edgeSDK.git
+```
 
 Copy the example microservice to your edgeSDK installation directory
 
-```sudo mkdir /opt/mimik/edge/microservices/ && sudo mkdir /opt/mimik/edge/microservices/example```
+```bash
+sudo mkdir /opt/mimik/edge/microservices/ && sudo mkdir /opt/mimik/edge/microservices/example
+```
 
-```sudo cp -a edgeSDK/example/microservice/. /opt/mimik/edge/microservices/example```
+```bash 
+sudo cp -a edgeSDK/example/microservice/. /opt/mimik/edge/microservices/example
+```
 
 ## The Repository Folders
 
@@ -43,15 +51,21 @@ Copy the example microservice to your edgeSDK installation directory
 
 Navigate to the example/microservice directory
 
-```cd /opt/mimik/edge/microservices/example```
+```bash 
+cd /opt/mimik/edge/microservices/example
+```
 
 Install dependencies:
 
-```npm install```
+```bash 
+npm install
+```
 
 Next run build script
 
-```npm run-script build```
+```bash 
+npm run-script build
+```
 
 Verify that index.js is copied under build directory
 
@@ -59,13 +73,17 @@ Verify that index.js is copied under build directory
 
 Add execute permission to the build script found in the deploy directory
 
-``` sudo chmod a+x deploy/build.sh```
+```bash 
+sudo chmod a+x deploy/build.sh
+```
 
 <!-- would it be necessary or nice to have command capture out put of e.g: ls -la | grep ... -->
 
 Run build script to create an image for the container under deploy directory
 
-```cd deploy/ && ./build.sh```
+```bash 
+cd deploy/ && ./build.sh
+```
 
 Verify that example-v1.tar mimik container image created as example.tar in the current directory
 
@@ -75,25 +93,35 @@ Verify that example-v1.tar mimik container image created as example.tar in the c
 
 In new terminal window, change from current directory to opt/mimik/edge
 
-```cd /opt/mimik/edge```
+```bash 
+cd /opt/mimik/edge
+```
 
 Start edgeSDK
 
-```./edge```
+```bash 
+./edge
+```
 
 ## Initialize example microservice
 
 Navigate to the where the example-v1.tar was created
 
-```cd /opt/mimik/edge/microservices/example/deploy```
+```bash 
+cd /opt/mimik/edge/microservices/example/deploy
+```
 
 Install the example-v1.tar image using the following command. **Note:*-Replace 'yourAccessTokenHere' with the "access_token" object created during account association for your target platform.
 
-```curl -i -H 'Authorization: Bearer yourAccessTokenHere' -F "image=@example-v1.tar" http://localhost:8083/mcm/v1/images```
+```bash 
+curl -i -H 'Authorization: Bearer yourAccessTokenHere' -F "image=@example-v1.tar" http://localhost:8083/mcm/v1/images
+```
 
 Initialize example microservice
 
-```curl -i -H 'Authorization: Bearer yourAccessTokenHere' -d '{"name": "example-v1", "image": "example-v1", "env": {"BEAM": "http://127.0.0.1:8083/beam/v1","MCM.BASE_API_PATH": "/example/v1", "MCM.WEBSOCKET_SUPPORT": "false", "MFD": "https://mfd.mimik360.com/mFD/v1", "MPO": "https://mpo.mimik360.com/mPO/v1", "uMDS": "http://127.0.0.1:8083/mds/v1"} }' http://localhost:8083/mcm/v1/containers```
+```bash 
+curl -i -H 'Authorization: Bearer yourAccessTokenHere' -d '{"name": "example-v1", "image": "example-v1", "env": {"BEAM": "http://127.0.0.1:8083/beam/v1","MCM.BASE_API_PATH": "/example/v1", "MCM.WEBSOCKET_SUPPORT": "false", "MFD": "https://mfd.mimik360.com/mFD/v1", "MPO": "https://mpo.mimik360.com/mPO/v1", "uMDS": "http://127.0.0.1:8083/mds/v1"} }' http://localhost:8083/mcm/v1/containers
+```
 
 ## Discover nodes in link local cluster
 
@@ -101,10 +129,13 @@ Call Hello and nearby endpoints from microservice
 
 ![hello and nearby response](/assets/images/documentation/sample_app_message_sequence.png)
 
+```bash 
+curl -i -H 'Authorization: Bearer yourAccessTokenHere' http://localhost:8083/example/v1/drives?type=nearby
+```
 
-```curl -i -H 'Authorization: Bearer yourAccessTokenHere' http://localhost:8083/example/v1/drives?type=nearby```
-
-```curl -i -H 'Authorization: Bearer yourAccessTokenHere' http://(nearby device IP in linkedLocalNetwork):8083/example/v1/hello ```
+```bash 
+curl -i -H 'Authorization: Bearer yourAccessTokenHere' http://(nearby device IP in linkedLocalNetwork):8083/example/v1/hello 
+```
 
 ## Discover nodes in account cluster
 
@@ -112,7 +143,9 @@ Sample app uses example microservice to find account cluster nodes and then call
 
 Call Hello and get account cluster nodes from microservice
 
-```curl -i -H 'Authorization: Bearer yourAccessTokenHere' "http://localhost:8083/example/v1/drives?type=account&userAccessToken='useThisStringAsTokenAsStringWhenTesting'"```
+```bash 
+curl -i -H 'Authorization: Bearer yourAccessTokenHere' "http://localhost:8083/example/v1/drives?type=account&userAccessToken='useThisStringAsTokenAsStringWhenTesting'"
+```
 
 ## Discover nodes in proximity cluster
 
@@ -120,7 +153,9 @@ Sample app uses example microservice to find proximity cluster nodes and then ca
 
 Call Hello and get proximity cluster nodes from microservice
 
-```curl -i -H 'Authorization: Bearer yourAccessTokenHere' "http://localhost:8083/example/v1/drives?type=proximity&userAccessToken='useThisStringAsTokenAsStringWhenTesting'"```
+```bash 
+curl -i -H 'Authorization: Bearer yourAccessTokenHere' "http://localhost:8083/example/v1/drives?type=proximity&userAccessToken='useThisStringAsTokenAsStringWhenTesting'"
+```
 
 ## Recommended guides
 

@@ -29,45 +29,65 @@ You will need the following software installed on your system.
 
 Open a new terminal window. This guide will start from the user Downloads directory
 
-```cd ~/Downloads```
+```bash 
+cd ~/Downloads
+```
 
 Next clone the edgeSDK GitHub repository
 
-```git clone https://github.com/mimikgit/edgeSDK.git```
+```bash 
+git clone https://github.com/mimikgit/edgeSDK.git
+```
 
 Download the latest Linux package from the edgeSDK release page into the Downloads directory
 
-```https://github.com/mimikgit/edgeSDK/releases/latest```
+```bash 
+https://github.com/mimikgit/edgeSDK/releases/latest
+```
 
 <!-- todo - oneliner with curl, wget to download from api.github.com/repo* -->
 
 Create opt/mimik/edge directory structure
 
-```sudo mkdir -p /opt/mimik/edge```
+```bash 
+sudo mkdir -p /opt/mimik/edge
+```
 
 Change directory permissions of the directory created in the last step and verify change is applied
 
-```sudo chmod a+w -R /opt/mimik/edge | ls -ld /opt/mimik/edge```
+```bash 
+sudo chmod a+w -R /opt/mimik/edge | ls -ld /opt/mimik/edge
+```
 
 Unzip then copy mimik edge package to the directory created in the last step
 
-```unzip ~/Downloads/edge_linux.zip -d ~/Downloads/edge_linux && sudo cp -a ~/Downloads/edge_linux/. /opt/mimik/edge/  && ls -la /opt/mimik/edge```
+```bash 
+unzip ~/Downloads/edge_linux.zip -d ~/Downloads/edge_linux && sudo cp -a ~/Downloads/edge_linux/. /opt/mimik/edge/  && ls -la /opt/mimik/edge
+```
 
 Next copy the edgeSDK license configuration to the edgeSDK installation directory
 
-```sudo cp -a ~/Downloads/edgeSDK/tools/mimikEdge.lic /opt/mimik/edge/ ```
+```bash 
+sudo cp -a ~/Downloads/edgeSDK/tools/mimikEdge.lic /opt/mimik/edge/ 
+```
 
 Change from current directory to opt/mimik/edge
 
-```cd /opt/mimik/edge/```
+```bash 
+cd /opt/mimik/edge/
+```
 
 Add execute permission to the edge file
 
-```sudo chmod a+x ./edge | ls -ls ./edge```
+```bash 
+sudo chmod a+x ./edge | ls -ls ./edge
+```
 
 Start edgeSDK
 
-```./edge```
+```bash 
+./edge
+```
 
 When the edgeSDK starts on this machine, a series of screen output show the status the status of this particular node. For instance the following message shows that the current machine is acting as a regular node
 
@@ -79,7 +99,9 @@ Or the following message shows that a "Super-node" has been found in the cluster
 
 You can also use the curl command as below in a new terminal and be able to see the  screen log show below:
 
-```curl -i http://localhost:8083/mds/v1/nodes```
+```bash 
+curl -i http://localhost:8083/mds/v1/nodes
+```
 
 ![](/assets/images/documentation/curl_response_install_edgeSDK_encrypted.png)
 

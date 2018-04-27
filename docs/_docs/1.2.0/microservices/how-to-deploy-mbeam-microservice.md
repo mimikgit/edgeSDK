@@ -26,13 +26,19 @@ You will need the following software installed on your system.
 
 Clone the mBeam project from GitHub somewhere accessible on your home directory. This guide will start from the Downloads folder
 
-```cd ~/Downloads```
+```bash 
+cd ~/Downloads
+```
 
-```git clone https://github.com/mimikgit/mBeam.git```
+```bash 
+git clone https://github.com/mimikgit/mBeam.git
+```
 
 Copy the beam microservice to your edgeSDK installation directory
 
-```sudo cp -a mBeam/. /opt/mimik/edge/microservices/mBeam/```
+```bash 
+sudo cp -a mBeam/. /opt/mimik/edge/microservices/mBeam/
+```
 
 ## The Repository Folders
 
@@ -44,27 +50,37 @@ Copy the beam microservice to your edgeSDK installation directory
 
 Navigate to  the beam/microservice directory
 
-```cd /opt/mimik/edge/microservices/mBeam```
+```bash 
+cd /opt/mimik/edge/microservices/mBeam
+```
 
 Install dependencies:
 
-```npm install```
+```bash 
+npm install
+```
 
 Next run build script
 
-```npm run-script build```
+```bash 
+npm run-script build
+```
 
 Verify that index.js is copied under build directory
 
 Change owner group of the build script in the deploy directory
 
-``` sudo chmod a+x deploy/build.sh```
+```bash 
+sudo chmod a+x deploy/build.sh
+```
 
 <!-- would it be necessary or nice to have command capture out put of e.g: ls -la | grep ... -->
 
 Run build script to create an image for the container under deploy directory
 
-```cd deploy/ && ./build.sh```
+```bash 
+cd deploy/ && ./build.sh
+```
 
 Verify that beam-v1.tar mimik container image created as beam-v1.tar under deploy directory
 
@@ -74,33 +90,41 @@ Verify that beam-v1.tar mimik container image created as beam-v1.tar under deplo
 
 In new terminal window, change from current directory to opt/mimik/edge
 
-```cd /opt/mimik/edge```
+```bash 
+cd /opt/mimik/edge
+```
 
 Start edgeSDK
 
-```./edge```
+```bash 
+./edge
+```
 
 ## Run mBeam microservice
 
 Navigate to the where the beam-v1.tar file
 
-```cd /opt/mimik/edge/microservices/mBeam/deploy```
+```bash 
+cd /opt/mimik/edge/microservices/mBeam/deploy
+```
 
 Install the beam-v1.tar image using the following command. **Note:*-Replace 'yourAccessTokenHere' with the "access_token" object created during account association for your target platform.
 
-
-```curl -i -H 'Authorization: Bearer yourAccessTokenHere' -F  "image=@beam-v1.tar" http://localhost:8083/mcm/v1/images```
+```bash 
+curl -i -H 'Authorization: Bearer yourAccessTokenHere' -F  "image=@beam-v1.tar" http://localhost:8083/mcm/v1/images
+```
 
 Initialize beam microservice
 
-``` curl -i -H 'Authorization: Bearer yourAccessTokenhere' -d '{"name": "beam-v1", "image": "beam-v1", "env": {"BEAM": "http://127.0.0.1:8083/beam/v1","MCM.BASE_API_PATH": "/beam/v1", "MCM.WEBSOCKET_SUPPORT": "false", "MFD": "https://mfd.mimik360.com/mFD/v1", "MPO": "https://mpo.mimik360.com/mPO/v1", "uMDS": "http://127.0.0.1:8083/mds/v1"} }' http://localhost:8083/mcm/v1/containers``` 
+```bash 
+curl -i -H 'Authorization: Bearer yourAccessTokenhere' -d '{"name": "beam-v1", "image": "beam-v1", "env": {"BEAM": "http://127.0.0.1:8083/beam/v1","MCM.BASE_API_PATH": "/beam/v1", "MCM.WEBSOCKET_SUPPORT": "false", "MFD": "https://mfd.mimik360.com/mFD/v1", "MPO": "https://mpo.mimik360.com/mPO/v1", "uMDS": "http://127.0.0.1:8083/mds/v1"} }' http://localhost:8083/mcm/v1/containers
+```
 
 Verify that mBeam microservice registered and works properly by calling following curl commands:
 
-```curl -i http://localhost:8083/beam/v1/play_queue```
-
-![curl response](/assets/images/documentation/mBeam_response_play_queue.png)
-
+```bash 
+curl -i http://localhost:8083/beam/v1/play_queue
+```
 The screen log shows that this method returns an empty objected called "data". View our [SwaggerHub](https://app.swaggerhub.com/apis/mimik/mBeam) definition for more information how different mBeam calls work.
 
 ## Recommended guides

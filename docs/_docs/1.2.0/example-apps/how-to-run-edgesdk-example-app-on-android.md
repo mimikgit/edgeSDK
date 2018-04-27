@@ -15,9 +15,13 @@ First download and install the [edgeSDK for Android](/docs/1.2.0/installation/an
 
 On your computer use the command line to clone the edgeSDK project from GitHub somewhere accessible on your user home directory. This guide starts from the Downloads folder
 
-```cd ~/Downloads```
+```bash
+cd ~/Downloads
+```
 
-```git clone https://github.com/mimikgit/edgeSDK.git```
+```bash
+git clone https://github.com/mimikgit/edgeSDK.git
+```
 
 Open Android Studio
 

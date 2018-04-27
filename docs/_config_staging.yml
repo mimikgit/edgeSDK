@@ -30,6 +30,7 @@ safe: false
 
 # Build settings
 markdown: kramdown
+highlighter: rouge
 theme: devportal
 sass:
   sass_dir: _sass

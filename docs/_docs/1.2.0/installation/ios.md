@@ -27,11 +27,17 @@ First download the iOS edgeSDK Cocoapod from our [Github Repository(https://gith
 
 To install it, simply add the following lines to your Podfile:
 
-```source 'https://github.com/CocoaPods/Specs.git'```
+```bash
+source 'https://github.com/CocoaPods/Specs.git'
+```
 
-```source 'https://github.com/mimikgit/cocoaPodSpecEdge.git'```
+```bash
+source 'https://github.com/mimikgit/cocoaPodSpecEdge.git'
+```
 
-```pod 'edgeSDK-iOS', '0.0.56'```
+```bash
+pod 'edgeSDK-iOS', '0.0.56'
+```
 
 ## Account association
 

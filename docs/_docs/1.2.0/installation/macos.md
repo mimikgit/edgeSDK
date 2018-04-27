@@ -26,17 +26,25 @@ This guide assumes that:
 
 On your local environment create the following directories. This guide will start from the user Downloads directory:
 
-```mkdir ~/Downloads/mimik/```
+```bash 
+mkdir ~/Downloads/mimik/
+```
 
-```mkdir ~/Downloads/mimik/edge```
+```bash 
+mkdir ~/Downloads/mimik/edge
+```
 
-```mkdir ~/Downloads/mimik/edge/microservices```
+```bash 
+mkdir ~/Downloads/mimik/edge/microservices
+```
 
 Change into the Downloads directory
 
 Download the [latest Edge.Daemon.pkg](https://github.com/mimikgit/edgeSDK/releases) for macOS and copy it to the directory created in the last step "~/mimik/edge" folder.
 
-```cp ~/Downloads/Edge.Daemon.pkg ~/Downloads/mimik/edge/```
+```bash 
+cp ~/Downloads/Edge.Daemon.pkg ~/Downloads/mimik/edge/
+```
 
 <!-- Next copy the edgeSDK license configuration to the edgeSDK installation directory
 
@@ -47,7 +55,9 @@ Using Finder navigate to ```~/mimik/edge``` directory and click on package to st
 
 Once the edgSDK is running, you can  use the curl command in a new terminal and be able to see the following screen log shown below:
 
-```curl -i http://localhost:8083/mds/v1/nodes```
+```bash 
+curl -i http://localhost:8083/mds/v1/nodes
+```
 
 ![curl response](/assets/images/documentation/curl_response_install_edgeSDK.png)
 

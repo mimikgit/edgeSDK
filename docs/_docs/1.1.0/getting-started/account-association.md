@@ -23,7 +23,9 @@ Download one of our example apps if you want to quickly try the edgeSDK without 
 
 Use your computer to clone or download the edgeSDK GitHub repository.
 
-```git clone https://github.com/mimikgit/edgeSDK.git```
+```
+git clone https://github.com/mimikgit/edgeSDK.git
+```
 
 Next use the [OAuthflow application](https://github.com/mimikgit/edgeSDK/tools/oauthtool) to get the required EDGE_ACCESS_TOKEN and USER_ACCESS_TOKEN  ( Note: Use appID and SECRET displayed on  Developer Portal for your app )
 
@@ -31,23 +33,38 @@ Create your test application as a native type from mimik Developer Portal
 
 Go to oauthtool directory
 
-```cd tools/oauthtool```
+```
+cd tools/oauthtool
+```
 
-Install packages
+Install dependencies
 
-```npm install```
+```
+npm install
+```
 
 Set your clientID using the Application ID displayed in mimik Developer Portal for your application
 
-```export CLIENT_ID="addYourIDHere"```
+```
+export CLIENT_ID="addYourIDHere"
+```
 
-Set your REDIRECTURI  using the redirect uri entered in mimik Developer Portal for your application
+Set your REDIRECTURI using the redirect uri entered in mimik Developer Portal for your application
 
-```export REDIRECT_URI="addYourURIHere"```
+```
+export REDIRECT_URI="addYourURIHere"
+```
+
 
 Run the app
 
-```npm start```
+```
+npm start
+```
+
+<div class="alert alert-warning" role="alert">
+<strong>Heads up!</strong> The oauthtool is built on top of the <a href="https://github.com/electron/electron-quick-start">Electron quick start app </a> may not start  SSH. We recommend to use this tool on device that has a display that you can physically access, like the computer you are using to SSH in with!
+</div>
 
 Click on Allow button to authorize the application
 
@@ -55,23 +72,33 @@ Copy and use <span id="accessToken">"access_token"</span> and "id_token" from th
 
 Go to "jsonrpctool" directory
 
-```cd tools/jsonrpctools```
+```
+cd tools/jsonrpctools
+```
 
 Install packages
 
-```npm install```
+```
+npm install
+```
 
 Set your edgeSDK access token as an environment variable. Copy access_token string from the oauthtool screen and paste into following command
 
-```export ACCESS_TOKEN="access_token"```
+```
+export ACCESS_TOKEN="access_token"
+```
 
 Associate edgeSDK with your account
 
-```node associateAccount.js```
+```
+node associateAccount.js
+```
 
 Verify that edgeSDK associated with your account.
 
-```node getMe.js```
+```
+node getMe.js
+```
 
 Keep your access token somewhere safe but easy to reference for the next steps.
 

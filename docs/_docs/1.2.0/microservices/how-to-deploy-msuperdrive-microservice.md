@@ -24,45 +24,61 @@ This guide covers how to install and deploy the mSuperdrive microservice to the 
 
 Download the latest release of the mDrive microservice. This guide will start from the Downloads folder.
 
-```cd ~/Downloads ```
+```bash 
+cd ~/Downloads 
+```
 
-```https://github.com/mimikgit/mSuperdrive/releases/latest```
+```bash 
+https://github.com/mimikgit/mSuperdrive/releases/latest
+```
 
 Extract the package and copy the superdrive tar file to your edgeSDK installation directory
 
-```sudo tar -xvzf superdrive-v1.tar.gz -C /opt/mimik/edge/microservices```
+```bash 
+sudo tar -xvzf superdrive-v1.tar.gz -C /opt/mimik/edge/microservices
+```
 
 ## Start edgeSDK
 
 In new terminal window, change from current directory to opt/mimik/edge
 
-```cd /opt/mimik/edge```
+```bash 
+cd /opt/mimik/edge
+```
 
 Start edgeSDK
 
-```./edge```
+```bash 
+./edge
+```
 
 ## Run mSuperdrive microservice
 
 Navigate to the where the superdrive-v1.tar file
 
-```cd /opt/mimik/edge/microservices/mSuperdrive/```
+```bash 
+cd /opt/mimik/edge/microservices/mSuperdrive/
+```
 
 Install the superdrive-v1.tar image using the following command.
 
 **Note:** Replace 'yourAccessTokenHere' with the "access_token" object created during account association for your target platform.
 
-```curl -i -H 'Authorization: Bearer yourAccessTokenHere' -F  "image=@superdrive-v1.tar" http://localhost:8083/mcm/v1/images```
+```bash 
+curl -i -H 'Authorization: Bearer yourAccessTokenHere' -F  "image=@superdrive-v1.tar" http://localhost:8083/mcm/v1/images
+```
 
 Initialize superdrive microservice
 
-```curl -i -H 'Authorization: Bearer yourAccessTokenHere' -d '{"name": "superdrive-v1", "image": "superdrive-v1", "env": {"superdrive": "http://127.0.0.1:8083/superdrive/v1","MCM.BASE_API_PATH": "/superdrive/v1", "MCM.WEBSOCKET_SUPPORT": "false", "MFD": "https://mfd.mimik360.com/mFD/v1", "MPO": "https://mpo.mimik360.com/mPO/v1", "uMDS": "http://127.0.0.1:8083/mds/v1"} }' http://localhost:8083/mcm/v1/containers```
+```bash 
+curl -i -H 'Authorization: Bearer yourAccessTokenHere' -d '{"name": "superdrive-v1", "image": "superdrive-v1", "env": {"superdrive": "http://127.0.0.1:8083/superdrive/v1","MCM.BASE_API_PATH": "/superdrive/v1", "MCM.WEBSOCKET_SUPPORT": "false", "MFD": "https://mfd.mimik360.com/mFD/v1", "MPO": "https://mpo.mimik360.com/mPO/v1", "uMDS": "http://127.0.0.1:8083/mds/v1"} }' http://localhost:8083/mcm/v1/containers
+```
 
 Verify that mSuperdrive microservice registered and works properly by calling following curl commands:
 
-```curl -i http://localhost:8083/drives```
-
-![curl response](/assets/images/documentation/mSuperdrive_response_play_queue.png)
+```bash 
+curl -i http://localhost:8083/drives
+```
 
 The screen log shows that this method returns an empty objected called "data". View our [SwaggerHub](https://app.swaggerhub.com/apis/mimik/mSuperdrive) definition for more information how different mSuperdrive calls work.
 

@@ -15,7 +15,7 @@ mimik edgeSDK provides a Serverless JavaScript Programming environment for devel
 ***
 
 **Question:**
-How do we useedgeSDK API? From what I've seen it's only JS modules, which use prepared functions on response and etc. 
+How do we use edgeSDK API? From what I've seen it's only JS modules, which use prepared functions on response and etc. 
 
 **Answer:**
 Once you read the above mentioned documents, and still have uncertainty about how to use the JS to develop microservices, please let us know.  We have an open source project  and that also might help you toward this purpose:

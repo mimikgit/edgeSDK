@@ -15,17 +15,26 @@ First download and install the [edgeSDK for iOS](/docs/1.2.0/installation/ios.ht
 
 On your computer use the command line to clone the edgeSDK project from GitHub somewhere accessible on your user home directory. This guide starts from the Downloads folder
 
-```cd ~/Downloads```
+```bash
+cd ~/Downloads
+```
 
-```git clone https://github.com/mimikgit/edgeSDK.git```
+
+```bash
+git clone https://github.com/mimikgit/edgeSDK.git
+```
 
 Navigate to the example iOS directory
 
-```cd /examples/iOS\ Hello\ App/```
+```bash
+cd /examples/iOS\ Hello\ App/
+```
 
 Install the required cocoapods
 
-```pod install```
+```bash
+pod install
+```
 
 Start Xcode and open the example app project. **Note** You must use a real device, not emulator, to build the example. edgeSDK functionality will not operate on the emulator devices.
 

@@ -24,28 +24,39 @@ You will need the following software installed on your system.
 
 From the command line clone the edgeSDK project from GitHub somewhere accessible on your user home directory. This guide will start from the Downloads folder
 
-```cd ~/Downloads```
+```bash
+cd ~/Downloads
+```
 
 Switch to the folder where the example app resides.
 
-```git clone https://github.com/mimikgit/edgeSDK.git```
+```bash
+git clone https://github.com/mimikgit/edgeSDK.git
+```
 
-```cd example/PC\ Hello\ App/```
-
+```bash
+cd example/PC\ Hello\ App/
+```
 
 Install the node dependencies by running the following command:
 
-```npm install```
-
+```bash
+npm install
+```
 ## Start edgeSDK
 
 Use the [Linux edgeSDK installation guide](/docs/1.2.0/installation/linux-ubuntu.html) then in a new terminal window change from current directory to opt/mimik/edge
 
-```cd /opt/mimik/edge```
+
+```bash
+cd /opt/mimik/edge
+```
 
 Start edgeSDK
 
-```./edge```
+```bash
+./edge
+```
 
 ## Example microservice
 
@@ -61,24 +72,31 @@ Login to [mimik Developer Portal](http://developers-dev.mimikdev.com/dev) and cr
 
 Modify the following constants in the src/background.js file using the App ID and Redirect URI provided for your app in the mimik Developer Portal:
 
-```const APP_ID```
+```javascript
+const APP_ID
 
-```const REDIRECT_PROTOCOL```
+const REDIRECT_PROTOCOL
 
-```const REDIRECT_URI```
-
+const REDIRECT_URI
+```
 
 Enter the following command to build the example app in a development environment:
 
-```npm start```
+
+```bash
+npm start
+```
 
 To package the app for your specific OS run the following command:
 
-```npm run package```
-
+```bash
+npm run package
+```
 To test and package run the following command:
 
-```npm run release```
+```bash
+npm run release
+```
 
 The above two commands would produce one of the following installation files in the dist folder based on the OS that source is hosted on:
 
