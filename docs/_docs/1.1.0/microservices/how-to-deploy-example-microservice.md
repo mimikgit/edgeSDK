@@ -106,21 +106,13 @@ Call Hello and nearby endpoints from microservice
 
 ```curl -i -H 'Authorization: Bearer yourAccessTokenHere' http://(nearby device IP in linkedLocalNetwork):8083/example/v1/hello ```
 
-## Discover nodes in account cluster
+<!-- ## Discover nodes in account cluster
 
 Sample app uses example microservice to find account cluster nodes and then call "Hello World" methods provided by these nodes. The content of "Hello World" JSON object could be changed based on the presentation that we will have on app.
 
 Call Hello and get account cluster nodes from microservice
 
-```curl -i -H 'Authorization: Bearer yourAccessTokenHere' "http://localhost:8083/example/v1/drives?type=account&userAccessToken='useThisStringAsTokenAsStringWhenTesting'"```
-
-## Discover nodes in proximity cluster
-
-Sample app uses example microservice to find proximity cluster nodes and then call "Hello World" methods provided by these nodes. The content of "Hello World" JSON object could be changed based on the presentation that we will have on app.
-
-Call Hello and get proximity cluster nodes from microservice
-
-```curl -i -H 'Authorization: Bearer yourAccessTokenHere' "http://localhost:8083/example/v1/drives?type=proximity&userAccessToken='useThisStringAsTokenAsStringWhenTesting'"```
+```curl -i -H 'Authorization: Bearer yourAccessTokenHere' "http://localhost:8083/example/v1/drives?type=account&userAccessToken='useThisStringAsTokenAsStringWhenTesting'"``` -->
 
 ## Recommended guides
 
