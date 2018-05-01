@@ -58,16 +58,3 @@
 <!-- Bootstrap core JavaScript -->
 <script src="{{ '/assets/jQuery/jquery-3.3.1.slim.min.js'  | relative_url }}"></script>
 <script src="{{ '/assets/bootstrap/js/bootstrap.bundle.min.js' | relative_url }}"></script>
-
-<script type="text/javascript">
-
-  $("nav .mobile-menu-btn, nav.mobile-menu .close").click(function(e) {
-      e.preventDefault();
-      $('body').toggleClass("show-mobile-nav")
-  });
-
-  $("nav .mobile-categories-btn , nav.category-menu .close").click(function(e) {
-      e.preventDefault();
-      $('body').toggleClass("show-category-nav")
-  });
-  </script>

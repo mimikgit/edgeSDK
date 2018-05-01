@@ -5,6 +5,8 @@ mimik-gh-edgeSDK.code-workspace
 tools/oauthtool/node_modules/*
 tools/jsonrpctool/node_modules/*
 docs/package-lock.json
+node_modules/
+package-lock.json
 docs/node_modules/*
 docs/_site/*
 docs/.sass-cache/*

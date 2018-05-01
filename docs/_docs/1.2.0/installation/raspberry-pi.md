@@ -20,4 +20,4 @@ order: 06
 
 Installing edgeSDK on Raspberry Pi (Raspbian 8.1) follows same instructions that we provided for Linux Ubuntu
 
-[How to install edgeSDK package on Linux Ubuntu](/docs/1.2.0/installation/Linux-Ubuntu.html)
+[How to install edgeSDK package on Linux Ubuntu](/docs/1.2.0/installation/linux-ubuntu.html)
