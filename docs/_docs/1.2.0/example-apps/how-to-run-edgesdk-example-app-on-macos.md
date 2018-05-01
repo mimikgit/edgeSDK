@@ -16,7 +16,7 @@ You will need the following software installed on your system.
 - [https://www.npmjs.com/](NPM) v5.7.1
 - [https://nodejs.org](NodeJS) v 8.9.4
 - [Latest release](https://github.com/mimikgit/edgeSDK/releases/latest) of mimik edgeSDK for your target development platform
-- [mimik Developer Account](http://developers-dev.mimikdev.com/dev/)
+- [mimik Developer Account](https://developers.mimik360.com/dev/)
 
 ## Installation
 
@@ -48,15 +48,19 @@ Use the [macOS edgeSDK installation guide](/docs/1.2.0/installation/macos.html) 
 
 ## Example microservice
 
-You also need the location of the [example-v1.tar](/docs/1.2.0/microservices/how-to-deploy-example-microservice.html) container image.
+Follow the [example microservice](/docs/1.2.0/microservices/how-to-deploy-example-microservice.html) installation guide and verify that the container image has been created. Once verified, the PC example app is able to detect this default installation path without needing to modify the source code.
 
-If you cloned the [edgeSDK GitHub](https://github.com/mimikgit/edgeSDK) repo, you can use the "npm run package" command and the code will ascertain the correct location.
+``` bash
+ls ../microservice/deploy
 
-Otherwise open the src/hello_world/hello_world.js file, go to line 285, and hard code the path to the folder containing the example-v1.tar file in the addImage function by assigning the path to the containersPath variable.
+example-v1.tar
+```
+
+You may also open the src/hello_world/hello_world.js file, go to line 285, and hard code the path to the folder containing the example-v1.tar file in the addImage function by assigning the path to the containersPath variable.
 
 ## Account Association
 
-Login to [mimik Developer Portal](http://developers-dev.mimikdev.com/dev) and create a new native app
+Login to [mimik Developer Portal](https://developers.mimik360.com/dev) and create a new native app
 
 Modify the following constants in the src/background.js file using the App ID and Redirect URI provided for your app in the mimik Developer Portal:
 

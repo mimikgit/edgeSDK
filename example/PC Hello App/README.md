@@ -15,18 +15,26 @@ You will need the following software installed on your system.
 
 From the command line clone the edgeSDK project from GitHub somewhere accessible on your user home directory. This guide will start from the Downloads folder
 
-```cd ~/Downloads```
+```
+cd ~/Downloads
+```
 
 Switch to the folder where the example app resides.
 
-```git clone https://github.com/mimikgit/edgeSDK.git```
+```
+git clone https://github.com/mimikgit/edgeSDK.git
+```
 
-```cd example/PC\ Hello\ App/```
+```
+cd example/PC\ Hello\ App/
+```
 
 Install the node dependencies by running the following command:
 
-```npm install```
 
+```
+npm install
+```
 ## Start edgeSDK
 
 Refer to the platform specific guides for installing the edgeSDK service on [macOS](https://developers.mimik.com/docs/1.2.0/installation/macos.html), [Windows](https://developers.mimik.com/docs/1.2.0/installation/windows.html), or [Linux](https://developers.mimik.com/docs/1.2.0/installation/linux-ubuntu.html).
@@ -35,19 +43,26 @@ On macOS and Windows, the edgeSDK service is started by double clicking the pack
 
 To start the service on Linux, in a new terminal window change directory to your edgeSDK installation path
 
-```cd /opt/mimik/edge```
-
+```
+cd /opt/mimik/edge
+```
 Then edgeSDK with the following command.
 
-```./edge```
+```
+./edge
+```
 
 ## Example microservice
 
-You also need the location of the [example-v1.tar](/docs/1.2.0/microservices/how-to-deploy-example-microservice.html) container image.
+Follow the [example microservice](https://developers.mimik360.com/docs/1.2.0/microservices/how-to-deploy-example-microservice.html) installation guide and verify that the container image has been created. Once verified, the PC example app is able to detect this default installation path without needing to modify the source code.
 
-If you cloned the [edgeSDK GitHub](https://github.com/mimikgit/edgeSDK) repo, you can use the "npm run package" command and the code will ascertain the correct location.
+``` bash
+ls ../microsrevice/deploy
 
-Otherwise open the src/hello_world/hello_world.js file, go to line 285, and hard code the path to the folder containing the example-v1.tar file in the addImage function by assigning the path to the containersPath variable.
+example-v1.tar
+```
+
+You may also open the src/hello_world/hello_world.js file, go to line 285, and hard code the path to the folder containing the example-v1.tar file in the addImage function by assigning the path to the containersPath variable.
 
 ## Account Association
 
@@ -55,24 +70,31 @@ Login to [mimik Developer Portal](https://developers.mimik360.com/dev) and creat
 
 Modify the following constants in the src/background.js file using the App ID and Redirect URI provided for your app in the mimik Developer Portal:
 
-```const APP_ID```
+```javascript
+const APP_ID
 
-```const REDIRECT_PROTOCOL```
+const REDIRECT_PROTOCOL
 
-```const REDIRECT_URI```
-
+const REDIRECT_URI
+```
 
 Enter the following command to build the example app in a development environment:
 
-```npm start```
+```bash
+npm start
+```
 
 To package the app for your specific OS run the following command:
 
-```npm run package```
+```bash
+npm run package
+```
 
 To test and package run the following command:
 
-```npm run release```
+```bash
+npm run release
+```
 
 The above two commands would produce one of the following installation files in the dist folder based on the OS that source is hosted on:
 

@@ -7,70 +7,54 @@ order: 02
 
 ## Objectives
 
-Use this guide to associate your account to the edgeSDK runtime installed on your development environment or test devices. This guide provides step by step instructions on using the helper tools for this process, oauthtool and jsonrpctool.
+This installation guide will cover how to install the Oauthtool application. Use this tool if you want to quickly test out the edgeSDK functionality without needing to implement any methods to associate your account with the edgeSDK runtime. *Note:* The access token generated with this tool should not be used in your production environments.
 
-Download one of our example apps if you want to quickly try the edgeSDK without the grueling step by step instructions.
+Refer to the hello_world/hello_world.js source code of [PC Example App](https://github.com/mimikgit/edgeSDK/tree/master/example/PC%20Hello%20App) for inspiration on how to implement the account association functionality in your applications.
 
 ## Prerequisites
 
 - [Docker Community Edition](https://www.docker.com/community-edition#/download) for your target development platform(s)
 - [NPM](https://www.npmjs.com/) v5.7.1
 - [NodeJS](https://nodejs.org) v 8.9.4
-- edgeSDK is installed on your target development platform
+- edgeSDK is installed and running on your target development platform
 - [mimik Developer Account](/docs/1.2.0/getting-started/creating-a-developer-account.html)
 
 ## Instructions
 
-Use your computer to clone or download the edgeSDK GitHub repository.
+Use your computer to clone or download the edgeSDK GitHub repository. This guide will start from the user Downloads folder
 
 
 ```bash
+cd ~/Downloads/
+
 git clone https://github.com/mimikgit/edgeSDK.git
+
+cd edgeSDK/tools/oauthtool
 ```
 
-Next use the [OAuthflow application](https://github.com/mimikgit/edgeSDK/tools/oauthtool) to get the required EDGE_ACCESS_TOKEN and USER_ACCESS_TOKEN  ( Note: Use appID and SECRET displayed on  Developer Portal for your app )
-
-Create your test application as a native type from mimik Developer Portal
-
-Go to oauthtool directory
-
-```bash
-cd tools/oauthtool
-```
-
-Install dependencies
+Install dependencies and start the application
 
 ```bash
 npm install
-```
-
-Set your clientID using the Application ID displayed in mimik Developer Portal for your application
-
-```bash
-export CLIENT_ID="addYourIDHere"
-```
-
-Set your REDIRECTURI using the redirect uri entered in mimik Developer Portal for your application
-
-```bash
-export REDIRECT_URI="addYourURIHere"
-```
-
-Run the app
-
-```bash
 npm start
 ```
 
-<div class="alert alert-warning" role="alert">
-<strong>Heads up!</strong> The oauthtool is built on top of the <a href="https://github.com/electron/electron-quick-start">Electron quick start app </a> may not start  SSH. We recommend to use this tool on device that has a display that you can physically access, like the computer you are using to SSH in with!
-</div>
+In the Client ID text field enter the Application ID for your application shown in the mimik Developer Portal and tap **Get Edge Token** 
 
-Click on Allow button to authorize the application
+Allow the authorization message when prompted. Keep the new Access Token somewhere you can easily reference as it is needed for the next steps.
 
-Copy and use <span id="accessToken">"access_token"</span> and "id_token" from the screen for microservice installation and account association 
+## Start edgeSDK
 
-Go to "jsonrpctool" directory
+In new terminal window, start the edgeSDK from the  path specified in the installation guide for your preferred development platform.
+
+```bash
+cd /opt/mimik/edge
+./edge
+```
+
+## jsonRPC
+
+Next navigate to the edgeSDK/tools/jsonrpctool directory
 
 ```bash
 cd tools/jsonrpctools
@@ -82,10 +66,10 @@ Install packages
 npm install
 ```
 
-Set your edgeSDK access token as an environment variable. Copy access_token string from the oauthtool screen and paste into following command
+Set your edgeSDK access token as an environment variable. Copy your Access Token  from the oauthtool screen and paste into following command
 
 ```bash
-export ACCESS_TOKEN="access_token"
+export ACCESS_TOKEN="yourAccessToken"
 ```
 
 Associate edgeSDK with your account
