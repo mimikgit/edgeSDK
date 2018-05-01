@@ -10,14 +10,14 @@ try {
 
     if (hash.startsWith(ERROR_STR)) {
         var e = hash.substring(ERROR_STR.length);
-        json = JSON.parse(e);;
+        json = JSON.parse(e);
     } else {
         json = JSON.parse(hash);
     }
 
-    var para = document.createElement("code");
-    para.className = "prettyprint js";
-    var node = document.createTextNode(JSON.stringify(json));
+    var para = document.createElement("textarea");
+    var node = document.createTextNode(
+        json.access_token || JSON.stringify(json, 2, null));
     para.appendChild(node);
 
     var element = document.getElementById("main");

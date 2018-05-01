@@ -21,42 +21,48 @@ let mainWindow;
 
 // Please update  your clientID ( Application ID displayed in mimik developer portal for the app )
 
-const devClientId = process.env.CLIENT_ID; //'test';
+let devClientId = '';
+// const devClientId = process.env.CLIENT_ID; //'test';
 
 // Please update  your ridirect url  ( use ridirect uri entered in mimik developer portal for the app )
 
-
-const devRidirectUri = process.env.REDIRECT_URI; // 'com.mimik://authorization_code';
+// const devRidirectUri = process.env.REDIRECT_URI;
+const devRidirectUri = 'com.mimik://authorization_code';
 
 
 ////////////////////////////////////////////////
 
 const OAUTH_DOMAIN = 'https://mid.mimik360.com';
 const SCOPES = [
+      //  'write:me', 
+      //  'read:users',
+      //  'read:friendList',
+      //  'delete:friend',        
+      //  'read:requestFriendList',
+      //  'read:friendRequestList',
+      //  'add:requestFriend',
+      //  'delete:requestFriend',
+      //  'update:friendRequest',
+      //  'delete:friendRequest',
+      //  'update:me',
+      //  'create:app',
+      //  'delete:app',
+      // 'read:me',
        'edge:mcm',
-       'write:me', 
-       'read:users',
-       'read:friendList',
-       'delete:friend',        
-       'read:requestFriendList',
-       'read:friendRequestList',
-       'add:requestFriend',
-       'delete:requestFriend',
-       'update:friendRequest',
-       'delete:friendRequest',
-       'update:me',
-       'create:app',
-       'delete:app',
-       'edge:mcm',
-       'read:me',
        'edge:clusters',
        'edge:account:associate',
-       'openid', ]; // 'edge:account:unassociate'
+       'openid', ];
+
+const RESET_SCOPES = [
+        'openid',
+        'edge:account:unassociate',
+];
 
 ejse.data('redirectURI', devRidirectUri);
 ejse.data('clientId', devClientId);
 ejse.data('oauthDomain', OAUTH_DOMAIN);
 ejse.data('oauthScope', SCOPES.map(u => encodeURIComponent(u)).join('+'));
+ejse.data('oauthResetScope', RESET_SCOPES.map(u => encodeURIComponent(u)).join('+'));
 
 ///////////////////////////////////////////////
 
@@ -67,7 +73,7 @@ function base64URLEncode(str) {
       .replace(/=/g, '');
 }
 
-var verifier = base64URLEncode(crypto.randomBytes(32));
+const verifier = base64URLEncode(crypto.randomBytes(32));
 
 function sha256(buffer) {
   return crypto.createHash('sha256').update(buffer).digest();
@@ -75,6 +81,24 @@ function sha256(buffer) {
 
 function createWindow () {
   // Create the browser window.
+
+  protocol.registerHttpProtocol('openid', (request, callback) => {
+    const _url = request.url.substr('openid://'.length);
+    const query = queryString.parse(_url.replace('callback?', ''));
+
+    devClientId = query.client_id;
+    
+    ejse.data('clientId', devClientId);
+
+    const oauthScope = query.reset ? 
+      RESET_SCOPES.map(u => encodeURIComponent(u)).join('+') :
+      SCOPES.map(u => encodeURIComponent(u)).join('+');
+
+    const redirect = encodeURIComponent(devRidirectUri);
+    const url = `${OAUTH_DOMAIN}/auth?redirect_uri=${redirect}&scope=${oauthScope}&client_id=${devClientId}&state=xyz&response_type=code&code_challenge=czD7gtNh2SowYqxpN5OSf5a6wIiszEZ9AvRHGvwIJS4&code_challenge_method=S256`;
+
+    mainWindow.loadURL(url);
+  });
 
   protocol.registerHttpProtocol('com.mimik', (request, callback) => {
     const url = request.url.substr(12);
@@ -105,13 +129,14 @@ function createWindow () {
         code_verifier: 'SqRg3wQWke2YSwMydkdilNHURfmmnt-Vlbvf8s2Ri58'
       }
     };
+
     rp(options)
       .then((parsedBody) => {
         const token = JSON.parse(parsedBody);
         console.log(`rp: ${JSON.stringify(token, null, 2)}`);
         session.defaultSession.cookies.get({}, (error, cookies) => {
           console.log(error, cookies)
-        })
+        });
 
         const loginUrl = URL.format({
           pathname: path.join(__dirname, 'index.ejs'),
@@ -130,9 +155,11 @@ function createWindow () {
 
   }, (error) => {
     if (error) console.error('Failed to register protocol');
-  })
+  });
 
-  mainWindow = new BrowserWindow({width: 800, height: 600});
+  mainWindow = new BrowserWindow({width: 800, height: 600, webPreferences: {
+    nativeWindowOpen: true
+  }});
 
   // and load the index.html of the app.
   mainWindow.loadURL(URL.format({
