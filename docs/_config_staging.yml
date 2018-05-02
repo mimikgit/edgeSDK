@@ -51,16 +51,18 @@ docs_version: 1.2.0
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
 exclude:
- - Gemfile
- - Gemfile.lock
- - gulpfile.js
- - package.json
- - package-lock.json
- - node_modules
- - vendor/bundle/
- - vendor/cache/
- - vendor/gems/
- - vendor/ruby/
- - LICENSE.txt
- - devportal.gemspec
- - devportal-0.1.05.gem
+- Gemfile
+- Gemfile.lock
+- gulpfile.js
+- package.json
+- package-lock.json
+- node_modules
+- vendor/bundle/
+- vendor/cache/
+- vendor/gems/
+- vendor/ruby/
+- LICENSE.txt
+- index.html
+- "*.gemspec"
+- "*.gem"
+- README.md
