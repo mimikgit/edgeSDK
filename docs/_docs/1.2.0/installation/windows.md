@@ -34,9 +34,9 @@ C:/mimik/edge"
 "C:/mimik/edge/microservices"
 ```
 
-Download the [latest v1.2.0+](https://github.com/mimikgit/edgeSDK/releases) Windows edgeSDK from your desktop into the "C:/mimik/edge" folder.
+Download the [latest](https://github.com/mimikgit/edgeSDK/releases) Windows edgeSDK package ('mimik_edge_service_setup-v1.2.0.zip')  from your desktop into the "C:/mimik/edge" folder.
 
-Goto "C:/mimik/edge" directory and click on  edge.exe to start edgeSDK
+Goto "C:/mimik/edge" directory and click on  mimik_edge_service_setup-v1.2.0.exe to start edgeSDK
 
 Once you run the edge on this machine, a series of screen output show the status the status of this particular node: for instance the following message shows that the current machine is acting as a regular node.
 
