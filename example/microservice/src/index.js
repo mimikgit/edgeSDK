@@ -102,14 +102,12 @@ app.get('/drives', (req, res) => {
     })
     .go();
 });
-
 app.get('/hello', (req, res) => {
   const json = toJson({
     JSONMessage: 'Hello WORLD!!!',
   });
   res.end(json);
 });
-  
 const requestBep = edge => new Action(
   (cb) => {
     edge.requestBep({
@@ -123,8 +121,7 @@ const requestBep = edge => new Action(
       },
     });
   });
-  
-  app.get('/bep', (req, res) => {
+app.get('/bep', (req, res) => {
   const { edge } = req.mimikContext;
 
   requestBep(edge)
