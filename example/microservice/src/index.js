@@ -109,3 +109,26 @@ app.get('/hello', (req, res) => {
   });
   res.end(json);
 });
+  
+const requestBep = edge => new Action(
+  (cb) => {
+    edge.requestBep({
+      success: (result) => {
+        cb({
+          href: result.data,
+        });
+      },
+      error: (err) => {
+        cb(new Error(err.message));
+      },
+    });
+  });
+  
+  app.get('/bep', (req, res) => {
+  const { edge } = req.mimikContext;
+
+  requestBep(edge)
+    .next(bep => res.end(toJson(bep)))
+    .guard(e => res.writeError(new ApiError(400, e)))
+    .go();
+});
