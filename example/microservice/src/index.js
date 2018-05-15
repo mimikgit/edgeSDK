@@ -6,6 +6,7 @@ import GetProximityDrives from './usecase/get-proximity-drives';
 import GetNearbyDrives from './usecase/get-nearby-drives';
 import GetMyDrives from './usecase/get-my-drives';
 import ApiError from './helper/api-error';
+import FindNodeByNodeId from './usecase/find-node-by-node-id';
 
 const app = Router({
   mergeParams: true,
@@ -30,11 +31,15 @@ function mimikInject(context, req) {
   const getMyDrives = new GetMyDrives(getNearByDrives, MPO, uMDS, http,
     edge, authorization, userToken);
 
+  const findNode = new FindNodeByNodeId(getNearByDrives, getMyDrives,
+     getProximityDrives);
+
   return ({
     ...context,
     getNearByDrives,
     getProximityDrives,
     getMyDrives,
+    findNode,
   });
 }
 
@@ -121,6 +126,50 @@ const requestBep = edge => new Action(
       },
     });
   });
+const requestRemoteBep = (drive, http) => new Action(
+  (cb) => {
+    const sepHeader = `\r\nx-mimik-port: ${drive.routing.port}\r\nx-mimik-routing: ${drive.routing.id}`;
+    http.request(({
+      url: `${drive.routing.url}/superdrive/v1/bep`,
+      authorization: sepHeader,
+      success: (result) => {
+        cb(JSON.parse(result.data));
+      },
+      error: (err) => {
+        console.log(`sep error: ${err.message}`);
+        cb(new Error(err.message));
+      },
+    }));
+  });
+
+app.get('/nodes/:nodeId', (req, res) => {
+  const { nodeId } = req.params;
+  const { findNode } = req.mimikContext;
+  const query = queryString.parse(req._parsedUrl.query);
+  if (!(query && query.userAccessToken)) {
+    res.writeError(new ApiError(403, 'userAccessToken must not be null'));
+    return;
+  }
+
+  findNode.buildAction(nodeId)
+    .next((drive) => {
+      if (drive.url) {
+        res.end(toJson(drive));
+        return 0;
+      }
+
+      const { http } = req.mimikContext;
+      return requestRemoteBep(drive, http)
+        .next(url => Object.assign({}, drive, {
+          url: url.href,
+        }))
+        .next(d => res.end(toJson(d)));
+    })
+    // .next(drive => res.end(toJson(drive)))
+    .guard(e => res.writeError(new ApiError(400, e)))
+    .go();
+});
+
 app.get('/bep', (req, res) => {
   const { edge } = req.mimikContext;
 
