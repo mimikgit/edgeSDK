@@ -66,7 +66,7 @@ app.get('/drives', (req, res) => {
   const { getNearByDrives, getProximityDrives, getMyDrives } = req.mimikContext;
 
   const query = queryString.parse(req._parsedUrl.query);
-  const type = (query && query.type) || 'nearby';
+  const type = (query && query.type) || 'network';
 
   const userAccessToken = query && query.userAccessToken;
   const errorAction = new Action(cb => cb(new ApiError(403, 'userAccessToken must not be null')));
@@ -76,7 +76,7 @@ app.get('/drives', (req, res) => {
   //    action = new Action(cb => cb(new ApiError(403, 'userAccessToken must not be null')));
   //  } else {
   switch (type) {
-    case 'nearby':
+    case 'network':
       action = getNearByDrives.buildAction();
       break;
     case 'account':
@@ -86,7 +86,7 @@ app.get('/drives', (req, res) => {
         action = getMyDrives.buildAction();
       }
       break;
-    case 'proximity':
+    case 'nearby':
       action = getProximityDrives.buildAction();
       break;
     default:
