@@ -54,7 +54,7 @@ Then edgeSDK with the following command.
 
 ## Example microservice
 
-Follow the [example microservice](https://developers.mimik360.com/docs/1.2.0/microservices/how-to-deploy-example-microservice.html) installation guide and verify that the container image has been created. Once verified, the PC example app is able to detect this default installation path without needing to modify the source code.
+Follow the [example microservice](https://developers.mimik360.com/docs/1.1.0/microservices/how-to-deploy-example-microservice.html) installation guide and verify that the container image has been created. Once verified, the PC example app is able to detect this default installation path without needing to modify the source code.
 
 ``` bash
 ls ../microsrevice/deploy
