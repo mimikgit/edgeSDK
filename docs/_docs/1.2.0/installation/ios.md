@@ -36,7 +36,7 @@ source 'https://github.com/mimikgit/cocoaPodSpecEdge.git'
 ```
 
 ```bash
-pod 'edgeSDK-iOS', '0.0.56'
+pod 'edgeSDK-iOS'
 ```
 
 ## Account association
