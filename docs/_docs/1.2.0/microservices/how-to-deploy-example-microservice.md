@@ -130,7 +130,7 @@ Call Hello and nearby endpoints from microservice
 ![hello and nearby response](/assets/images/documentation/sample_app_message_sequence.png)
 
 ```bash 
-curl -i -H 'Authorization: Bearer yourAccessTokenHere' http://localhost:8083/example/v1/drives?type=nearby
+curl -i -H 'Authorization: Bearer yourAccessTokenHere' http://localhost:8083/example/v1/drives?type=network
 ```
 
 ```bash 
