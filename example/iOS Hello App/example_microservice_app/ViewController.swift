@@ -24,6 +24,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var button06: UIButton!
     @IBOutlet weak var button07: UIButton!
     @IBOutlet weak var button08: UIButton!
+    @IBOutlet weak var button09: UIButton!
     @IBOutlet weak var bottomInfoLabel: UILabel!
     
     override func viewDidLoad() {
@@ -42,26 +43,33 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.button03.setTitle("Associate", for: UIControlState.disabled)
         
         self.button04.isEnabled = false
-        self.button04.setTitle("LoadµServices", for: UIControlState.normal)
-        self.button04.setTitle("LoadµServices", for: UIControlState.disabled)
+        self.button04.setTitle("LoadExample", for: UIControlState.normal)
+        self.button04.setTitle("LoadExample", for: UIControlState.disabled)
         
         self.button05.isEnabled = false
-        self.button05.setTitle("GetNodes", for: UIControlState.normal)
-        self.button05.setTitle("GetNodes", for: UIControlState.disabled)
-        
+        self.button05.setTitle("GetNetwork", for: UIControlState.normal)
+        self.button05.setTitle("GetNetwork", for: UIControlState.disabled)
+
         self.button06.isEnabled = false
-        self.button06.setTitle("Unassociate", for: UIControlState.normal)
-        self.button06.setTitle("Unassociate", for: UIControlState.disabled)
-        
+        self.button06.setTitle("GetNearby", for: UIControlState.normal)
+        self.button06.setTitle("GetNearby", for: UIControlState.disabled)
+
         self.button07.isEnabled = false
-        self.button07.setTitle("StopEdge", for: UIControlState.normal)
-        self.button07.setTitle("StopEdge", for: UIControlState.disabled)
+        self.button07.setTitle("Unassociate", for: UIControlState.normal)
+        self.button07.setTitle("Unassociate", for: UIControlState.disabled)
         
         self.button08.isEnabled = false
-        self.button08.setTitle("edgeSDK external URL", for: UIControlState.normal)
-        self.button08.setTitle("edgeSDK external URL", for: UIControlState.disabled)
+        self.button08.setTitle("StopEdge", for: UIControlState.normal)
+        self.button08.setTitle("StopEdge", for: UIControlState.disabled)
+        
+        self.button09.isEnabled = true
+        self.button09.setTitle("edgeSDK URL", for: UIControlState.normal)
+        self.button09.setTitle("edgeSDK URL", for: UIControlState.disabled)
         
         self.bottomInfoLabel.text = "Ready"
+        
+        // uncomment below to have all the startup buttons pushed automatically, after you have logged in at last once before manually.
+        // self.automaticStart()
     }
     
     @IBAction func button01Action(_ sender: UIButton) {
@@ -78,7 +86,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             print("startEdge result: \(result)")
             self.bottomInfoLabel.text = "edgeSDK is running."
             self.button02.isEnabled = true
-            self.button07.isEnabled = true
+            self.button08.isEnabled = true
         }
     }
     
@@ -120,7 +128,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBAction func button04Action(_ sender: UIButton) {
         
         self.button04.isEnabled = false
-        self.bottomInfoLabel.text = "edgeSDK is loading example micro service..."
+        self.bottomInfoLabel.text = "edgeSDK is loading the example micro service..."
         
         //
         // initiates the example micro service loading process by uploading the content via a edgeSDK service URL
@@ -128,59 +136,90 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         MMKEdgeManager.sharedInstance.setupMicroServices { (result) in
             print("setupMicroServices result: \(result)")
-            self.bottomInfoLabel.text = "edgeSDK loaded example micro service"
+            self.bottomInfoLabel.text = "edgeSDK loaded the example micro service"
             self.button05.isEnabled = true
             self.button06.isEnabled = true
+            self.button07.isEnabled = true
         }
     }
     
     @IBAction func button05Action(_ sender: UIButton) {
         
-        self.button05.isEnabled = false
+        sender.isEnabled = false
         
         //
-        // initiates a "getNodes" API call that returns a list of edge nodes visible on the local network
+        // initiates a "getNetwork" API call that returns a list of edge nodes visible on the local network
         //
-        
-        guard let edgeToken = MMKAuthenticationManager.sharedInstance.edgeToken(),
-            let backendToken = MMKAuthenticationManager.sharedInstance.backendToken() else {
-                return
-        }
-        
-        let link = kExampleMicroServiceNearbyNodesLink
         
         self.edgeNodes.removeAll()
         self.tableView.reloadData()
-        self.bottomInfoLabel.text = ""
+        self.bottomInfoLabel.text = "Calling getNetwork"
         
-        let authenticatedLink = link + "&userAccessToken=\(backendToken)"
-        let headers = ["Authorization" : "Bearer \(edgeToken)" ]
-        
-        Alamofire.request(authenticatedLink, method: .get, parameters: nil, encoding: URLEncoding.default, headers: headers).responseJSON { response in
-            switch response.result {
-            case .success(let data):
-                sender.isEnabled = true
-                
-                let json = JSON.init(data)
-                if json != JSON.null {
-                    let dataJson = json["data"]
-                    if dataJson != JSON.null {
-                        self.parseNodes(json: dataJson)
-                    }
-                }
-                
-            case .failure(let error):
+        MMKGetManager.getNodes(type: .network, completion: { (nodes, error) in
+            
+            guard error == nil else {
                 self.tableView.reloadData()
-                self.bottomInfoLabel.text = error.localizedDescription
+                self.bottomInfoLabel.text = error?.localizedDescription
                 sender.isEnabled = true
-                self.button05.isEnabled = true
+                return
             }
-        }
+            
+            guard nodes != nil else {
+                self.tableView.reloadData()
+                self.bottomInfoLabel.text = "Unable to process the response"
+                sender.isEnabled = true
+                return
+            }
+            
+            sender.isEnabled = true
+            self.edgeNodes = nodes!
+            self.tableView.reloadData()
+
+            let nodeString: String = self.edgeNodes.count == 1 ? "node" : "nodes"
+            self.bottomInfoLabel.text = "Received information about \(self.edgeNodes.count) \(nodeString)"
+        })
     }
     
     @IBAction func button06Action(_ sender: UIButton) {
         
-        self.button06.isEnabled = false
+        sender.isEnabled = false
+        
+        //
+        // initiates a "getNearby" API call that returns a list of edge nodes visible across all networks considered within a "proximity" distance
+        //
+        
+        self.edgeNodes.removeAll()
+        self.tableView.reloadData()
+        self.bottomInfoLabel.text = "Calling getNearby"
+        
+        MMKGetManager.getNodes(type: .nearby, completion: { (nodes, error) in
+            
+            guard error == nil else {
+                self.tableView.reloadData()
+                self.bottomInfoLabel.text = error?.localizedDescription
+                sender.isEnabled = true
+                return
+            }
+            
+            guard nodes != nil else {
+                self.tableView.reloadData()
+                self.bottomInfoLabel.text = "Unable to process the response"
+                sender.isEnabled = true
+                return
+            }
+
+            sender.isEnabled = true
+            self.edgeNodes = nodes!
+            self.tableView.reloadData()
+            
+            let nodeString: String = self.edgeNodes.count == 1 ? "node" : "nodes"
+            self.bottomInfoLabel.text = "Received information about \(self.edgeNodes.count) \(nodeString)"
+        })
+    }
+    
+    @IBAction func button07Action(_ sender: UIButton) {
+        
+        self.button07.isEnabled = false
         
         //
         // initiates edgeSDK account unassociation process
@@ -206,9 +245,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
-    @IBAction func button07Action(_ sender: UIButton) {
+    @IBAction func button08Action(_ sender: UIButton) {
         
-        self.button07.isEnabled = false
+        self.button08.isEnabled = false
         
         //
         // initiates the edgeSDK shutdown sequence
@@ -220,7 +259,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.button02.isEnabled = true
     }
     
-    @IBAction func button08Action(_ sender: UIButton) {
+    @IBAction func button09Action(_ sender: UIButton) {
         
         //
         // returns externaly accessible URL link to the edge service
@@ -231,15 +270,92 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 }
 
+fileprivate extension ViewController {
+    func automaticStart() -> Void {
+        
+        // checking to see if we have been through the authorization process at least once before
+        guard MMKAuthenticationManager.sharedInstance.isAuthorized(type: .edge),
+            MMKAuthenticationManager.sharedInstance.isAuthorized(type: .backend) else {
+                return
+        }
+        
+        DispatchQueue.main.async {
+            // start edgeSDK
+            self.button01Action(self.button01)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                // initiate OID login - you can click the cancel button
+                self.button02Action(self.button02)
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                    // initiate edgeSDK account association
+                    self.button03Action(self.button03)
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                        // load the example micro service
+                        self.button04Action(self.button04)
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                            // initiate the "getNearby" API call for a list of nearby edge nodes (by proximity, across all networks)
+                            self.button06Action(self.button06)
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 internal extension ViewController {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let node = self.edgeNodes[indexPath.row]
-        self.bottomInfoLabel.text = "Selected node: \(self.nodeDisplayName(node: node))"
+        self.bottomInfoLabel.text = "Connecting to node: \(node.displayName()), please wait for a response."
         
-        //
-        // initiates a "hello" API call that returns a "Hellow WORLD!!!" string in a JSON from the selected node.
-        //
-        self.callHelloAtEdgeNode(node: node)
+        node.getBEPURL { (url, error) in
+            let updatedNode: MMKEdgeNode = node
+            
+            if let checkedUrl = url {
+                //
+                // We've received our internal or BEP url so we'll initiate a "hello" API call that returns a "Hellow WORLD!!!" string in a JSON format (from the selected node.)
+                //
+                
+                updatedNode.urlString = checkedUrl.absoluteString
+                self.bottomInfoLabel.text = "Calling hello endpoint on node: \(node.urlString ?? "no-url-detected"), please wait for a response."
+                
+                MMKGetManager.getHelloResponse(node: node, completion: { (json,error) in
+                    
+                    guard error == nil else {
+                        self.tableView.reloadData()
+                        self.bottomInfoLabel.text = error?.localizedDescription
+                        return
+                    }
+                    
+                    guard json != nil else {
+                        self.tableView.reloadData()
+                        self.bottomInfoLabel.text = "Unable to process the response"
+                        return
+                    }
+                    
+                    self.bottomInfoLabel.text = "\(json!["JSONMessage"]) received from \(node.displayName())"
+                    print("☘️☘️☘️ hello response from node: \(node.urlString ?? "no-url-detected") json: \(json ?? JSON())")
+                })
+                
+            }
+            else if let checkedError = error {
+                //
+                // We've received an error in the response
+                //
+                
+                self.bottomInfoLabel.text = checkedError.localizedDescription
+            }
+            else {
+                //
+                // We don't know what happend, so let's assume an error occured
+                //
+                
+                self.bottomInfoLabel.text = "An unknown error occured"
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -249,52 +365,9 @@ internal extension ViewController {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "NodeCell")!
         let node = self.edgeNodes[indexPath.row]
-        cell.textLabel?.text = "name: "+self.nodeDisplayName(node: node)
-        cell.detailTextLabel?.text = "id:   "+node.id! + "\nos: \(node.os ?? "")" + "\nurl: \(node.urlString ?? "")"
+        
+        cell.textLabel?.text = "name: " + node.displayName()
+        cell.detailTextLabel?.text = "id:   "+node.id! + "\nos: \(node.os ?? "")" + "\nurl: \(node.urlString ?? "external network")"
         return cell
-    }
-}
-
-fileprivate extension ViewController {
-    func parseNodes(json: JSON) -> Void {
-        for (_, node) in (json.array?.enumerated())! {
-            let edgeNode = MMKEdgeNode.init(json: node)
-            if edgeNode != nil {
-                self.edgeNodes.append(edgeNode!)
-            }
-        }
-        
-        self.tableView.reloadData()
-        let nodeString: String = self.edgeNodes.count == 1 ? "node" : "nodes"
-        self.bottomInfoLabel.text = "Received information about \(self.edgeNodes.count) \(nodeString)"
-        self.button05.isEnabled = true
-    }
-    
-    func callHelloAtEdgeNode(node: MMKEdgeNode) {
-        
-        let link = node.urlString!+kExampleMicroServiceHelloEndpoint
-        self.bottomInfoLabel.text = "Calling hello on "+node.name!
-        print("☘️☘️☘️ calling hello at node: \(link)")
-        
-        Alamofire.request(link).responseJSON { response in
-            switch response.result {
-            case .success(let data):
-                
-                let json = JSON.init(data)
-                if json != JSON.null {
-                    self.bottomInfoLabel.text = "\(json["JSONMessage"]) received from \(self.nodeDisplayName(node: node))"
-                    print("☘️☘️☘️ hello response json: \(json)")
-                }
-                
-            case .failure(let error):
-                print("🔥🔥🔥 error: \(error.localizedDescription)")
-                self.tableView.reloadData()
-                self.bottomInfoLabel.text = error.localizedDescription
-            }
-        }
-    }
-    
-    func nodeDisplayName(node: MMKEdgeNode) -> String {
-        return node.name! + (node.thisDevice ? " (this device)" : "")
     }
 }
