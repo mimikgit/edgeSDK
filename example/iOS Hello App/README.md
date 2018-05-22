@@ -16,11 +16,23 @@ Navigate to the example iOS directory
 
 ```cd /examples/iOS\ Hello\ App/```
 
+Check your cocoapod version to make sure you're good to go with a compatible version (1.5.2+)
+
+```pod --version```
+
 Install the required cocoapods
 
 ```pod install```
 
-Start Xcode 9.3+ and open the example_microservice_app project. **Note** You must use a real device, not an emulator to build the example. edgeSDK functionality will not operate on emulated devices.
+You might also want to check for any outdated pods to make sure you're using the latest versions
+
+```pod outdated```
+
+and then update if relevant updates are available
+
+```pod update```
+
+Start Xcode 9.3+ and open example_microservice_app.xcworkspace. **Note** You must use a **real device**, not an emulator to build the example. edgeSDK functionality will not operate on emulated devices.
 
 ## Using the app
 
@@ -34,11 +46,16 @@ Then login using your Developer Account credentials and select Allow to exit the
 
 Tap Associate to link your developer account to this edgeSDK runtime
 
-Press load Load&mu;Services button to deploy the [example microservice](https://developers.mimik360.com/docs/1.2.0/microservices/how-to-deploy-example-microservice.html) on this device
+Press load LoadExample button to deploy the [example microservice](https://developers.mimik360.com/docs/1.2.0/microservices/how-to-deploy-example-microservice.html) on this device
 
-Once deployed you can scan for devices by pressing GetNodes and see the list of devices edgeSDK can discover nearby. It works best if you have two device running the example app on the same network.
+Once deployed you can scan for devices running edgeSDK with the example micro service deployed in two different ways:
 
-Tap any of the discovered devices to see a Hello WORLD!!! response at the bottom of your screen.
+1. Press GetNetwork to search for devices on your local network
+2. Press GetNearby to search across all networks for devices deemed to be within a proximity distance of your device
+
+It works best if you have at least two other devices running the same example app on the same and different network.
+
+Tap any of the discovered devices to see a Hello WORLD!!! response at the bottom of your screen. Sometimes you have to wait a bit for connection tunnels to be established.
 
 ## Summary
 
