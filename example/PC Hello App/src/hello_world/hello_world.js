@@ -11,10 +11,15 @@ const EDGE_SDK_PORT = 8083; // Currently the edge SDK default port is 8083
 const LOCAL_URL = `http://${EDGE_SDK_IP}:${EDGE_SDK_PORT}`; // "http://127.0.0.1:8083"
 const LOCAL_EDGE_WS_URL = `ws://${EDGE_SDK_IP}:${EDGE_SDK_PORT}/ws/edge-service-api/v1`;
 
-// Gets the token from .mcmUserToken file
-function getToken() {
+// Gets the edge token from session storage
+function getEdgeToken() {
   const token = JSON.parse(sessionStorage.getItem('token'));
   return token.access_token;
+}
+
+function getUserToken() {
+  const token = JSON.parse(sessionStorage.getItem('token'));
+  return token.userToken;
 }
 
 // return a text for greeting
@@ -28,7 +33,7 @@ export function greet() {
 function fetchGET(Url) {
   // Generating header
   const authHeader = new Headers({
-    Authorization: `Bearer ${getToken()}`,
+    Authorization: `Bearer ${getEdgeToken()}`,
   });
   // Call to the Url with get method and the Authorization header
   return fetch(Url, {
@@ -53,7 +58,7 @@ function fetchUPLOAD(fileName, buffer, Url) {
     buffer,
   ], { type: 'application/tar' }), fileName);
   const authHeader = new Headers({
-    Authorization: `Bearer ${getToken()}`,
+    Authorization: `Bearer ${getEdgeToken()}`,
   });
   return fetch(Url, {
     method: 'post',
@@ -75,7 +80,7 @@ function fetchUPLOAD(fileName, buffer, Url) {
 function fetchPOST(containerData, Url) {
   const authHeader = new Headers({
     'Content-Type': 'application/json',
-    Authorization: `Bearer ${getToken()}`,
+    Authorization: `Bearer ${getEdgeToken()}`,
   });
   return fetch(Url, {
     method: 'post',
@@ -318,9 +323,18 @@ export function addContainer(cb) {
   });
 }
 
-// Get the list of devices return response via call back
-export function getDevices(cb) {
-  const fetchData = fetchGET(`${LOCAL_URL}/example/v1/drives?type=nearby`);
+// Get the list of devices on the same network return response via call back
+export function getNetworkDevices(cb) {
+  const fetchData = fetchGET(`${LOCAL_URL}/example/v1/drives?type=network&userAccessToken=${getUserToken()}`);
+  fetchData.then((data) => {
+    // console.log(data);
+    cb(data.data);
+  });
+}
+
+// Get the list of devices nearby return response via call back
+export function getNearbyDevices(cb) {
+  const fetchData = fetchGET(`${LOCAL_URL}/example/v1/drives?type=nearby&userAccessToken=${getUserToken()}`);
   fetchData.then((data) => {
     // console.log(data);
     cb(data.data);
@@ -334,4 +348,33 @@ export function sayHello(Url, cb) {
     // console.log(data);
     cb(data);
   });
+}
+
+export function findNodeAndSayHello(id, cb) {
+  const fetchData = fetchGET(`${LOCAL_URL}/example/v1/nodes/${id}?userAccessToken=${getUserToken()}`);
+  fetchData
+    .then((data) => {
+      // console.log(`NODE DATA: ${JSON.stringify(data)}`);
+      const item = data.data;
+      if (item && item.url) {
+        sayHello(`${item.url}/example/v1/hello`, (result) => {
+          // Handle the call back
+          cb(result);
+        });
+      } else {
+        const err = {};
+        err.data = {};
+        err.error = item;
+        err.data.JSONMessage = 'Error connecting to this device. It may not be online at this moment :(';
+        cb(err);
+      }
+    })
+    .catch((error) => {
+      // console.log('ERROR:: ', error);
+      const err = {};
+      err.data = {};
+      err.error = error;
+      err.data.JSONMessage = 'Error connecting to this device. It may not be online at this moment :(';
+      cb(err);
+    });
 }
