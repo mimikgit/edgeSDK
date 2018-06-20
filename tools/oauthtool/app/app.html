@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>mimik OAauth tool</title>
+  <style>
+    * {
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    .container {
+      display: flex;
+      align-items: left;
+      width: 100%;
+    }
+    input {
+      line-height: 24px;
+      font-size: 14px;
+      width: 100%;
+    }
+
+    button {
+      display: inline-block;
+      font-weight: 400;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      border: 1px solid transparent;
+      padding: .375rem .75rem;
+      font-size: 1rem;
+      line-height: 1.5;
+      border-radius: .25rem;
+      transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+
+    textarea {
+      width: 98%;
+      margin: 10px 10px 10px 10px;
+      height: 200px;
+      overflow: auto;
+    }
+
+    .message {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: crimson;
+      color: antiquewhite;
+      /* position: absolute;
+      border-radius: 0 0 5px 5px;
+      top: 0;
+      left: 5px;
+      right: 5px;
+      height: 48px;
+      z-index: 10; */
+    }
+  </style>
+</head>
+
+<body>
+  <div class="message" style="display: none;"></div>
+  <!-- Just the contents of the app, there should not be any need to modify anything here -->
+  <div id="app" class="container" style="display: none;">
+    <h1>mimik OpenID Service</h1>
+    
+    Client ID:
+    <br>
+    <input type="text" id="clientId">
+    <br>Redirect URI:
+    <br>
+    <input type="text" id="redirectUri">
+    <br>
+    <br>
+    <button id="btnRedirect">Setup Redirect</button>
+    <button id="btnEdgeToken" disabled>Get Edge Token</button>
+    <button id="btnResetEdgeToken" disabled>Get Reset Edge Token</button>
+      
+    <textarea id="accessToken"></textarea>
+    <div id="accessTokenError" class="message"></div>
+  </div>
+  <!-- Here is were all the fun begins, see the source for app.js  -->
+  <script src="app.js"></script>
+</body>
+
+</html>

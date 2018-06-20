@@ -1,28 +1,59 @@
 {
-  "name": "electron-quick-start",
+  "name": "mimik-oauth-tool",
+  "productName": "mimik OAuth tool",
   "version": "1.0.0",
-  "description": "A minimal Electron application",
-  "main": "main.js",
-  "scripts": {
-    "start": "electron ."
+  "private": true,
+  "author": "mimik technology inc. <info@mimik.com> (https://mimik.com)",
+  "copyright": "© 2018, mimik technology inc.",
+  "license": "MIT",
+  "homepage": "https://mimik.com",
+  "main": "app/background.js",
+  "build": {
+    "appId": "mimik-oauth-tool",
+    "files": [
+      "app/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "buildResources": "resources"
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "executableName": "mimik-oauth-tool"
+    },
+    "publish": null
   },
-  "repository": "https://github.com/electron/electron-quick-start",
-  "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
-  ],
-  "author": "GitHub",
-  "license": "CC0-1.0",
-  "devDependencies": {
-    "electron": "~1.7.9"
+  "scripts": {
+    "postinstall": "electron-builder install-app-deps",
+    "dev": "node build/start.js",
+    "compile": "electron-webpack",
+    "package": "webpack --config=build/webpack.app.config.js --env=production && electron-builder"
   },
   "dependencies": {
-    "ejs-electron": "^2.0.1",
     "query-string": "^5.1.0",
     "request": "^2.83.0",
-    "request-promise": "^4.2.2"
+    "request-promise": "^4.2.2",
+    "source-map-support": "^0.5.4"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.6.1",
+    "babel-eslint": "^8.2.1",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "css-loader": "^0.28.11",
+    "electron": "1.8.4",
+    "electron-builder": "^20.8.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.11.0",
+    "friendly-errors-webpack-plugin": "^1.7.0",
+    "source-map-support": "^0.5.4",
+    "style-loader": "^0.20.3",
+    "webpack": "^3.10.0",
+    "webpack-merge": "^4.1.2",
+    "webpack-node-externals": "^1.7.2"
   }
 }
