@@ -1,46 +1,24 @@
-# electron-webpack-quick-start
-> A bare minimum project structure to get started developing with [`electron-webpack`](https://github.com/electron-userland/electron-webpack).
+# Instructions
+Use your computer to clone or download the edgeSDK GitHub repository. This guide will start from the user Downloads folder
 
-Thanks to the power of `electron-webpack` this template comes packed with...
+```cd ~/Downloads/
 
-* Use of [`webpack-dev-server`](https://github.com/webpack/webpack-dev-server) for development
-* HMR for both `renderer` and `main` processes
-* Use of [`babel-preset-env`](https://github.com/babel/babel-preset-env) that is automatically configured based on your `electron` version
-* Use of [`electron-builder`](https://github.com/electron-userland/electron-builder) to package and build a distributable electron application
+git clone https://github.com/mimikgit/edgeSDK.git
 
-Make sure to check out [`electron-webpack`'s documentation](https://webpack.electron.build/) for more details.
-
-## Getting Started
-Simply clone down this reposity, install dependencies, and get started on your application.
-
-The use of the [yarn](https://yarnpkg.com/) package manager is **strongly** recommended, as opposed to using `npm`.
-
-```bash
-# create a directory of your choice, and copy template using curl
-mkdir new-electron-webpack-project && cd new-electron-webpack-project
-curl -fsSL https://github.com/electron-userland/electron-webpack-quick-start/archive/master.tar.gz | tar -xz --strip-components 1
-
-# or copy template using git clone
-git clone https://github.com/electron-userland/electron-webpack-quick-start.git
-cd electron-webpack-quick-start
-rm -rf .git
-
-# install dependencies
-yarn
+cd edgeSDK/tools/oauthtool 
 ```
 
-### Development Scripts
+Setup oauthtool tool from bin directory
 
-```bash
-# run application in development mode
-yarn dev
-
-# compile source code and create webpack output
-yarn compile
-
-# `yarn compile` & create build with electron-builder
-yarn dist
-
-# `yarn compile` & create unpacked build with electron-builder
-yarn dist:dir
+``` cd bin
+./mimik OAuth tool Setup 1.0.0.exe ( for Win )
+or
+./mimik OAuth tool-1.0.0.dmg ( For MacOs )
+or 
+./mimik-oauth-tool-1.0.0-x86_64.AppImage
 ```
+In the Client ID text field enter the Application ID for your application shown in the mimik Developer Portal and tap Get Edge Token
+
+Allow the authorization message when prompted. Keep the new Access Token somewhere you can easily reference as it is needed for the next steps.
+
+
