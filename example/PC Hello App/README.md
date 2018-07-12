@@ -37,7 +37,7 @@ npm install
 ```
 ## Start edgeSDK
 
-Refer to the platform specific guides for installing the edgeSDK service on [macOS](https://developers.mimik.com/docs/1.2.0/installation/macos.html), [Windows](https://developers.mimik.com/docs/1.2.0/installation/windows.html), or [Linux](https://developers.mimik.com/docs/1.2.0/installation/linux-ubuntu.html).
+Refer to the platform specific guides for installing the edgeSDK service on [macOS](https://developers.mimik360.com/docs/1.2.0/installation/macos.html), [Windows](https://developers.mimik360.com/docs/1.2.0/installation/windows.html), or [Linux](https://developers.mimik360.com/docs/1.2.0/installation/linux-ubuntu.html).
 
 On macOS and Windows, the edgeSDK service is started by double clicking the package you receive from completing the installation guide.
 
@@ -66,7 +66,7 @@ You may also open the src/hello_world/hello_world.js file, go to line 285, and h
 
 ## Account Association
 
-Login to [mimik Developer Portal](https://developers.mimik360.com/dev) and create a new native app
+Login to [mimik Developer Portal](https://developers.mimik360.com) and create a new native app
 
 Modify the following constants in the src/background.js file using the App ID and Redirect URI provided for your app in the mimik Developer Portal:
 
@@ -131,4 +131,4 @@ After  the following message flow is used to retrieve account cluster nodes:
 
 ## Recommended guides
 
-- [mimik serverless JavaScript programming API](https://developers.mimik.com/docs/1.2.0/resources/how-to-use-mimik-serverless-javascript-programming-api.html)
+- [mimik serverless JavaScript programming API](https://developers.mimik360.com/docs/1.2.0/resources/how-to-use-mimik-serverless-javascript-programming-api.html)
