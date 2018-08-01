@@ -24,7 +24,7 @@ All applications must register their account key provided by the Developer Porta
 
 To show case the capabilities of the edgeSDK we have created a few microservices as examples in how to develop a microservice on our environment.
 
-- Our [Example](https://developers.mimik360.com/docs/1.1.0/microservices/how-to-deploy-example-microservice.html) microservice helps develoeprs understand how to deploy a microservice to the edgeSDK runtime and call different methods for node and cluster discovery.
+- Our [Example](https://developers.mimik360.com/docs/1.1.0/microservices/how-to-deploy-example-microservice.html) microservice helps developers understand how to deploy a microservice to the edgeSDK runtime and call different methods for node and cluster discovery.
 - [mBeam](https://developers.mimik360.com/docs/1.1.0/microservices/how-to-deploy-mbeam-microservice.html) beams content from a node to node(s) and/or to service(s), peer-to-peer, one-to-one or one-to-many
 - [mDrive](https://developers.mimik360.com/docs/1.1.0/microservices/how-to-deploy-mdrive-microservice.html) abstracts access to storage available on edge nodes and provides distributed file management via a popular API.
 - [mSuperdrive](https://developers.mimik360.com/docs/1.1.0/microservices/how-to-deploy-msuperdrive-microservice.html) provides the core logic of [mimik access](#access) media services through the provided API well as showing all nodes (nearby, on the same Wi-Fi, remote and also friend’s ) that are equipped with [mimik access](#access).
