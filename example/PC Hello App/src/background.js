@@ -21,11 +21,11 @@ let mainWindow;
 let authWindow;
 let token;
 
-const MID_URI = 'https://mid.mimik360.com';
+const MID_URI = 'https://mid.mimik360.com'; // 'https://mid-dev.mimikdev.com';
 
 // Information to be filled in from mimik developer portal
-const APP_ID = ''; // This is the app id of your app as it was generated on mimik developer portal
-const REDIRECT_PROTOCOL = ''; // this would be the protocol section of the redirect uri from mimik developer portal (i.e. com.example)
+const APP_ID = 'b8fe2181-c145-41a9-9a96-a833b7a562b2'; // '54969434-c133-4952-b05d-289117dcafb6'; // This is the app id of your app as it was generated on mimik developer portal
+const REDIRECT_PROTOCOL = 'com.mimik.example'; // this would be the protocol section of the redirect uri from mimik developer portal (i.e. com.example)
 const REDIRECT_URI = `${REDIRECT_PROTOCOL}://callback`; // Adjust the URI to reflect the path you have entered in the mimik developer portal
 
 function base64URLEncode(str) {

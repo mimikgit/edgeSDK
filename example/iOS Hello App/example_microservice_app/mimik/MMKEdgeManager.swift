@@ -16,6 +16,8 @@ let kEdgeServicePort:String = "8042"
 let kEdgeServiceLink:String = "http://127.0.0.1:"+kEdgeServicePort
 let kEdgeServiceIPPort:String = "127.0.0.1:"+kEdgeServicePort
 let kExampleMicroServiceNearbyNodesLink:String = kEdgeServiceLink+"/example/v1/drives?type=nearby"
+let kExampleMicroServiceNetworkNodesLink:String = kEdgeServiceLink+"/example/v1/drives?type=network"
+let kExampleMicroServiceNodesLink:String = kEdgeServiceLink+"/example/v1/nodes/"
 let kExampleMicroServiceHelloEndpoint:String = "/example/v1/hello"
 let kFriendsBackend: String = "https://mfd.mimik360.com"
 let kProfileBackend: String = "https://mpo.mimik360.com"
@@ -188,8 +190,6 @@ fileprivate extension MMKEdgeManager {
                         "BEAM": kEdgeServiceLink+"/beam/v1",
                         "MCM.BASE_API_PATH": "/example/v1",
                         "MCM.WEBSOCKET_SUPPORT": "false",
-                        "MFD": kFriendsBackend+"/mFD/v1",
-                        "MPO": kProfileBackend+"/mPO/v1",
                         "uMDS": kEdgeServiceLink+"/mds/v1"
                     ]
             ]

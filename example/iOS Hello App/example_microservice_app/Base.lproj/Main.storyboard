@@ -106,7 +106,7 @@
                                                 <rect key="frame" x="0.0" y="76" width="280" height="33"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mWR-Pa-A0P" userLabel="Button07">
-                                                        <rect key="frame" x="0.0" y="0.0" width="140" height="33"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="93.5" height="33"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="27"/>
                                                         <state key="normal" title="Button07"/>
                                                         <variation key="widthClass=compact">
@@ -117,7 +117,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bej-WG-lRk">
-                                                        <rect key="frame" x="140" y="0.0" width="140" height="33"/>
+                                                        <rect key="frame" x="93.5" y="0.0" width="93" height="33"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="27"/>
                                                         <state key="normal" title="Button08"/>
                                                         <variation key="widthClass=compact">
@@ -125,6 +125,17 @@
                                                         </variation>
                                                         <connections>
                                                             <action selector="button08Action:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oNZ-eb-IAN"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dgb-gn-v7X">
+                                                        <rect key="frame" x="186.5" y="0.0" width="93.5" height="33"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="27"/>
+                                                        <state key="normal" title="Button09"/>
+                                                        <variation key="widthClass=compact">
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                                        </variation>
+                                                        <connections>
+                                                            <action selector="button09Action:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cXA-bv-DBZ"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -214,6 +225,7 @@
                         <outlet property="button06" destination="LNI-Cd-4sO" id="4fQ-BY-JkD"/>
                         <outlet property="button07" destination="mWR-Pa-A0P" id="hzo-st-tta"/>
                         <outlet property="button08" destination="bej-WG-lRk" id="3VJ-s5-wJT"/>
+                        <outlet property="button09" destination="dgb-gn-v7X" id="CA9-sQ-ze1"/>
                         <outlet property="tableView" destination="I0R-QW-gz9" id="Nxj-hM-SQU"/>
                     </connections>
                 </viewController>

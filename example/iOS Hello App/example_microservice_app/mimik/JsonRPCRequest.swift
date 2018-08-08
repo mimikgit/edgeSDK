@@ -104,7 +104,7 @@ class JsonRPCRequest: NSObject, WebSocketAdvancedDelegate {
                 }
                 else if errorJSON != JSON.null {
                     string = errorJSON["data"].stringValue
-                    if string.contains("parse error - unexpected") {
+                    if string.contains("parse error") {
                         return
                     }
                     
@@ -156,7 +156,7 @@ class JsonRPCRequest: NSObject, WebSocketAdvancedDelegate {
     
     public func websocketDidReceiveMessage(socket: WebSocket, text: String, response: WebSocket.WSResponse) {
         
-        if !text.contains("parse error - unexpected") {
+        if !text.contains("parse error") {
             print("JsonRPCManager websocketDidReceiveMessage: \(text)")
         }
         
