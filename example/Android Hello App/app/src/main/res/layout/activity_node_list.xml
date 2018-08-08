@@ -19,16 +19,16 @@
             android:text="@string/button_start" />
 
         <Button
+            android:id="@+id/button_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_info" />
+
+        <Button
             android:id="@+id/button_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/button_login" />
-
-        <Button
-            android:id="@+id/button_associate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/button_associate" />
 
         <Button
             android:id="@+id/button_mcm"
@@ -37,10 +37,22 @@
             android:text="@string/button_mcm" />
 
         <Button
-            android:id="@+id/button_scan"
+            android:id="@+id/button_network_scan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/button_scan" />
+            android:text="@string/button_network_scan" />
+
+        <Button
+            android:id="@+id/button_proximity_scan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_proximity_scan" />
+
+        <Button
+            android:id="@+id/button_mcm_remove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_mcm_remove" />
 
         <Button
             android:id="@+id/button_unassociate"

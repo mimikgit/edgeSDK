@@ -1,29 +1,37 @@
 <resources>
-    <string name="app_name">Mimik Example</string>
+    <string name="app_name">mimik Example</string>
     <string name="hello_message_placeholder">Hello messages will arrive here.</string>
     <string name="device_name">Device Name</string>
     <string name="missing_license">A valid license must be set in NodeListActivity.java.</string>
 
     <string name="button_start">Start</string>
-    <string name="button_login">Login</string>
-    <string name="button_associate">Associate</string>
-    <string name="button_mcm">Dock</string>
-    <string name="button_scan">Scan</string>
+    <string name="button_info">Info</string>
+    <string name="button_login">Login and Associate</string>
+    <string name="button_mcm">Add Microservice</string>
+    <string name="button_network_scan">Network Scan</string>
+    <string name="button_proximity_scan">Proximity Scan</string>
+    <string name="button_mcm_remove">Remove Microservice</string>
     <string name="button_unassociate">Unassociate</string>
     <string name="button_stop">Stop</string>
 
     <string name="toast_start">Edge service started</string>
-    <string name="toast_login">User access tokens acquired</string>
+    <string name="toast_info">Got edge info</string>
+    <string name="toast_login">Edge token acquired</string>
     <string name="toast_associate">Edge service associated</string>
-    <string name="toast_mcm">Docked example microservice</string>
-    <string name="toast_scan">Scanning for devices</string>
+    <string name="toast_mcm">Added example microservice</string>
+    <string name="toast_mcm_remove">Removed example microservice</string>
+    <string name="toast_network_scan">Scanning for devices on local network</string>
+    <string name="toast_proximity_scan">Scanning for nearby devices</string>
+    <string name="toast_scan_retry">Scan failed, please retry</string>
     <string name="toast_unassociate">Edge service unassociated</string>
     <string name="toast_stop">Edge service stopped</string>
 
     <string name="toast_failed_start">Failed to start edge service</string>
+    <string name="toast_failed_info">Failed to get edge info</string>
     <string name="toast_failed_login">Failed to login to portal</string>
     <string name="toast_failed_associate">Failed to associate edge service</string>
-    <string name="toast_failed_mcm">Failed to dock microservice</string>
+    <string name="toast_failed_mcm">Failed to add microservice</string>
+    <string name="toast_failed_mcm_remove">Failed to remove microservice</string>
     <string name="toast_failed_unassociate">Failed to unassociate edge service</string>
 
 </resources>

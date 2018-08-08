@@ -11,39 +11,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="net.openid.appauth.RedirectUriReceiverActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-                <data android:scheme="com.mimik.example.appauth"/>
-            </intent-filter>
-        </activity>
-        <activity android:name="com.mimik.example.NodeListActivity">
+        <activity
+            android:name="com.mimik.example.NodeListActivity"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <intent-filter>
-                <action android:name="com.mimik.example.appauth.HANDLE_AUTHORIZATION_FINISHED"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
-            <intent-filter>
-                <action android:name="com.mimik.example.edgeservice.HANDLE_ASSOCIATION_FINISHED"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
-            <intent-filter>
-                <action android:name="com.mimik.example.edgeservice.HANDLE_UNASSOCIATION_TOKEN"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
-            <intent-filter>
-                <action android:name="com.mimik.example.edgeservice.HANDLE_UNASSOCIATION_FINISHED"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
         </activity>
-        <activity android:name="com.mimik.example.appauth.HandleAuthorizationActivity">
+        <activity android:name="com.mimik.edgeappauth.appauth.HandleAuthorizationActivity">
             <intent-filter>
-                <action android:name="com.mimik.appauth.HANDLE_AUTHORIZATION_RESPONSE_EDGE"/>
+                <action android:name="com.mimik.edgeappauth.appauth.HANDLE_AUTHORIZATION_RESPONSE_EDGE"/>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>

@@ -14,6 +14,7 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public class ExampleProvider {
@@ -23,8 +24,14 @@ public class ExampleProvider {
             .disableHtmlEscaping()
             .create();
 
+    public enum DeviceFilter {
+        NETWORK,
+        PROXIMITY,
+        ACCOUNT
+    }
+
     // Get list of devices
-    public static Call<DeviceListObject> getDevices(final String edgeAccessToken, final String userAccessToken) {
+    public static Call<DeviceListObject> getDevices(final DeviceFilter filter, final String edgeAccessToken, final String userAccessToken) {
         final HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
         final OkHttpClient client = new OkHttpClient.Builder()
@@ -47,7 +54,19 @@ public class ExampleProvider {
                 .build();
 
         MimikExampleService service = retrofit.create(MimikExampleService.class);
-        return service.getDevices("nearby", userAccessToken);
+        String type;
+        switch (filter) {
+            case PROXIMITY:
+                type = "proximity";
+                break;
+            case ACCOUNT:
+                type = "account";
+                break;
+            case NETWORK:
+            default:
+                type = "nearby";
+        }
+        return service.getDevices(type, userAccessToken);
     }
 
     // Get message from a device
@@ -68,6 +87,32 @@ public class ExampleProvider {
         return service.getMessage();
     }
 
+    public static Call<Device> checkNodePresence(final String deviceId, final String edgeAccessToken, final String userAccessToken) {
+        final HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+        final OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(logging)
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public Response intercept(final Chain chain) throws IOException {
+                        Request newRequest = chain.request().newBuilder()
+                                .addHeader("Authorization", "Bearer " + edgeAccessToken)
+                                .build();
+                        return chain.proceed(newRequest);
+                    }
+                })
+                .build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(API_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .client(client)
+                .build();
+
+        MimikExampleService service = retrofit.create(MimikExampleService.class);
+        return service.getPresence(deviceId, userAccessToken);
+    }
+
     interface MimikExampleService {
         // Get a list of nearby devices
         @GET("drives")
@@ -76,5 +121,8 @@ public class ExampleProvider {
         // Get a message from a device
         @GET("example/v1/hello")
         Call<HelloMessage> getMessage();
+
+        @GET("nodes/{id}")
+        Call<Device> getPresence(@Path("id") String id, @Query("userAccessToken") String userToken);
     }
 }
