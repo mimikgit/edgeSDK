@@ -9,7 +9,19 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import edgeSDK_iOS
 
+/**
+ An object representing an edgeSDK node.
+ 
+ * accountId: accountId the node is currently associated with
+ * name: node name
+ * id: node id
+ * os: node operating system
+ * urlString: node external service link (string)
+ * url: node external service link
+ * thisDevice: convenience check whether this is the current node
+ */
 class MMKEdgeNode: NSObject {
 
     var accountId: String?
@@ -49,10 +61,10 @@ class MMKEdgeNode: NSObject {
             self.urlString = url.stringValue
             self.url = URL.init(string: self.urlString!)
         }
-        
-        if self.id == MMKEdgeManager.sharedInstance.edge_deviceId {
+
+        if self.id == MMKAuthenticationManager.sharedInstance.edgeConfig?.nodeId {
             self.thisDevice = true
-        }
+        }        
     }
     
     func displayName() -> String {
@@ -67,8 +79,7 @@ class MMKEdgeNode: NSObject {
     
     func getBEPURL(_ completion: @escaping ((url: URL?, error: Error?)) -> Void) {
         
-        guard let edgeToken = MMKAuthenticationManager.sharedInstance.edgeToken(),
-            let backendToken = MMKAuthenticationManager.sharedInstance.backendToken() else {
+        guard let accessToken = MMKAuthenticationManager.sharedInstance.loadToken(type: .accessToken) else {
                 return
         }
         
@@ -79,8 +90,8 @@ class MMKEdgeNode: NSObject {
         
         let link = kExampleMicroServiceNodesLink + nodeId
         
-        let authenticatedLink = link + "?userAccessToken=\(backendToken)"
-        let headers = ["Authorization" : "Bearer \(edgeToken)" ]
+        let authenticatedLink = link + "?userAccessToken=\(accessToken)"
+        let headers = ["Authorization" : "Bearer \(accessToken)" ]
         
         Alamofire.request(authenticatedLink, method: .get, parameters: nil, encoding: URLEncoding.default, headers: headers).responseJSON { response in
             switch response.result {
@@ -88,25 +99,25 @@ class MMKEdgeNode: NSObject {
                 let json = JSON.init(data)
                 if json != JSON.null {
                     
-                    print("getBEPURL id: \(nodeId) response_json: \(json)")
+                    MMKLog.log(message: "getBEPURL id: ", type: .info, value: " \(nodeId) response_json: \(json)", subsystem: .edgeSDK_iOS_example)
                     
                     let code = json["code"]
                     if code != JSON.null {
                         let message = json["message"]
                         if message != JSON.null {
-                            completion((nil, CustomError.errorWithMessage(message: message.stringValue)))
+                            completion((nil, NSError.init(domain: message.stringValue, code: 500, userInfo: nil)))
                             return
                         }
                     }
                     
                     let urlString = json["url"]
                     guard !urlString.stringValue.isEmpty else {
-                        completion((nil, CustomError.errorWithMessage(message: "Unable to process the response")))
+                        completion((nil, NSError.init(domain: "Unable to process the response", code: 500, userInfo: nil)))
                         return
                     }
                     
                     guard let url = URL.init(string: urlString.stringValue) else {
-                        completion((nil, CustomError.errorWithMessage(message: "Unable to parse the response")))
+                        completion((nil, NSError.init(domain: "Unable to parse the response", code: 500, userInfo: nil)))
                         return
                     }
                     

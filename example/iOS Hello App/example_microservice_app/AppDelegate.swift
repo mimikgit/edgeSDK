@@ -26,12 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-        
-        // stop edgeSDK and exit the example application when going into the background, this is to avoid inconsistent states and always start from a known (new) state
-        MMKEdgeManager.sharedInstance.stopEdge()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
-            exit(0)
-        }
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {

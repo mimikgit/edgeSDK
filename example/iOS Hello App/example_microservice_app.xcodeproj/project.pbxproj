@@ -7,10 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3D2A2A63627E85B90EB14A35 /* Pods_example_microservice_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6D744AA34DC03B9269B685E /* Pods_example_microservice_app.framework */; };
-		615976E520AF4DE400C7B053 /* MMKGetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615976E420AF4DE400C7B053 /* MMKGetManager.swift */; };
-		616EFC91207D490200E2DC94 /* JsonRPCRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616EFC8E207D490200E2DC94 /* JsonRPCRequest.swift */; };
-		618BDCF7207E6EF800B46E44 /* MMKEdgeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618BDCF6207E6EF800B46E44 /* MMKEdgeManager.swift */; };
+		6135ADE8210652D30004E19E /* MMKGetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615976E420AF4DE400C7B053 /* MMKGetManager.swift */; };
 		618BDCF9207E6F9F00B46E44 /* MMKAuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618BDCF8207E6F9F00B46E44 /* MMKAuthenticationManager.swift */; };
 		618BDCFB207E703100B46E44 /* MMKEdgeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618BDCFA207E703000B46E44 /* MMKEdgeNode.swift */; };
 		61DA4E76201A5B19009AFF4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DA4E75201A5B19009AFF4D /* AppDelegate.swift */; };
@@ -19,6 +16,7 @@
 		61DA4E7D201A5B19009AFF4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61DA4E7C201A5B19009AFF4D /* Assets.xcassets */; };
 		61DA4E80201A5B19009AFF4D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61DA4E7E201A5B19009AFF4D /* LaunchScreen.storyboard */; };
 		61EE03832056EDA000091BDA /* example-v1.tar in Resources */ = {isa = PBXBuildFile; fileRef = 61EE03822056EDA000091BDA /* example-v1.tar */; };
+		F26A4FA3EC1064B12C242871 /* Pods_example_microservice_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 546F8DDE13A3D5DAFCBD7D4E /* Pods_example_microservice_app.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -35,11 +33,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		314A9AAB7A3B93C7A7CCF2C4 /* Pods-example_microservice_app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-example_microservice_app.release.xcconfig"; path = "Pods/Target Support Files/Pods-example_microservice_app/Pods-example_microservice_app.release.xcconfig"; sourceTree = "<group>"; };
+		546F8DDE13A3D5DAFCBD7D4E /* Pods_example_microservice_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_example_microservice_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6135B38D2100014A006DF093 /* example_microservice_app.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = example_microservice_app.entitlements; sourceTree = "<group>"; };
 		61393045201A7675003C0DFC /* example_microservice_app-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "example_microservice_app-Bridging-Header.h"; sourceTree = "<group>"; };
 		615976E420AF4DE400C7B053 /* MMKGetManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMKGetManager.swift; sourceTree = "<group>"; };
-		616EFC8E207D490200E2DC94 /* JsonRPCRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonRPCRequest.swift; sourceTree = "<group>"; };
-		618BDCF6207E6EF800B46E44 /* MMKEdgeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMKEdgeManager.swift; sourceTree = "<group>"; };
 		618BDCF8207E6F9F00B46E44 /* MMKAuthenticationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMKAuthenticationManager.swift; sourceTree = "<group>"; };
 		618BDCFA207E703000B46E44 /* MMKEdgeNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMKEdgeNode.swift; sourceTree = "<group>"; };
 		61DA4E72201A5B19009AFF4D /* example_microservice_app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = example_microservice_app.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,8 +47,8 @@
 		61DA4E7F201A5B19009AFF4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		61DA4E81201A5B19009AFF4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		61EE03822056EDA000091BDA /* example-v1.tar */ = {isa = PBXFileReference; lastKnownFileType = archive.tar; path = "example-v1.tar"; sourceTree = "<group>"; };
-		B6D744AA34DC03B9269B685E /* Pods_example_microservice_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_example_microservice_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F5FAECA452D6CF196601916A /* Pods-example_microservice_app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-example_microservice_app.debug.xcconfig"; path = "Pods/Target Support Files/Pods-example_microservice_app/Pods-example_microservice_app.debug.xcconfig"; sourceTree = "<group>"; };
+		7F49019CC6389FA1793DB9E0 /* Pods-example_microservice_app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-example_microservice_app.release.xcconfig"; path = "Pods/Target Support Files/Pods-example_microservice_app/Pods-example_microservice_app.release.xcconfig"; sourceTree = "<group>"; };
+		BBCD6DD143D96F91C4250830 /* Pods-example_microservice_app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-example_microservice_app.debug.xcconfig"; path = "Pods/Target Support Files/Pods-example_microservice_app/Pods-example_microservice_app.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,21 +56,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D2A2A63627E85B90EB14A35 /* Pods_example_microservice_app.framework in Frameworks */,
+				F26A4FA3EC1064B12C242871 /* Pods_example_microservice_app.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		49EA5A33218B3E3368302C1D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				546F8DDE13A3D5DAFCBD7D4E /* Pods_example_microservice_app.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6152673D198DF84F29388CD4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BBCD6DD143D96F91C4250830 /* Pods-example_microservice_app.debug.xcconfig */,
+				7F49019CC6389FA1793DB9E0 /* Pods-example_microservice_app.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		618BDCFC207E705B00B46E44 /* mimik */ = {
 			isa = PBXGroup;
 			children = (
-				616EFC8E207D490200E2DC94 /* JsonRPCRequest.swift */,
-				618BDCF6207E6EF800B46E44 /* MMKEdgeManager.swift */,
-				618BDCF8207E6F9F00B46E44 /* MMKAuthenticationManager.swift */,
 				615976E420AF4DE400C7B053 /* MMKGetManager.swift */,
 				618BDCFA207E703000B46E44 /* MMKEdgeNode.swift */,
+				618BDCF8207E6F9F00B46E44 /* MMKAuthenticationManager.swift */,
 			);
 			path = mimik;
 			sourceTree = "<group>";
@@ -83,8 +95,8 @@
 			children = (
 				61DA4E74201A5B19009AFF4D /* example_microservice_app */,
 				61DA4E73201A5B19009AFF4D /* Products */,
-				B94C2952DD3E97D6C889B659 /* Pods */,
-				A364EBB8E0901F229000825B /* Frameworks */,
+				6152673D198DF84F29388CD4 /* Pods */,
+				49EA5A33218B3E3368302C1D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,6 +111,7 @@
 		61DA4E74201A5B19009AFF4D /* example_microservice_app */ = {
 			isa = PBXGroup;
 			children = (
+				6135B38D2100014A006DF093 /* example_microservice_app.entitlements */,
 				61DA4E75201A5B19009AFF4D /* AppDelegate.swift */,
 				61DA4E77201A5B19009AFF4D /* ViewController.swift */,
 				61EE03822056EDA000091BDA /* example-v1.tar */,
@@ -112,23 +125,6 @@
 			path = example_microservice_app;
 			sourceTree = "<group>";
 		};
-		A364EBB8E0901F229000825B /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				B6D744AA34DC03B9269B685E /* Pods_example_microservice_app.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		B94C2952DD3E97D6C889B659 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				F5FAECA452D6CF196601916A /* Pods-example_microservice_app.debug.xcconfig */,
-				314A9AAB7A3B93C7A7CCF2C4 /* Pods-example_microservice_app.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -136,12 +132,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 61DA4E84201A5B19009AFF4D /* Build configuration list for PBXNativeTarget "example_microservice_app" */;
 			buildPhases = (
-				75664A07167FF01F63B2B20A /* [CP] Check Pods Manifest.lock */,
+				38D4227C5D380FB9FE5C3F4D /* [CP] Check Pods Manifest.lock */,
 				61DA4E6E201A5B19009AFF4D /* Sources */,
 				61DA4E6F201A5B19009AFF4D /* Frameworks */,
 				61DA4E70201A5B19009AFF4D /* Resources */,
 				61DA4E8B201A5F99009AFF4D /* Embed Frameworks */,
-				76E159CD8498B589651D95B8 /* [CP] Embed Pods Frameworks */,
+				8A7BE4A83C4F13DFF7F70A9C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -166,6 +162,14 @@
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.DataProtection = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -202,7 +206,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		75664A07167FF01F63B2B20A /* [CP] Check Pods Manifest.lock */ = {
+		38D4227C5D380FB9FE5C3F4D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -220,7 +224,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		76E159CD8498B589651D95B8 /* [CP] Embed Pods Frameworks */ = {
+		8A7BE4A83C4F13DFF7F70A9C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -230,20 +234,24 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AppAuth/AppAuth.framework",
 				"${BUILT_PRODUCTS_DIR}/JWTDecode/JWTDecode.framework",
-				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftWebSocket/SwiftWebSocket.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${PODS_ROOT}/edgeSDK-iOS/edgeSDK_iOS.framework",
 				"${PODS_ROOT}/edgeSDK-iOS/edgeSDK_iOS.framework/edge.framework",
+				"${PODS_ROOT}/edgeSDK-iOS-app-auth/edgeSDK_iOS_app_auth.framework",
+				"${PODS_ROOT}/edgeSDK-iOS-app-ops/edgeSDK_iOS_app_ops.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AppAuth.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JWTDecode.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftWebSocket.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/edgeSDK_iOS.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/edge.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/edgeSDK_iOS_app_auth.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/edgeSDK_iOS_app_ops.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -258,10 +266,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				618BDCF9207E6F9F00B46E44 /* MMKAuthenticationManager.swift in Sources */,
-				616EFC91207D490200E2DC94 /* JsonRPCRequest.swift in Sources */,
-				618BDCF7207E6EF800B46E44 /* MMKEdgeManager.swift in Sources */,
+				6135ADE8210652D30004E19E /* MMKGetManager.swift in Sources */,
 				618BDCFB207E703100B46E44 /* MMKEdgeNode.swift in Sources */,
-				615976E520AF4DE400C7B053 /* MMKGetManager.swift in Sources */,
 				61DA4E78201A5B19009AFF4D /* ViewController.swift in Sources */,
 				61DA4E76201A5B19009AFF4D /* AppDelegate.swift in Sources */,
 			);
@@ -402,10 +408,12 @@
 		};
 		61DA4E85201A5B19009AFF4D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F5FAECA452D6CF196601916A /* Pods-example_microservice_app.debug.xcconfig */;
+			baseConfigurationReference = BBCD6DD143D96F91C4250830 /* Pods-example_microservice_app.debug.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = example_microservice_app/example_microservice_app.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GL288K3PB5;
 				ENABLE_BITCODE = NO;
@@ -422,15 +430,18 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = arm64;
 			};
 			name = Debug;
 		};
 		61DA4E86201A5B19009AFF4D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 314A9AAB7A3B93C7A7CCF2C4 /* Pods-example_microservice_app.release.xcconfig */;
+			baseConfigurationReference = 7F49019CC6389FA1793DB9E0 /* Pods-example_microservice_app.release.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = example_microservice_app/example_microservice_app.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GL288K3PB5;
 				ENABLE_BITCODE = NO;
@@ -446,6 +457,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "example_microservice_app/example_microservice_app-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = arm64;
 			};
 			name = Release;
 		};
