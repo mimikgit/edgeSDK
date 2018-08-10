@@ -527,8 +527,8 @@ public class NodeListActivity extends AppCompatActivity {
                     Response<DeviceListObject> response =
                             ExampleProvider.getDevices(
                                     filterType[0],
-                                    mEdgeAccessToken,
-                                    "").execute();
+                                    mEdgeAccessToken)
+                                    .execute();
                     if (response.isSuccessful() && response.body() != null) {
                         ret = response.body().data;
                     }
@@ -571,7 +571,8 @@ public class NodeListActivity extends AppCompatActivity {
                                 ExampleProvider.checkNodePresence(
                                         device.id,
                                         mEdgeAccessToken,
-                                        "").execute();
+                                        mEdgeAccessToken)
+                                        .execute();
                         if (deviceResponse.isSuccessful()
                                 && deviceResponse.body() != null) {
                             // New device object has a working url
