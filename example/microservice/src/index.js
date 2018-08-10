@@ -72,15 +72,12 @@ app.get('/drives', (req, res) => {
   const errorAction = new Action(cb => cb(new ApiError(403, 'userAccessToken must not be null')));
 
   let action;
-  //  if (!(query && query.userAccessToken)) {
-  //    action = new Action(cb => cb(new ApiError(403, 'userAccessToken must not be null')));
-  //  } else {
   switch (type) {
     case 'network':
       action = getNearByDrives.buildAction();
       break;
     case 'account':
-      if (!userAccessToken) {
+      if (getMyDrives.mpo && !userAccessToken) {
         action = errorAction;
       } else {
         action = getMyDrives.buildAction();
@@ -93,7 +90,6 @@ app.get('/drives', (req, res) => {
       action = new Action(cb => cb(new Error(`"${type}" type is not supported`)));
       break;
   }
-  //  }
   action
     .next((data) => {
       const dataList = { type, data };
