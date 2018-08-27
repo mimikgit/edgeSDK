@@ -4,8 +4,6 @@ Use the example application for iOS devices to understand how interactions betwe
 
 ## Installation
 
-First download and install the [edgeSDK for iOS](https://developers.mimik360.com/docs/1.2.0/installation/ios.html) on to the mobile device you will test with
-
 On your computer use the command line to clone the edgeSDK project from GitHub somewhere accessible on your user home directory. This guide starts from the Downloads folder
 
 ```cd ~/Downloads```

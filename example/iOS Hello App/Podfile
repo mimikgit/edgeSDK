@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
- platform :ios, '11.0'
+platform :ios, '11.0'
 source 'https://github.com/CocoaPods/Specs.git'
 source 'https://github.com/mimikgit/cocoapod-edge-specs.git'
 
@@ -8,12 +8,12 @@ target 'example_microservice_app' do
   use_frameworks!
   
   # Pods for example_microservice_app
+  pod 'edgeSDK-iOS'
+  pod 'edgeSDK-iOS-app-auth'
+  pod 'edgeSDK-iOS-app-ops'
   pod 'Alamofire'
-  pod 'AppAuth'
   pod 'JWTDecode'
   pod 'SwiftyJSON'
-  pod 'Starscream'
-  pod 'edgeSDK-iOS'
   
   # ignore all warnings from all pods
   inhibit_all_warnings!

@@ -6,7 +6,7 @@ Use the example application for Android devices to understand how interactions b
 
 First download and install the [edgeSDK for Android](https://developers.mimik360.com/docs/1.2.0/installation/android.html) on to the mobile device you will test with
 
-On your computer use the command line to clone the edgeSDK project from GitHub somewhere accessible on your user home directory. This guide starts from the Downloads folder
+On your computer use the command line to clone the edgeSDK project from GitHub somewhere accessible on your user home directory. This guide starts from the Downloads folder .
 
 ```cd ~/Downloads```
 
@@ -46,7 +46,7 @@ Below is message sequence between example app, microservice and edgeSDK:
 
 1. First the example app associates edgeSDK with accountID
 1. Developer registers its sample app to mimik developer portal and receives the account information and account key
-1. In the sample app, it uses registered account key to associate sample app with edgeSDK 
+1. In the sample app, it uses registered account key to associate sample app with edgeSDK
 1. App verifies that edgeSDK associated with the correct account info.
 
 After  the following message flow is used to retrieve account cluster nodes:
