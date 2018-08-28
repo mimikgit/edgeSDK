@@ -4,18 +4,15 @@ import mergeWith from 'lodash/mergeWith';
 import values from 'lodash/values';
 
 import NodesMapper from '../helper/nodes-mapper';
-import ApiError from '../helper/api-error';
-import { extractToken, addAuthorizationHeader } from '../helper/authorization-helper';
+import { extractToken } from '../helper/authorization-helper';
 
 export default class GetMyDrives {
-  constructor(getNearByDrives, mpo, localMds, http, edge, authorization, userToken) {
+  constructor(getNearByDrives, localMds, http, edge, authorization) {
     this.getNearByDrives = getNearByDrives;
-    this.mpo = mpo;
     this.localMds = localMds;
     this.http = http;
     this.edge = edge;
     this.authorization = authorization;
-    this.userToken = userToken;
   }
 
   static transform(data, edge, authorization) {
@@ -64,35 +61,8 @@ export default class GetMyDrives {
   }
 
   getMpoDevices() {
-    const { http, mpo, authorization, localMds, userToken, edge } = this;
+    const { http, authorization, localMds, edge } = this;
     const accessToken = extractToken(authorization);
-
-    if (mpo) {
-      const authHeader = addAuthorizationHeader(userToken);
-      return new Action(
-        (cb) => {
-          http.request(({
-            url: `${mpo}/users/me?include=devices`,
-            authorization: authHeader,
-            success: (result) => {
-              cb(result.data);
-            },
-            error: (err) => {
-              console.log(`mpo error: ${err.message}`);
-              const message = JSON.parse(err.message);
-              cb(new ApiError(message.statusCode || 400, err.message));
-            },
-          }));
-        },
-      ).next((json) => {
-        try {
-          const data = JSON.parse(json);
-          return data;
-        } catch (e) {
-          return new Error(e.message);
-        }
-      }).next(data => GetMyDrives.transform(data, edge, authorization));
-    }
 
     return new Action(
       (cb) => {

@@ -17,19 +17,17 @@ function toJson(obj) {
 }
 
 function mimikInject(context, req) {
-  const { MPO, uMDS } = context.env;
+  const { uMDS } = context.env;
   const edge = context.edge;
   const http = context.http;
   const authorization = req.authorization;
   parseUrl(req);
-  const query = queryString.parse(req._parsedUrl.query);
-  const userToken = (query && query.userAccessToken) || '';
 
   const getNearByDrives = new GetNearbyDrives(uMDS, http, authorization, edge);
   const getProximityDrives = new GetProximityDrives(uMDS, http, authorization, edge);
 
-  const getMyDrives = new GetMyDrives(getNearByDrives, MPO, uMDS, http,
-    edge, authorization, userToken);
+  const getMyDrives = new GetMyDrives(getNearByDrives, uMDS, http,
+    edge, authorization);
 
   const findNode = new FindNodeByNodeId(getNearByDrives, getMyDrives,
      getProximityDrives);
@@ -68,20 +66,13 @@ app.get('/drives', (req, res) => {
   const query = queryString.parse(req._parsedUrl.query);
   const type = (query && query.type) || 'network';
 
-  const userAccessToken = query && query.userAccessToken;
-  const errorAction = new Action(cb => cb(new ApiError(403, 'userAccessToken must not be null')));
-
   let action;
   switch (type) {
     case 'network':
       action = getNearByDrives.buildAction();
       break;
     case 'account':
-      if (getMyDrives.mpo && !userAccessToken) {
-        action = errorAction;
-      } else {
-        action = getMyDrives.buildAction();
-      }
+      action = getMyDrives.buildAction();
       break;
     case 'nearby':
       action = getProximityDrives.buildAction();
