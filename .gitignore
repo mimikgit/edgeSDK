@@ -18,3 +18,5 @@ example/iOS Hello App/example_microservice_app.xcodeproj/xcuserdata/*
 example/iOS Hello App/example_microservice_app.xcworkspace/xcuserdata/*
 package-lock.json
 node_modules/*
+example/microservice/deploy/index.js
+example/microservice/deploy/example-v1.tar
