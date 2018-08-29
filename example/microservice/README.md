@@ -63,13 +63,13 @@ Verify that example-v1.tar mimik container image created as example.tar in the c
 
 ## Start edgeSDK
 
-In new terminal window, change from current directory to opt/mimik/edge
+If you're using a Mac, Windows-PC or an Android device and have correctly installed edgeSDK, then you can skip this step and go to Initialize example microservice. For these platforms, edgeSDK runs as a service in the background so you do not need to manually start edge.
 
-```cd /opt/mimik/edge```
+If you're using a linux-debian machine, follow the instructions provided in https://github.com/mimikgit/edgeSDK#installation before going to the Initialize step below.
 
-Start edgeSDK
+If you're using a linux-ubuntu machine, follow the instructions provided in https://github.com/mimikgit/edgeSDK#installation before going to the Initialize step below
 
-```./edge```
+If you're using a raspberry-pi follow the instructions provided in https://github.com/mimikgit/edgeSDK#installation before going to the Initialize step below.
 
 ## Initialize example microservice
 
