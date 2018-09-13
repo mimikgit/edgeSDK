@@ -5,11 +5,11 @@ You can access oauthtool code from [outhtool repository](https://github.com/mimi
 Use your computer to click on and download oauthtool tool from the following links. This guide will start from the user Downloads folder
 
 
-[outhtool binary for Windows](https://github.com/mimikgit/oauthtool/releases/download/untagged-a89d4d7f62d358e9efb8/mimik.OAuth.tool.Setup.1.0.0.exe)
+[outhtool application for Windows](https://github.com/mimikgit/oauthtool/releases/download/untagged-a89d4d7f62d358e9efb8/mimik.OAuth.tool.Setup.1.0.0.exe)
 
-[outhtool binary for MacOs](https://github.com/mimikgit/oauthtool/releases/download/untagged-a89d4d7f62d358e9efb8/mimik.OAuth.tool-1.0.0.dmg)
+[outhtool application for MacOs](https://github.com/mimikgit/oauthtool/releases/download/untagged-a89d4d7f62d358e9efb8/mimik.OAuth.tool-1.0.0.dmg)
 
-[outhtool binary for Linux](https://github.com/mimikgit/oauthtool/releases/download/untagged-a89d4d7f62d358e9efb8/mimik-oauth-tool-1.0.0-x86_64.AppImage)
+[outhtool application for Linux](https://github.com/mimikgit/oauthtool/releases/download/untagged-a89d4d7f62d358e9efb8/mimik-oauth-tool-1.0.0-x86_64.AppImage)
 
 Run oauthtool using following commands
 
