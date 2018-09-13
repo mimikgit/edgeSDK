@@ -1,25 +1,34 @@
 # Instructions
-Use your computer to download oauthtool tool from the following links. This guide will start from the user Downloads folder
-```cd ~/Downloads/
+
+You can access oauthtool code from [outhtool repository](https://github.com/mimikgit/oauthtool) for your target development platform(s)
+
+Use your computer to click on and download oauthtool tool from the following links. This guide will start from the user Downloads folder
+
+
+[outhtool binary for Windows](https://github.com/mimikgit/oauthtool/releases/download/untagged-a89d4d7f62d358e9efb8/mimik.OAuth.tool.Setup.1.0.0.exe)
+
+[outhtool binary for MacOs](https://github.com/mimikgit/oauthtool/releases/download/untagged-a89d4d7f62d358e9efb8/mimik.OAuth.tool-1.0.0.dmg)
+
+[outhtool binary for Linux](https://github.com/mimikgit/oauthtool/releases/download/untagged-a89d4d7f62d358e9efb8/mimik-oauth-tool-1.0.0-x86_64.AppImage)
+
+Run oauthtool using following commands
+
 ```
-For Windows : https://github.com/mimikgit/oauthtool/releases/download/untagged-a89d4d7f62d358e9efb8/mimik.OAuth.tool.Setup.1.0.0.exe
-
-For MacOS : https://github.com/mimikgit/oauthtool/releases/download/untagged-a89d4d7f62d358e9efb8/mimik.OAuth.tool-1.0.0.dmg
-
-For Linux : https://github.com/mimikgit/oauthtool/releases/download/untagged-a89d4d7f62d358e9efb8/mimik-oauth-tool-1.0.0-x86_64.AppImage
-
-Run oauthtool using following commans
-
+Open File Explorer and go to Downloads directory and then  click on
+"mimik OAuth tool Setup 1.1.0.exe" ( for Windows )
 ```
 
+```
+Open a termainal and run following commands
 cd ~/Downloads
-./mimik OAuth tool Setup 1.0.0.exe ( for Win )
-or
-./mimik OAuth tool-1.0.0.dmg ( For MacOs )
-or 
-./mimik-oauth-tool-1.0.0-x86_64.AppImage
+./mimik-oauth-tool-1.1.0-x86_64.AppImage
 ```
-In the Client ID text field, enter the Application ID for your application shown in the mimik Developer Portal 
+```
+Click on "mimik OAuth tool-1.1.0.dmg in Finder ( For MacOs )
+
+```
+
+In the Client ID text field, enter the Application ID for your application shown in the mimik Developer Portal
 
 In Redirect URI text field,  nter the Redirect URI for your application shown in the mimik Developer Portal and tap on "Setup Ridirect" and then "Get Edge Token" buttons
 
