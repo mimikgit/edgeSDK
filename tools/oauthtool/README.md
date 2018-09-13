@@ -12,19 +12,20 @@ Download oauthtool tool from the <b>following links</b>: (This guide will start 
 
 <h3>How to use OAuthtool application:</h3>
 
+<b>For Windows:</b> Open File Explorer on Windows and go to the Downloads directory of the OAuthtool you just downloaded then click on:
 ```
-Open File Explorer on Windows and go to the Downloads directory of the OAuthtool you just downloaded then click on:
-"mimik OAuth tool Setup 1.1.0.exe" ( for Windows )
+"mimik OAuth tool Setup 1.1.0.exe"
 ```
 
+<b>For Linux:</b> Open a terminal and run the following commands:
 ```
-On Linux, open a terminal and run the following commands:
 cd <directory where you saved the OAuthtool application>
 ./mimik-oauth-tool-1.1.0-x86_64.AppImage
 ```
 
+<b>For MacOS:</b> Open Finder and go to the directory where you saved the OAuthtool application and click on:
 ```
-Click on "mimik OAuth tool-1.1.0.dmg in Finder ( For MacOs )
+"mimik OAuth tool-1.1.0.dmg"
 
 ```
 
