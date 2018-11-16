@@ -1,20 +1,20 @@
 PODS:
   - Alamofire (4.7.3)
-  - AppAuth (0.94.0)
-  - edgeSDK-iOS (0.0.99)
-  - edgeSDK-iOS-app-auth (0.0.14):
+  - AppAuth (0.95.0)
+  - edgeSDK-iOS (0.1.30)
+  - edgeSDK-iOS-app-auth (0.1.31):
     - AppAuth
     - edgeSDK-iOS
-    - SwiftWebSocket
+    - Starscream
     - SwiftyJSON
-  - edgeSDK-iOS-app-ops (0.0.8):
+  - edgeSDK-iOS-app-ops (0.1.31):
     - Alamofire
     - edgeSDK-iOS
-    - SwiftWebSocket
+    - Starscream
     - SwiftyJSON
   - JWTDecode (2.1.1)
-  - SwiftWebSocket (2.7.0)
-  - SwiftyJSON (4.1.0)
+  - Starscream (3.0.6)
+  - SwiftyJSON (4.2.0)
 
 DEPENDENCIES:
   - Alamofire
@@ -29,7 +29,7 @@ SPEC REPOS:
     - Alamofire
     - AppAuth
     - JWTDecode
-    - SwiftWebSocket
+    - Starscream
     - SwiftyJSON
   https://github.com/mimikgit/cocoapod-edge-specs.git:
     - edgeSDK-iOS
@@ -38,14 +38,14 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
-  AppAuth: 0f099c2286a1a9754e5bd27211c43d307dc4f778
-  edgeSDK-iOS: ba531cc1ea056f5a5e3e6f71e067ab4788a26a35
-  edgeSDK-iOS-app-auth: 1d773ef22f70d8245898ee4cee5e36269dee67a9
-  edgeSDK-iOS-app-ops: 9d3d4bdf336380e022fbaff84696d31d42ca11e6
+  AppAuth: 137f6bb6fc9dfbaf2cf9f6fcff1d336ff0163bc6
+  edgeSDK-iOS: 1f6da9a3234478d30658f68e1ee2bf374027aa6c
+  edgeSDK-iOS-app-auth: e707f355e2cff84764e1d57ad3c0a7dc322d43fa
+  edgeSDK-iOS-app-ops: 6edd32e7551815a26a2b2e537634988f6ea86ae2
   JWTDecode: 83e8b381aafe27158d9f692cbdca2b12d61d460c
-  SwiftWebSocket: 612c9729fd503cb6b0b8b45390c788686dac306f
-  SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
+  Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
+  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: 5d86f08b8928ddd5e1401b9a6df02e5d4441e0f0
+PODFILE CHECKSUM: c0969c04d3a61498330d96f1aba1050557c05206
 
 COCOAPODS: 1.5.3

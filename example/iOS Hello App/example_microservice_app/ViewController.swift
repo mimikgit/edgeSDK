@@ -126,22 +126,35 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let edge_nodeId: String = UIDevice.current.name.contains("iPad") ? "iPad-UUID-12345678" : "iPhone-UUID-12345678"
         appOpsWrapper.startEdge(nodeId: edge_nodeId, delegate: self, completion: { (status,error) in
             
-            appOpsWrapper.getConfig({ (result,error) in
-                MMKAuthenticationManager.sharedInstance.edgeConfig = result
-                MMKLog.log(message: "edgeConfig: ", type: .info, value: "\(MMKAuthenticationManager.sharedInstance.edgeConfig!)", subsystem: .edgeSDK_iOS_example)
-            })
-            
-            DispatchQueue.main.async {
-                guard error == nil else {
-                    MMKLog.log(message: "startEdge error: ", type: . error, value: "\(error?.localizedDescription ?? "no-error")", subsystem: .edgeSDK_iOS_example)
+            guard error == nil else {
+                DispatchQueue.main.async {
+                    MMKLog.log(message: "startEdge error: ", type: .error, value: "\(error?.localizedDescription ?? "no-error")", subsystem: .edgeSDK_iOS_example)
                     self.bottomInfoLabel.text = "edge failed to start: \(error?.localizedDescription ?? "no-error")"
                     self.buttonsEnabled(enabled: true)
-                    return
                 }
-                
+                return
+            }
+            
+            DispatchQueue.main.async {
                 self.bottomInfoLabel.text = "edgeSDK is running. lifecycle listener registered."
                 self.buttonsEnabled(enabled: true)
             }
+            
+            appOpsWrapper.getConfig({ (result,error) in
+                
+                guard error == nil else {
+                    MMKLog.log(message: "getConfig error: ", type: .error, value: "\(error?.localizedDescription ?? "no-error")", subsystem: .edgeSDK_iOS_example)
+                    return
+                }
+                
+                guard result != nil else {
+                    MMKLog.log(message: "getConfig result is nil.", type: .error, subsystem: .edgeSDK_iOS_example)
+                    return
+                }
+                
+                MMKAuthenticationManager.sharedInstance.edgeConfig = result
+                MMKLog.log(message: "edgeConfig: ", type: .info, value: "\(MMKAuthenticationManager.sharedInstance.edgeConfig!)", subsystem: .edgeSDK_iOS_example)
+            })
         })
     }
     
