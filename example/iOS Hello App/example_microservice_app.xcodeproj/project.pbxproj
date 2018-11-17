@@ -16,7 +16,7 @@
 		61DA4E7D201A5B19009AFF4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61DA4E7C201A5B19009AFF4D /* Assets.xcassets */; };
 		61DA4E80201A5B19009AFF4D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61DA4E7E201A5B19009AFF4D /* LaunchScreen.storyboard */; };
 		61EE03832056EDA000091BDA /* example-v1.tar in Resources */ = {isa = PBXBuildFile; fileRef = 61EE03822056EDA000091BDA /* example-v1.tar */; };
-		F26A4FA3EC1064B12C242871 /* Pods_example_microservice_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 546F8DDE13A3D5DAFCBD7D4E /* Pods_example_microservice_app.framework */; };
+		70C81965F31A66C8D254D56C /* Pods_example_microservice_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 759377C0B243F3BE4E639295 /* Pods_example_microservice_app.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -33,7 +33,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		546F8DDE13A3D5DAFCBD7D4E /* Pods_example_microservice_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_example_microservice_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1594BE5C42B1BDF33992015C /* Pods-example_microservice_app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-example_microservice_app.release.xcconfig"; path = "Pods/Target Support Files/Pods-example_microservice_app/Pods-example_microservice_app.release.xcconfig"; sourceTree = "<group>"; };
 		6135B38D2100014A006DF093 /* example_microservice_app.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = example_microservice_app.entitlements; sourceTree = "<group>"; };
 		61393045201A7675003C0DFC /* example_microservice_app-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "example_microservice_app-Bridging-Header.h"; sourceTree = "<group>"; };
 		615976E420AF4DE400C7B053 /* MMKGetManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMKGetManager.swift; sourceTree = "<group>"; };
@@ -47,8 +47,8 @@
 		61DA4E7F201A5B19009AFF4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		61DA4E81201A5B19009AFF4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		61EE03822056EDA000091BDA /* example-v1.tar */ = {isa = PBXFileReference; lastKnownFileType = archive.tar; path = "example-v1.tar"; sourceTree = "<group>"; };
-		7F49019CC6389FA1793DB9E0 /* Pods-example_microservice_app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-example_microservice_app.release.xcconfig"; path = "Pods/Target Support Files/Pods-example_microservice_app/Pods-example_microservice_app.release.xcconfig"; sourceTree = "<group>"; };
-		BBCD6DD143D96F91C4250830 /* Pods-example_microservice_app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-example_microservice_app.debug.xcconfig"; path = "Pods/Target Support Files/Pods-example_microservice_app/Pods-example_microservice_app.debug.xcconfig"; sourceTree = "<group>"; };
+		72AB8806FE00E0B333DCF3BD /* Pods-example_microservice_app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-example_microservice_app.debug.xcconfig"; path = "Pods/Target Support Files/Pods-example_microservice_app/Pods-example_microservice_app.debug.xcconfig"; sourceTree = "<group>"; };
+		759377C0B243F3BE4E639295 /* Pods_example_microservice_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_example_microservice_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,30 +56,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F26A4FA3EC1064B12C242871 /* Pods_example_microservice_app.framework in Frameworks */,
+				70C81965F31A66C8D254D56C /* Pods_example_microservice_app.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		49EA5A33218B3E3368302C1D /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				546F8DDE13A3D5DAFCBD7D4E /* Pods_example_microservice_app.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		6152673D198DF84F29388CD4 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				BBCD6DD143D96F91C4250830 /* Pods-example_microservice_app.debug.xcconfig */,
-				7F49019CC6389FA1793DB9E0 /* Pods-example_microservice_app.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		618BDCFC207E705B00B46E44 /* mimik */ = {
 			isa = PBXGroup;
 			children = (
@@ -95,8 +78,8 @@
 			children = (
 				61DA4E74201A5B19009AFF4D /* example_microservice_app */,
 				61DA4E73201A5B19009AFF4D /* Products */,
-				6152673D198DF84F29388CD4 /* Pods */,
-				49EA5A33218B3E3368302C1D /* Frameworks */,
+				DB7C891E8885D94FEA1F44FC /* Pods */,
+				C6398672A3BB4971D4642490 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -125,6 +108,23 @@
 			path = example_microservice_app;
 			sourceTree = "<group>";
 		};
+		C6398672A3BB4971D4642490 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				759377C0B243F3BE4E639295 /* Pods_example_microservice_app.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DB7C891E8885D94FEA1F44FC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				72AB8806FE00E0B333DCF3BD /* Pods-example_microservice_app.debug.xcconfig */,
+				1594BE5C42B1BDF33992015C /* Pods-example_microservice_app.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,12 +132,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 61DA4E84201A5B19009AFF4D /* Build configuration list for PBXNativeTarget "example_microservice_app" */;
 			buildPhases = (
-				38D4227C5D380FB9FE5C3F4D /* [CP] Check Pods Manifest.lock */,
+				4AC9BAE017E1B3BF0126F33E /* [CP] Check Pods Manifest.lock */,
 				61DA4E6E201A5B19009AFF4D /* Sources */,
 				61DA4E6F201A5B19009AFF4D /* Frameworks */,
 				61DA4E70201A5B19009AFF4D /* Resources */,
 				61DA4E8B201A5F99009AFF4D /* Embed Frameworks */,
-				8A7BE4A83C4F13DFF7F70A9C /* [CP] Embed Pods Frameworks */,
+				CF4D4CABDEC73A8D2E46859D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -155,12 +155,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = mimik;
 				TargetAttributes = {
 					61DA4E71201A5B19009AFF4D = {
 						CreatedOnToolsVersion = 9.2;
-						LastSwiftMigration = 0920;
+						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -206,16 +206,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		38D4227C5D380FB9FE5C3F4D /* [CP] Check Pods Manifest.lock */ = {
+		4AC9BAE017E1B3BF0126F33E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-example_microservice_app-checkManifestLockResult.txt",
 			);
@@ -224,29 +228,33 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8A7BE4A83C4F13DFF7F70A9C /* [CP] Embed Pods Frameworks */ = {
+		CF4D4CABDEC73A8D2E46859D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-example_microservice_app/Pods-example_microservice_app-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AppAuth/AppAuth.framework",
 				"${BUILT_PRODUCTS_DIR}/JWTDecode/JWTDecode.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftWebSocket/SwiftWebSocket.framework",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${PODS_ROOT}/edgeSDK-iOS/edgeSDK_iOS.framework",
-				"${PODS_ROOT}/edgeSDK-iOS/edgeSDK_iOS.framework/edge.framework",
+				"${PODS_ROOT}/edgeSDK-iOS/edge.framework",
 				"${PODS_ROOT}/edgeSDK-iOS-app-auth/edgeSDK_iOS_app_auth.framework",
 				"${PODS_ROOT}/edgeSDK-iOS-app-ops/edgeSDK_iOS_app_ops.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AppAuth.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JWTDecode.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftWebSocket.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/edgeSDK_iOS.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/edge.framework",
@@ -329,6 +337,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -388,6 +397,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -408,9 +418,8 @@
 		};
 		61DA4E85201A5B19009AFF4D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BBCD6DD143D96F91C4250830 /* Pods-example_microservice_app.debug.xcconfig */;
+			baseConfigurationReference = 72AB8806FE00E0B333DCF3BD /* Pods-example_microservice_app.debug.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = example_microservice_app/example_microservice_app.entitlements;
@@ -436,9 +445,8 @@
 		};
 		61DA4E86201A5B19009AFF4D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7F49019CC6389FA1793DB9E0 /* Pods-example_microservice_app.release.xcconfig */;
+			baseConfigurationReference = 1594BE5C42B1BDF33992015C /* Pods-example_microservice_app.release.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = example_microservice_app/example_microservice_app.entitlements;
