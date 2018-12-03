@@ -36,40 +36,40 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
 
         self.button01.isEnabled = true
-        self.button01.setTitle("StartEdge", for: UIControlState.normal)
-        self.button01.setTitle("StartEdge", for: UIControlState.disabled)
+        self.button01.setTitle("StartEdge", for: UIControl.State.normal)
+        self.button01.setTitle("StartEdge", for: UIControl.State.disabled)
 
         self.button02.isEnabled = true
-        self.button02.setTitle("Authorize", for: UIControlState.normal)
-        self.button02.setTitle("Authorize", for: UIControlState.disabled)
+        self.button02.setTitle("Authorize", for: UIControl.State.normal)
+        self.button02.setTitle("Authorize", for: UIControl.State.disabled)
         
         self.button03.isEnabled = true
-        self.button03.setTitle("Deploy", for: UIControlState.normal)
-        self.button03.setTitle("Deploy", for: UIControlState.disabled)
+        self.button03.setTitle("Deploy", for: UIControl.State.normal)
+        self.button03.setTitle("Deploy", for: UIControl.State.disabled)
         
         self.button04.isEnabled = true
-        self.button04.setTitle("GetNetwork", for: UIControlState.normal)
-        self.button04.setTitle("GetNetwork", for: UIControlState.disabled)
+        self.button04.setTitle("GetNetwork", for: UIControl.State.normal)
+        self.button04.setTitle("GetNetwork", for: UIControl.State.disabled)
 
         self.button05.isEnabled = true
-        self.button05.setTitle("GetNearby", for: UIControlState.normal)
-        self.button05.setTitle("GetNearby", for: UIControlState.disabled)
+        self.button05.setTitle("GetNearby", for: UIControl.State.normal)
+        self.button05.setTitle("GetNearby", for: UIControl.State.disabled)
 
         self.button06.isEnabled = true
-        self.button06.setTitle("Remove", for: UIControlState.normal)
-        self.button06.setTitle("Remove", for: UIControlState.disabled)
+        self.button06.setTitle("Remove", for: UIControl.State.normal)
+        self.button06.setTitle("Remove", for: UIControl.State.disabled)
 
         self.button07.isEnabled = true
-        self.button07.setTitle("Info", for: UIControlState.normal)
-        self.button07.setTitle("Info", for: UIControlState.disabled)
+        self.button07.setTitle("Info", for: UIControl.State.normal)
+        self.button07.setTitle("Info", for: UIControl.State.disabled)
         
         self.button08.isEnabled = true
-        self.button08.setTitle("UnAuthorize", for: UIControlState.normal)
-        self.button08.setTitle("UnAuthorize", for: UIControlState.disabled)
+        self.button08.setTitle("UnAuthorize", for: UIControl.State.normal)
+        self.button08.setTitle("UnAuthorize", for: UIControl.State.disabled)
         
         self.button09.isEnabled = true
-        self.button09.setTitle("StopEdge", for: UIControlState.normal)
-        self.button09.setTitle("StopEdge", for: UIControlState.disabled)
+        self.button09.setTitle("StopEdge", for: UIControl.State.normal)
+        self.button09.setTitle("StopEdge", for: UIControl.State.disabled)
         
         self.bottomInfoLabel.text = "Ready"
         
