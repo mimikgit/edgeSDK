@@ -16,7 +16,7 @@ let kEdgeServiceIPPort:String = "127.0.0.1:"+kEdgeServicePort
 let kExampleMicroServiceNearbyNodesLink:String = kEdgeServiceLink+"/"+kExampleMicroserviceName+"/v1/drives?type=nearby"
 let kExampleMicroServiceNetworkNodesLink:String = kEdgeServiceLink+"/"+kExampleMicroserviceName+"/v1/drives?type=network"
 let kExampleMicroServiceNodesLink:String = kEdgeServiceLink+"/"+kExampleMicroserviceName+"/v1/nodes/"
-let kExampleMicroServiceHelloEndpoint:String = "/example/v1/hello"
+let kExampleMicroServiceHelloEndpoint:String = "/example-v1/v1/hello"
 
 /**
  enum of potential node list types.
@@ -112,7 +112,7 @@ final public class MMKGetManager: NSObject {
 fileprivate extension MMKGetManager {
     
     /**
-     Attempts to call the hello endpoint of the example micro service on a edgeSDK node with a completion block.
+     A private parser.
      
      - Parameter json: raw JSON object to parse the MMKEdgeNode nodes from.
      - Parameter completion: Completion block returning an array of parsed MMKEdgeNode nodes.

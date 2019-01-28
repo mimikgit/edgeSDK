@@ -31,6 +31,12 @@
             android:text="@string/button_login" />
 
         <Button
+            android:id="@+id/button_addgps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_addgps" />
+
+        <Button
             android:id="@+id/button_mcm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

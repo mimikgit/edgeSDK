@@ -1,10 +1,15 @@
 package com.mimik.example;
 
+import android.Manifest;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -15,14 +20,19 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.mimik.edgeappauth.EdgeAppAuth;
 import com.mimik.edgeappauth.authobject.AuthConfig;
-import com.mimik.edgeappauth.authobject.AuthStatus;
+import com.mimik.edgeappauth.authobject.AuthResponse;
 import com.mimik.edgeappops.EdgeAppOps;
 import com.mimik.edgeappops.edgeservice.EdgeConfig;
-import com.mimik.edgeappops.edgeservice.EdgeInfo;
+import com.mimik.edgeappops.edgeservice.EdgeInfoResponse;
+import com.mimik.edgeappops.edgeservice.EdgeLocationResponse;
 import com.mimik.edgeappops.microserviceobjects.MicroserviceDeploymentConfig;
 import com.mimik.edgeappops.microserviceobjects.MicroserviceDeploymentStatus;
+import com.mimik.edgeappsupport.EdgeRequestStatus;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -44,9 +54,17 @@ public class NodeListActivity extends AppCompatActivity {
             "com.mimik.example.appauth.HANDLE_UNASSOCIATION_FINISHED";
     private final String MIMIK_INFO_ACTION =
             "com.mimik.example.appops.HANDLE_INFO_FINISHED";
+    private final String MIMIK_LOCATION_ACTION =
+            "com.mimik.example.appops.HANDLE_LOCATION_FINISHED";
 
     private final String REDIRECT_URI =
             "com.mimik.example.appauth://oauth2callback";
+
+    private final String SCOPE_GPS = //"";
+            "edge:gps:update";
+
+    // Arbitrary code
+    private final int GPS_PERMISSION_CODE = 23;
 
     // Views
     ListView mListView;
@@ -54,6 +72,7 @@ public class NodeListActivity extends AppCompatActivity {
     ProgressBar mProgressBar;
     Button mStartButton;
     Button mInfoButton;
+    Button mGpsButton;
     Button mLoginButton;
     Button mMcmButton;
     Button mNetworkScanButton;
@@ -74,6 +93,8 @@ public class NodeListActivity extends AppCompatActivity {
 
     // List of AsyncTasks to end when app is suspended
     private List<AsyncTask> mTaskList;
+
+    private FusedLocationProviderClient mFusedLocationProviderClient;
 
     EdgeAppOps mAppOps;
 
@@ -99,6 +120,7 @@ public class NodeListActivity extends AppCompatActivity {
         mProgressBar.setVisibility(View.GONE);
         mStartButton = findViewById(R.id.button_start);
         mInfoButton = findViewById(R.id.button_info);
+        mGpsButton = findViewById(R.id.button_addgps);
         mLoginButton = findViewById(R.id.button_login);
         mMcmButton = findViewById(R.id.button_mcm);
         mNetworkScanButton = findViewById(R.id.button_network_scan);
@@ -124,6 +146,12 @@ public class NodeListActivity extends AppCompatActivity {
             @Override
             public void onClick(final View v) {
                 onInfoButton();
+            }
+        });
+        mGpsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                onGpsButton();
             }
         });
         mLoginButton.setOnClickListener(new View.OnClickListener() {
@@ -181,6 +209,9 @@ public class NodeListActivity extends AppCompatActivity {
                     }
                 });
 
+        mFusedLocationProviderClient =
+                LocationServices.getFusedLocationProviderClient(this);
+
         updateState(EdgeState.INITIAL);
 
         EdgeConfig config = new EdgeConfig(EDGE_PORT);
@@ -196,6 +227,7 @@ public class NodeListActivity extends AppCompatActivity {
                 task.cancel(true);
             }
         }
+        mFusedLocationProviderClient.flushLocations();
         super.onPause();
     }
 
@@ -214,6 +246,9 @@ public class NodeListActivity extends AppCompatActivity {
                 } else if (action.equals(MIMIK_INFO_ACTION)) {
                     // Edge unassociation intent
                     handleIntentInfoAction(intent);
+                } else if (action.equals(MIMIK_LOCATION_ACTION)) {
+                    // Edge unassociation intent
+                    handleIntentLocationAction(intent);
                 }
             }
         }
@@ -222,12 +257,13 @@ public class NodeListActivity extends AppCompatActivity {
 
     private void handleIntentLogin(Intent intent) {
         // Login intent
-        AuthStatus authStatus = AuthStatus.fromIntent(intent);
-        if (authStatus.response != null
-                && authStatus.response.getAccessToken() != null
-                && !authStatus.response.getAccessToken().isEmpty()) {
+        EdgeRequestStatus<AuthResponse> requestStatus = EdgeRequestStatus.fromIntent(intent, AuthResponse.class);
+        if (requestStatus.response != null
+                && requestStatus.response.getAccessToken() != null
+                && !requestStatus.response.getAccessToken().isEmpty()) {
             // Successful, store access tokens
-            mEdgeAccessToken = authStatus.response.getAccessToken();
+            Log.d(TAG, "associateToken = " + requestStatus.response.getAccessToken());
+            mEdgeAccessToken = requestStatus.response.getAccessToken();
             toast(getResources().getString(R.string.toast_login));
             updateState(EdgeState.ASSOCIATED);
         } else {
@@ -238,11 +274,12 @@ public class NodeListActivity extends AppCompatActivity {
     }
 
     private void handleIntentUnassociateAction(Intent intent) {
-        AuthStatus authStatus = AuthStatus.fromIntent(intent);
-        if (authStatus.response != null
-                && authStatus.response.getAccessToken() != null
-                && !authStatus.response.getAccessToken().isEmpty()) {
+        EdgeRequestStatus<AuthResponse> requestStatus = EdgeRequestStatus.fromIntent(intent, AuthResponse.class);
+        if (requestStatus.response != null
+                && requestStatus.response.getAccessToken() != null
+                && !requestStatus.response.getAccessToken().isEmpty()) {
             // Successful
+            Log.d(TAG, "unassociateToken = " + requestStatus.response.getAccessToken());
             toast(getResources().getString(R.string.toast_unassociate));
             updateState(EdgeState.UNASSOCIATED);
         } else {
@@ -253,12 +290,26 @@ public class NodeListActivity extends AppCompatActivity {
     }
 
     private void handleIntentInfoAction(Intent intent) {
-        EdgeInfo edgeInfo = EdgeInfo.fromIntent(intent);
-        if (edgeInfo != null) {
+        Log.d(TAG, "handleIntentInfoAction");
+        logIntent("handleIntentInfoAction", intent);
+        EdgeRequestStatus<EdgeInfoResponse> status = EdgeRequestStatus.fromIntent(intent, EdgeInfoResponse.class);
+        if (status.response != null) {
             toast(getResources().getString(R.string.toast_info));
-            mTextView.setText(edgeInfo.toJson());
+            Log.d(TAG, "handleIntentInfoAction " + status.response.toJson());
+            mTextView.setText(status.response.toJson());
         } else {
-            toast(getResources().getString(R.string.toast_failed_info));
+            toast(getResources().getString(R.string.toast_failed_info) + ": " + status.error.getErrorMessage());
+        }
+        revertState();
+    }
+
+    private void handleIntentLocationAction(Intent intent) {
+        Log.d(TAG, "handleIntentLocationAction");
+        EdgeRequestStatus<EdgeLocationResponse> status = EdgeRequestStatus.fromIntent(intent, EdgeLocationResponse.class);
+        if (status.response != null) {
+            toast("" + status.response.getStatus());
+        } else {
+            toast(getResources().getString(R.string.toast_failed_gps) + ": " + status.error.getErrorMessage());
         }
         revertState();
     }
@@ -270,8 +321,8 @@ public class NodeListActivity extends AppCompatActivity {
 
     // Update state of buttons, and update stored state for revert
     private void updateState(EdgeState state) {
-        boolean start, info, login, mcm, scan, mcmRemove, unassociate, stop, progress;
-        start = info = login = mcm = scan = mcmRemove = unassociate = stop = progress = false;
+        boolean start, info, login, mcm, scan, mcmRemove, unassociate, stop, progress, gps;
+        start = info = login = mcm = scan = mcmRemove = unassociate = stop = progress = gps = false;
         switch (state) {
             case INITIAL:
                 start = true;
@@ -283,10 +334,10 @@ public class NodeListActivity extends AppCompatActivity {
                 info = mcm = stop = true;
                 break;
             case ASSOCIATED:
-                info = mcm = unassociate = stop = true;
+                info = mcm = unassociate = stop = gps = true;
                 break;
             case MCM:
-                info = scan = mcmRemove = unassociate = stop = true;
+                info = scan = mcmRemove = unassociate = stop = gps = true;
                 break;
             case UNASSOCIATED:
                 info = login = stop = true;
@@ -307,6 +358,7 @@ public class NodeListActivity extends AppCompatActivity {
         mMcmRemoveButton.setEnabled(mcmRemove);
         mUnassociateButton.setEnabled(unassociate);
         mStopButton.setEnabled(stop);
+        mGpsButton.setEnabled(gps);
         mProgressBar.setVisibility(progress ? View.VISIBLE : View.GONE);
         if (state != EdgeState.DISABLED) {
             mEdgeState = state;
@@ -350,19 +402,73 @@ public class NodeListActivity extends AppCompatActivity {
         mAppOps.getInfo(pendingIntent);
     }
 
+    // Handle Location permission interaction
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == GPS_PERMISSION_CODE) {
+            onGpsButton();
+        }
+    }
+
+    // Submit gps log to edge
+    public void onGpsButton() {
+        Log.d(TAG, "onGpsButton");
+        updateState(EdgeState.DISABLED);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                    this,
+                    new String[] {Manifest.permission.ACCESS_FINE_LOCATION},
+                    GPS_PERMISSION_CODE);
+            return;
+        }
+        mFusedLocationProviderClient.getLastLocation()
+                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+            @Override
+            public void onSuccess(Location location) {
+                // Got last known location. In some rare situations this can be null.
+                if (location != null) {
+                    Log.d(TAG, "onGpsButton location " + location.toString());
+                    // Logic to handle location object
+                    Intent postLocationIntent = new Intent(
+                            getApplicationContext(),
+                            NodeListActivity.class);
+                    postLocationIntent.setAction(MIMIK_LOCATION_ACTION);
+                    postLocationIntent.setFlags(
+                            Intent.FLAG_ACTIVITY_CLEAR_TOP
+                                    | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    PendingIntent pendingIntent = PendingIntent.getActivity(
+                            getApplicationContext(),
+                            1,
+                            postLocationIntent,
+                            0);
+                    mAppOps.reportLocation(mEdgeAccessToken, location, pendingIntent);
+                } else {
+                    toast(getString(R.string.toast_failed_gps_off));
+                    revertState();
+                }
+            }
+        });
+    }
+
     // Get edge ID token for tracking, then perform OAuth login
     public void onLoginButton() {
         updateState(EdgeState.DISABLED);
         AuthConfig config = new AuthConfig();
         config.setClientId(BuildConfig.APPAUTH_CLIENT_ID);
         config.setRedirectUri(Uri.parse(REDIRECT_URI));
+        List<String> additionalScopes = new ArrayList<String>();
+        additionalScopes.add(SCOPE_GPS);
+        config.setAdditionalScopes(additionalScopes);
+        config.setAuthorizationRootUri(Uri.parse(BuildConfig.MID_URL));
         Intent postAuthorizationIntent = new Intent(
                 this,
                 NodeListActivity.class);
         postAuthorizationIntent.setAction(MIMIK_LOGIN_ACTION);
         postAuthorizationIntent.setFlags(
                 Intent.FLAG_ACTIVITY_CLEAR_TOP
-                        | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(
                 this,
                 1,
@@ -407,13 +513,14 @@ public class NodeListActivity extends AppCompatActivity {
         AuthConfig config = new AuthConfig();
         config.setClientId(BuildConfig.APPAUTH_CLIENT_ID);
         config.setRedirectUri(Uri.parse(REDIRECT_URI));
+        config.setAuthorizationRootUri(Uri.parse(BuildConfig.MID_URL));
         Intent postAuthorizationIntent = new Intent(
                 this,
                 NodeListActivity.class);
         postAuthorizationIntent.setAction(MIMIK_UNASSOCIATE_ACTION);
         postAuthorizationIntent.setFlags(
                 Intent.FLAG_ACTIVITY_CLEAR_TOP
-                        | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         PendingIntent pendingIntent =
                 PendingIntent.getActivity(
                         this,
@@ -527,8 +634,8 @@ public class NodeListActivity extends AppCompatActivity {
                     Response<DeviceListObject> response =
                             ExampleProvider.getDevices(
                                     filterType[0],
-                                    mEdgeAccessToken)
-                                    .execute();
+                                    mEdgeAccessToken,
+                                    "").execute();
                     if (response.isSuccessful() && response.body() != null) {
                         ret = response.body().data;
                     }
@@ -571,8 +678,7 @@ public class NodeListActivity extends AppCompatActivity {
                                 ExampleProvider.checkNodePresence(
                                         device.id,
                                         mEdgeAccessToken,
-                                        mEdgeAccessToken)
-                                        .execute();
+                                        "").execute();
                         if (deviceResponse.isSuccessful()
                                 && deviceResponse.body() != null) {
                             // New device object has a working url
