@@ -31,7 +31,7 @@ public class ExampleProvider {
     }
 
     // Get list of devices
-    public static Call<DeviceListObject> getDevices(final DeviceFilter filter, final String edgeAccessToken) {
+    public static Call<DeviceListObject> getDevices(final DeviceFilter filter, final String edgeAccessToken, final String userAccessToken) {
         final HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
         final OkHttpClient client = new OkHttpClient.Builder()
@@ -66,7 +66,7 @@ public class ExampleProvider {
             default:
                 type = "nearby";
         }
-        return service.getDevices(type);
+        return service.getDevices(type, userAccessToken);
     }
 
     // Get message from a device
@@ -116,7 +116,7 @@ public class ExampleProvider {
     interface MimikExampleService {
         // Get a list of nearby devices
         @GET("drives")
-        Call<DeviceListObject> getDevices(@Query("type") String type);
+        Call<DeviceListObject> getDevices(@Query("type") String type, @Query("userAccessToken") String userAccessToken);
 
         // Get a message from a device
         @GET("example/v1/hello")

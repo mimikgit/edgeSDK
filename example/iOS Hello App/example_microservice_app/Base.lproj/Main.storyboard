@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,14 +21,17 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bxu-Pb-uEb">
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mimikLogo" translatesAutoresizingMaskIntoConstraints="NO" id="h0a-dD-7qU">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" image="mimikLogo" translatesAutoresizingMaskIntoConstraints="NO" id="h0a-dD-7qU">
                                         <rect key="frame" x="53.5" y="20" width="213" height="90"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="h0a-dD-7qU" secondAttribute="height" multiplier="71:30" id="TPv-NO-Aq1"/>
+                                        </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="UMN-oS-ohM">
-                                        <rect key="frame" x="20" y="130" width="280" height="109"/>
+                                        <rect key="frame" x="20" y="130" width="280" height="147"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="YJ3-iR-sFi">
-                                                <rect key="frame" x="0.0" y="0.0" width="90" height="109"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="90" height="147"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bfN-1t-ol4">
                                                         <rect key="frame" x="10.5" y="0.0" width="69" height="33"/>
@@ -62,10 +66,21 @@
                                                             <action selector="button07Action:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uAo-XE-Y1R"/>
                                                         </connections>
                                                     </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gXK-eY-EpI" userLabel="Button10">
+                                                        <rect key="frame" x="10.5" y="114" width="69" height="33"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="27"/>
+                                                        <state key="normal" title="Button10"/>
+                                                        <variation key="widthClass=compact">
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                                        </variation>
+                                                        <connections>
+                                                            <action selector="button10Action:" destination="BYZ-38-t0r" eventType="touchUpInside" id="X9J-HZ-Ega"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="W4U-3X-9vf">
-                                                <rect key="frame" x="95" y="0.0" width="90" height="109"/>
+                                                <rect key="frame" x="95" y="0.0" width="90" height="147"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z6n-cx-AcF">
                                                         <rect key="frame" x="10.5" y="0.0" width="69" height="33"/>
@@ -100,10 +115,18 @@
                                                             <action selector="button08Action:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oNZ-eb-IAN"/>
                                                         </connections>
                                                     </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hTR-i5-QDy" userLabel="Button11">
+                                                        <rect key="frame" x="10.5" y="114" width="69" height="33"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="27"/>
+                                                        <state key="normal" title="Button11"/>
+                                                        <variation key="widthClass=compact">
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                                        </variation>
+                                                    </button>
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="bLP-rz-KS1">
-                                                <rect key="frame" x="190" y="0.0" width="90" height="109"/>
+                                                <rect key="frame" x="190" y="0.0" width="90" height="147"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="moU-Hh-ZFn">
                                                         <rect key="frame" x="10.5" y="0.0" width="69" height="33"/>
@@ -138,12 +161,23 @@
                                                             <action selector="button09Action:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cXA-bv-DBZ"/>
                                                         </connections>
                                                     </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rQP-k5-JgR" userLabel="Button12">
+                                                        <rect key="frame" x="10.5" y="114" width="69" height="33"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="27"/>
+                                                        <state key="normal" title="Button12"/>
+                                                        <variation key="widthClass=compact">
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                                        </variation>
+                                                        <connections>
+                                                            <action selector="button12Action:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YCh-N8-Dp4"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
                                     </stackView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="I0R-QW-gz9">
-                                        <rect key="frame" x="20" y="259" width="280" height="213"/>
+                                        <rect key="frame" x="20" y="297" width="280" height="175"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="750" constant="80" id="La6-oe-d9W"/>
@@ -226,6 +260,9 @@
                         <outlet property="button07" destination="mWR-Pa-A0P" id="hzo-st-tta"/>
                         <outlet property="button08" destination="bej-WG-lRk" id="3VJ-s5-wJT"/>
                         <outlet property="button09" destination="dgb-gn-v7X" id="CA9-sQ-ze1"/>
+                        <outlet property="button10" destination="gXK-eY-EpI" id="wlW-Ue-Cav"/>
+                        <outlet property="button11" destination="hTR-i5-QDy" id="cyx-BN-F9i"/>
+                        <outlet property="button12" destination="rQP-k5-JgR" id="OWV-OB-2Kg"/>
                         <outlet property="tableView" destination="I0R-QW-gz9" id="Nxj-hM-SQU"/>
                     </connections>
                 </viewController>

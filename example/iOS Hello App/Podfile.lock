@@ -1,18 +1,18 @@
 PODS:
-  - Alamofire (4.8.0)
+  - Alamofire (4.8.1)
   - AppAuth (0.95.0)
-  - edgeSDK-iOS (0.1.33)
-  - edgeSDK-iOS-app-auth (0.1.33):
+  - edgeSDK-iOS (0.1.39)
+  - edgeSDK-iOS-app-auth (0.1.38):
     - AppAuth
     - edgeSDK-iOS
     - Starscream
     - SwiftyJSON
-  - edgeSDK-iOS-app-ops (0.1.35):
+  - edgeSDK-iOS-app-ops (0.1.40):
     - Alamofire
     - edgeSDK-iOS
     - Starscream
     - SwiftyJSON
-  - JWTDecode (2.1.1)
+  - JWTDecode (2.2.0)
   - Starscream (3.0.6)
   - SwiftyJSON (4.2.0)
 
@@ -37,12 +37,12 @@ SPEC REPOS:
     - edgeSDK-iOS-app-ops
 
 SPEC CHECKSUMS:
-  Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
+  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
   AppAuth: 137f6bb6fc9dfbaf2cf9f6fcff1d336ff0163bc6
-  edgeSDK-iOS: c9f094aac816a10c92f520f37f8ea6e30a049d72
-  edgeSDK-iOS-app-auth: cf0ca3c85a2caf15d307d578b80bd238dede2f75
-  edgeSDK-iOS-app-ops: c853039038f6b7c0a1c81845001e8f6438588836
-  JWTDecode: 83e8b381aafe27158d9f692cbdca2b12d61d460c
+  edgeSDK-iOS: 49f66bf52899edc8839304a2393b737296454a31
+  edgeSDK-iOS-app-auth: 34d07d011f897d70e84c2817222b0ecbc521c975
+  edgeSDK-iOS-app-ops: 68f718471e296cb4d05b91cfc3577b495587e98a
+  JWTDecode: 85a405ab16d5473e99bd89ded1d535090ebd6a0e
   Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
