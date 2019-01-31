@@ -27,6 +27,7 @@
     <string name="toast_unassociate">Edge service unassociated</string>
     <string name="toast_stop">Edge service stopped</string>
 
+    <string name="toast_failed_install">Mimik edge service is not installed</string>
     <string name="toast_failed_start">Failed to start edge service</string>
     <string name="toast_failed_info">Failed to get edge info</string>
     <string name="toast_failed_gps">Failed to report location</string>

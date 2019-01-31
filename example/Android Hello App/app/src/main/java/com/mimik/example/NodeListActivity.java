@@ -375,7 +375,10 @@ public class NodeListActivity extends AppCompatActivity {
     // Start edge service
     public void onStartButton() {
         updateState(EdgeState.DISABLED);
-        if (mAppOps.startEdge()) {
+        if (!mAppOps.isPackageInstalled()) {
+           toast(getString(R.string.toast_failed_install));
+           revertState();
+        } else if (mAppOps.startEdge()) {
             toast(getString(R.string.toast_start));
             updateState(EdgeState.STARTED);
         } else {
