@@ -27,16 +27,6 @@ android {
             buildConfigField "String", "MID_URL", '"https://mid.mimik360.com"'
             buildConfigField "String", "APPAUTH_CLIENT_ID", '"23b54452-c312-4e8e-9dab-025b4462a8ef"'
         }
-        dev {
-            dimension "full"
-            buildConfigField "String", "MID_URL", '"https://mid-dev.mimikdev.com"'
-            buildConfigField "String", "APPAUTH_CLIENT_ID", '"0885c494-4504-406f-887b-d51d904cf07c"'
-        }
-        stag {
-            dimension "full"
-            buildConfigField "String", "MID_URL", '"https://mid-stg.mimik360.com"'
-            buildConfigField "String", "APPAUTH_CLIENT_ID", '"1a345d97-4914-4e37-a078-e11d3ddb7b48"'
-        }
     }
 }
 
