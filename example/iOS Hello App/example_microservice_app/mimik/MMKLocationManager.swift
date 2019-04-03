@@ -102,6 +102,10 @@ extension MMKLocationManager: CLLocationManagerDelegate {
             // The user has not yet made a choice regarding whether this app can use location services.
             self.locationManager.requestWhenInUseAuthorization()
             break
+        @unknown default:
+            locationCompletion((nil, NSError.init(domain: "Access to location information is undetermined.\nChange the iOS setting at edgeSDK | Allow Location Access.", code: 401, userInfo: nil)))
+            self.locationCompletion = nil
+            self.stopLocationServices()
         }
     }
     

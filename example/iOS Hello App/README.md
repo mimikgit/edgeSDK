@@ -14,7 +14,7 @@ Navigate to the example iOS directory
 
 ```cd /examples/iOS\ Hello\ App/```
 
-Check your cocoapod version to make sure you're good to go with a compatible version (1.5.3+)
+Check your cocoapod version to make sure you're good to go with a compatible version (1.6.1+)
 
 ```pod --version```
 
@@ -30,7 +30,7 @@ and then update if relevant updates are available
 
 ```pod update```
 
-Start Xcode 10.1+ and open example_microservice_app.xcworkspace. **Note** You must use a **real device**, not an emulator to build the example application. edgeSDK functionality will not work on emulated devices.
+Start Xcode 10.2+ and open example_microservice_app.xcworkspace. **Note** You must use a **real device**, not an emulator to build the example application. edgeSDK functionality will not work on emulated devices.
 
 ## Using the app
 
