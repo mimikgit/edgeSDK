@@ -128,12 +128,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         
         let edge_nodeId: String = UIDevice.current.name.contains("iPad") ? "iPad-UUID-12345678" : "iPhone-UUID-12345678"
-        appOpsWrapper.startEdge(nodeId: edge_nodeId, delegate: self, completion: { (status,error) in
+        appOpsWrapper.startEdge(nodeId: edge_nodeId, delegate: self, completion: { state in
             
-            guard error == nil else {
+            guard state.error == nil else {
                 DispatchQueue.main.async {
-                    MMKLog.log(message: "startEdge Error: ", type: .error, value: "\(error?.localizedDescription ?? "no Error description")", subsystem: .edgeSDK_iOS_example)
-                    self.bottomInfoLabel.text = "edgeSDK failed to start: \(error?.localizedDescription ?? "no Error description")"
+                    MMKLog.log(message: "startEdge Error: ", type: .error, value: "\(state.error?.localizedDescription ?? "no Error description")", subsystem: .edgeSDK_iOS_example)
+                    self.bottomInfoLabel.text = "edgeSDK failed to start: \(state.error?.localizedDescription ?? "no Error description")"
                     self.buttonsEnabled(enabled: true)
                 }
                 return
@@ -144,19 +144,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 self.buttonsEnabled(enabled: true)
             }
             
-            appOpsWrapper.getConfig({ (result,error) in
+            appOpsWrapper.getConfig({ state in
                 
-                guard error == nil else {
-                    MMKLog.log(message: "getConfig Error: ", type: .error, value: "\(error?.localizedDescription ?? "no Error description")", subsystem: .edgeSDK_iOS_example)
+                guard state.error == nil else {
+                    MMKLog.log(message: "getConfig Error: ", type: .error, value: "\(state.error?.localizedDescription ?? "no Error description")", subsystem: .edgeSDK_iOS_example)
                     return
                 }
                 
-                guard result != nil else {
+                guard state.config != nil else {
                     MMKLog.log(message: "getConfig result is nil.", type: .error, subsystem: .edgeSDK_iOS_example)
                     return
                 }
                 
-                MMKAuthenticationManager.sharedInstance.edgeConfig = result
+                MMKAuthenticationManager.sharedInstance.edgeConfig = state.config
                 MMKLog.log(message: "edgeConfig: ", type: .info, value: "\(MMKAuthenticationManager.sharedInstance.edgeConfig!)", subsystem: .edgeSDK_iOS_example)
             })
         })
@@ -187,18 +187,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         
         let authConfig = AuthConfig.init(clientId: kClientId, redirectUrl: kRedirectURL, additionalScopes: ["edge:gps:update"], authorizationRootUrl: kAuthorizationURL)
-        appAuthWrapper.authorize(authConfig: authConfig, viewController: self, completion: { (status, error) in
+        appAuthWrapper.authorize(authConfig: authConfig, viewController: self, completion: { state in
             
             DispatchQueue.main.async {
-                guard error == nil else {
-                    MMKLog.log(message: "Authorization finished with an Error: ", type: . error, value: "\(error?.localizedDescription ?? "no Error description")", subsystem: .edgeSDK_iOS_example)
-                    self.bottomInfoLabel.text = "Authorization finished with an Error: \(error?.localizedDescription ?? "no Error description")"
+                guard state.error == nil else {
+                    MMKLog.log(message: "Authorization finished with an Error: ", type: .error, value: "\(state.error?.localizedDescription ?? "no Error description")", subsystem: .edgeSDK_iOS_example)
+                    self.bottomInfoLabel.text = "Authorization finished with an Error: \(state.error?.localizedDescription ?? "no Error description")"
                     MMKAuthenticationManager.sharedInstance.clearAuthStatus()
                     self.buttonsEnabled(enabled: true)
                     return
                 }
                 
-                guard status != nil else {
+                guard state.status != nil else {
                     MMKLog.log(message: "Authorization finished with an Error", type: .error, subsystem: .edgeSDK_iOS_example)
                     self.bottomInfoLabel.text = "Authorization finished with an Error"
                     MMKAuthenticationManager.sharedInstance.clearAuthStatus()
@@ -206,8 +206,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     return
                 }
                 
-                MMKAuthenticationManager.sharedInstance.saveAuthStatus(status: status!)
-                MMKLog.log(message: "Authorization finished successfully. accessToken: ", type: .info, value: "\(status?.accessToken ?? "no-token")", subsystem: .edgeSDK_iOS_example)
+                MMKAuthenticationManager.sharedInstance.saveAuthStatus(status: state.status!)
+                MMKLog.log(message: "Authorization finished successfully. accessToken: ", type: .info, value: "\(state.status?.accessToken ?? "no-token")", subsystem: .edgeSDK_iOS_example)
                 self.bottomInfoLabel.text = "Authorization finished successfully."
                 self.buttonsEnabled(enabled: true)
             }
@@ -237,12 +237,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         
         let config: MicroserviceDeploymentConfig = self.microserviceConfig()
-        appOpsWrapper.deployMicroservice(edgeAccessToken: edgeAccessToken, config: config) { (status,error) in
+        appOpsWrapper.deployMicroservice(edgeAccessToken: edgeAccessToken, config: config) { state in
             
             DispatchQueue.main.async {
-                guard error == nil else {
-                    MMKLog.log(message: "deployEdgeMicroservice Error: ", type: . error, value: "\(error?.localizedDescription ?? "no Error description")", subsystem: .edgeSDK_iOS_example)
-                    self.bottomInfoLabel.text = "edgeSDK failed to deploy the example micro service: \(error?.localizedDescription ?? "no Error description")"
+                guard state.error == nil else {
+                    MMKLog.log(message: "deployEdgeMicroservice Error: ", type: .error, value: "\(state.error?.localizedDescription ?? "no Error description")", subsystem: .edgeSDK_iOS_example)
+                    self.bottomInfoLabel.text = "edgeSDK failed to deploy the example micro service: \(state.error?.localizedDescription ?? "no Error description")"
                     self.buttonsEnabled(enabled: true)
                     return
                 }
@@ -297,11 +297,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             return
         }
         
-        appOpsWrapper.updateGps(edgeAccessToken, location: location) { (response, error) in
+        appOpsWrapper.updateGps(edgeAccessToken, location: location) { state in
             DispatchQueue.main.async {
-                guard error == nil else {
-                    MMKLog.log(message: "UpdateGps Error: ", type: . error, value: "\(error?.localizedDescription ?? "no Error description.")", subsystem: .edgeSDK_iOS_example)
-                    self.bottomInfoLabel.text = "UpdateGPS Error: \(error?.localizedDescription ?? "no Error description.")"
+                guard state.error == nil else {
+                    MMKLog.log(message: "UpdateGps Error: ", type: .error, value: "\(state.error?.localizedDescription ?? "no Error description.")", subsystem: .edgeSDK_iOS_example)
+                    self.bottomInfoLabel.text = "UpdateGPS Error: \(state.error?.localizedDescription ?? "no Error description.")"
                     self.buttonsEnabled(enabled: true)
                     return
                 }
@@ -457,12 +457,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         
         let config: MicroserviceDeploymentConfig = self.microserviceConfig()
-        appOpsWrapper.removeMicroservice(edgeAccessToken: edgeAccessToken, config: config) { (status,error) in
+        appOpsWrapper.removeMicroservice(edgeAccessToken: edgeAccessToken, config: config) { state in
             
             DispatchQueue.main.async {
-                guard error == nil else {
-                    MMKLog.log(message: "deployEdgeMicroservice Error: ", type: . error, value: "\(error?.localizedDescription ?? "no Error description")", subsystem: .edgeSDK_iOS_example)
-                    self.bottomInfoLabel.text = "edgeSDK failed to remove the example micro service: \(error?.localizedDescription ?? "no Error description")"
+                guard state.error == nil else {
+                    MMKLog.log(message: "deployEdgeMicroservice Error: ", type: .error, value: "\(state.error?.localizedDescription ?? "no Error description")", subsystem: .edgeSDK_iOS_example)
+                    self.bottomInfoLabel.text = "edgeSDK failed to remove the example micro service: \(state.error?.localizedDescription ?? "no Error description")"
                     self.buttonsEnabled(enabled: true)
                     return
                 }
@@ -500,17 +500,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let authConfig = AuthConfig.init(clientId: kClientId, redirectUrl: kRedirectURL, additionalScopes: nil, authorizationRootUrl: kAuthorizationURL)
         
-        appAuthWrapper.unauthorize(authConfig: authConfig, viewController: self) { (status,error) in
+        appAuthWrapper.unauthorize(authConfig: authConfig, viewController: self) { state in
          
             DispatchQueue.main.async {
-                guard error == nil else {
-                    MMKLog.log(message: "auth status Error: ", type: . error, value: "\(String(describing: error))", subsystem: .edgeSDK_iOS_example)
-                    self.bottomInfoLabel.text = "OID unauthorize finished with an Error: \(error?.localizedDescription ?? "no Error description")"
+                guard state.error == nil else {
+                    MMKLog.log(message: "auth status Error: ", type: .error, value: "\(String(describing: state.error))", subsystem: .edgeSDK_iOS_example)
+                    self.bottomInfoLabel.text = "OID unauthorize finished with an Error: \(state.error?.localizedDescription ?? "no Error description")"
                     self.buttonsEnabled(enabled: true)
                     return
                 }
                 
-                guard status != nil else {
+                guard state.status != nil else {
                     MMKLog.log(message: "auth status unknown Error", type: .error, subsystem: .edgeSDK_iOS_example)
                     self.bottomInfoLabel.text = "OID unauthorize finished with an unknown Error"
                     MMKAuthenticationManager.sharedInstance.clearAuthStatus()
@@ -541,17 +541,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             fatalError()
         }
         
-        appAuthWrapper.edgeIdTokenDecoded { (edgeIdTokenDecoded, error) in
+        appAuthWrapper.edgeIdTokenDecoded { state in
          
-            guard error == nil else {
-                MMKLog.log(message: "Get edgeIdToken Error: ", type: . error, value: "\(error?.localizedDescription ?? "no Error description")", subsystem: .edgeSDK_iOS_example)
-                self.bottomInfoLabel.text = "Get edgeIdToken Error: \(error?.localizedDescription ?? "no Error description")"
+            guard state.error == nil, let checkedContent = state.content as? [String:Any] else {
+                MMKLog.log(message: "Get edgeIdToken Error: ", type: .error, value: "\(state.error?.localizedDescription ?? "no Error description")", subsystem: .edgeSDK_iOS_example)
+                self.bottomInfoLabel.text = "Get edgeIdToken Error: \(state.error?.localizedDescription ?? "no Error description")"
                 self.buttonsEnabled(enabled: true)
                 return
             }
             
             DispatchQueue.main.async {
-                let alertVC = UIAlertController.init(title: "Decoded edgeIdToken", message: edgeIdTokenDecoded?.description, preferredStyle: .alert)
+                let alertVC = UIAlertController.init(title: "Decoded edgeIdToken", message: checkedContent.description, preferredStyle: .alert)
                 let okAction = UIAlertAction.init(title: "OK", style: .default, handler: nil)
                 
                 alertVC.addAction(okAction)
@@ -579,12 +579,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             fatalError()
         }
 
-        appOpsWrapper.stopEdge(completion: { (status,error) in
+        appOpsWrapper.stopEdge(completion: { state in
 
             DispatchQueue.main.async {
-                guard error == nil else {
-                    MMKLog.log(message: "stopEdge Error: ", type: . error, value: "\(error?.localizedDescription ?? "no Error description")", subsystem: .edgeSDK_iOS_example)
-                    self.bottomInfoLabel.text = "edgeSDK failed to stop: \(error?.localizedDescription ?? "no Error description")"
+                guard state.error == nil else {
+                    MMKLog.log(message: "stopEdge Error: ", type: .error, value: "\(state.error?.localizedDescription ?? "no Error description")", subsystem: .edgeSDK_iOS_example)
+                    self.bottomInfoLabel.text = "edgeSDK failed to stop: \(state.error?.localizedDescription ?? "no Error description")"
                     self.buttonsEnabled(enabled: true)
                     return
                 }
@@ -740,34 +740,34 @@ extension ViewController {
 
         var debugInfo: String = ""
         
-        appOpsWrapper.getDeployedImages(edgeAccessToken: edgeAccessToken) { (images,imagesError) in
+        appOpsWrapper.getDeployedImages(edgeAccessToken: edgeAccessToken) { state in
             
-            if imagesError == nil {
-                let imagesJson = JSON.init(images)
+            if state.error == nil {
+                let imagesJson = JSON.init(state.content ?? "")
                 debugInfo += "getDeployedImages:\n"
                 debugInfo += imagesJson.rawString(String.Encoding.utf8, options: JSONSerialization.WritingOptions.prettyPrinted)!+"\n\n"
             }
             
-            appOpsWrapper.getDeployedContainers(edgeAccessToken: edgeAccessToken) { (containers,containerError) in
+            appOpsWrapper.getDeployedContainers(edgeAccessToken: edgeAccessToken) { state in
                 
-                if containerError == nil {
-                    let containersJson = JSON.init(containers)
+                if state.error == nil {
+                    let containersJson = JSON.init(state.content ?? "")
                     debugInfo += "getDeployedContainers:\n"
                     debugInfo += containersJson.rawString(String.Encoding.utf8, options: JSONSerialization.WritingOptions.prettyPrinted)!+"\n\n"
                 }
                 
-                appOpsWrapper.getConfig({ (edgeConfig,edgeConfigError) in
+                appOpsWrapper.getConfig({ state in
                     
-                    if edgeConfig != nil && edgeConfigError == nil {
+                    if state.config != nil && state.error == nil {
                         debugInfo += "getConfig:\n"
-                        debugInfo += edgeConfig!.description+"\n\n"
+                        debugInfo += state.config!.description+"\n\n"
                     }
 
-                    appOpsWrapper.getInfo({ (edgeInfo,edgeInfoError) in
+                    appOpsWrapper.getInfo({ state in
                         
-                        if edgeInfo != nil && edgeInfoError == nil {
+                        if state.info != nil && state.error == nil {
                             debugInfo += "getInfo:\n"
-                            debugInfo += (edgeInfo?.description)!+"\n\n"
+                            debugInfo += (state.info?.description)!+"\n\n"
                             completion((debugInfo,nil))
                         }
                         else {
