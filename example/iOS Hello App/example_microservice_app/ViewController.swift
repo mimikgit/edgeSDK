@@ -177,16 +177,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             fatalError()
         }
         
-        //
-        // This is where you'd put your own application id from the developer portal, using mimik app value here.
-        //
-        let kClientId: String = "fe6b7dca-a3ac-427e-a5c0-c0f0523c5baa"
-        let kRedirectURL: URL = URL.init(string: "com.exampleapp://example-authorization-code")!
-        guard let kAuthorizationURL: URL = URL.init(string: "https://mid.mimik360.com") else {
-            fatalError()
-        }
+        // Configuration information is located in the MMKConfigurationManager class
+        let authConfig = AuthConfig.init(clientId: MMKConfigurationManager.clientId(), redirectUrl: MMKConfigurationManager.redirectURL(), additionalScopes: ["edge:gps:update"], authorizationRootUrl: MMKConfigurationManager.authorizationURL())
         
-        let authConfig = AuthConfig.init(clientId: kClientId, redirectUrl: kRedirectURL, additionalScopes: ["edge:gps:update"], authorizationRootUrl: kAuthorizationURL)
         appAuthWrapper.authorize(authConfig: authConfig, viewController: self, completion: { state in
             
             DispatchQueue.main.async {
@@ -259,23 +252,42 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
      */
     @IBAction func button04Action(_ sender: UIButton) {
         
-        self.buttonsEnabled(enabled: false)
-        self.bottomInfoLabel.text = "updateGps called. This may take a minute."
+        let message = "In order to use mimik's location services you need to update your mimik developer profile information.\n\nPlease see the mimik developer portal for more details."
+        let alertVC = UIAlertController.init(title: "Location Services.", message: message, preferredStyle: .alert)
         
-        MMKLocationManager.sharedInstance.provideLocation { (location, error) in
+        let okAction = UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil)
+        
+        let callAction = UIAlertAction.init(title: "Call UpdateGPS", style: .default) { (action) in
+            self.buttonsEnabled(enabled: false)
+            self.bottomInfoLabel.text = "updateGps called. This may take a minute."
             
-            guard error == nil, location != nil else {
+            MMKLocationManager.sharedInstance.provideLocation { (location, error) in
                 
-                let message = error == nil ? "Change the iOS setting at edgeSDK | Allow Location Access or contact the device administrator" : error!.domain
+                guard error == nil, location != nil else {
+                    
+                    let message = error == nil ? "Change the iOS setting at edgeSDK | Allow Location Access or contact the device administrator" : error!.domain
+                    
+                    self.bottomInfoLabel.text = message
+                    self.buttonsEnabled(enabled: true)
+                    self.showLocationServicesWarning(message: message)
+                    return
+                }
                 
-                self.bottomInfoLabel.text = message
-                self.buttonsEnabled(enabled: true)
-                self.showLocationServicesWarning(message: message)
-                return
+                self.updateGps(location: location!)
             }
-            
-            self.updateGps(location: location!)
         }
+        
+        let portalAction = UIAlertAction.init(title: "Take me to Dev Portal", style: UIAlertAction.Style.default) { (action) in
+            if let url = URL(string: "https://developer.mimik360.com"), UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:])
+            }
+        }
+        
+        alertVC.addAction(okAction)
+        alertVC.addAction(portalAction)
+        alertVC.addAction(callAction)
+        
+        self.present(alertVC, animated: false, completion: nil)
     }
     
     /**
@@ -489,16 +501,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             fatalError()
         }
         
-        //
-        // This is where you'd put your own application id from the developer portal, using mimik app value here.
-        //
-        let kClientId: String = "fe6b7dca-a3ac-427e-a5c0-c0f0523c5baa"
-        let kRedirectURL: URL = URL.init(string: "com.exampleapp://example-authorization-code")!
-        guard let kAuthorizationURL: URL = URL.init(string: "https://mid.mimik360.com") else {
-            fatalError()
-        }
-        
-        let authConfig = AuthConfig.init(clientId: kClientId, redirectUrl: kRedirectURL, additionalScopes: nil, authorizationRootUrl: kAuthorizationURL)
+        // Configuration information is located in the MMKConfigurationManager class
+        let authConfig = AuthConfig.init(clientId: MMKConfigurationManager.clientId(), redirectUrl: MMKConfigurationManager.redirectURL(), additionalScopes: nil, authorizationRootUrl: MMKConfigurationManager.authorizationURL())
         
         appAuthWrapper.unauthorize(authConfig: authConfig, viewController: self) { state in
          
@@ -713,8 +717,8 @@ extension ViewController {
         }
         
         let envVariables: [String:String] = [
-            "BEAM": kEdgeServiceLink+"/beam/v1",
-            "uMDS": kEdgeServiceLink+"/mds/v1"
+            "BEAM": MMKConfigurationManager.edgeServiceLink() + "/beam/v1",
+            "uMDS": MMKConfigurationManager.edgeServiceLink() + "/mds/v1"
         ]
         
         return MicroserviceDeploymentConfig.init(name: "example-v1", apiRootUrl: "/example-v1/v1", imagePath: imageUrl.path, envVariables: envVariables)

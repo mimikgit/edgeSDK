@@ -88,7 +88,7 @@ class MMKEdgeNode: NSObject {
             return
         }
         
-        let link = kExampleMicroServiceNodesLink + nodeId
+        let link = MMKConfigurationManager.exampleMicroServiceNodesLink() + nodeId
         
         let authenticatedLink = link + "?userAccessToken=\(accessToken)"
         let headers = ["Authorization" : "Bearer \(accessToken)" ]
