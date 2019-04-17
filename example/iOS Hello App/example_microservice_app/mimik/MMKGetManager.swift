@@ -1,6 +1,6 @@
 //
 //  MMKGetManager.swift
-//  mimik access test 01
+//  example_microservice_app
 //
 //  Created by Raduz Benicky on 2018-05-18.
 //  Copyright © 2017 mimik. All rights reserved.
@@ -8,15 +8,6 @@
 
 import Alamofire
 import SwiftyJSON
-
-let kExampleMicroserviceName = "example-v1"
-let kEdgeServicePort:String = "8083"
-let kEdgeServiceLink:String = "http://127.0.0.1:"+kEdgeServicePort
-let kEdgeServiceIPPort:String = "127.0.0.1:"+kEdgeServicePort
-let kExampleMicroServiceNearbyNodesLink:String = kEdgeServiceLink+"/"+kExampleMicroserviceName+"/v1/drives?type=nearby"
-let kExampleMicroServiceNetworkNodesLink:String = kEdgeServiceLink+"/"+kExampleMicroserviceName+"/v1/drives?type=network"
-let kExampleMicroServiceNodesLink:String = kEdgeServiceLink+"/"+kExampleMicroserviceName+"/v1/nodes/"
-let kExampleMicroServiceHelloEndpoint:String = "/example-v1/v1/hello"
 
 /**
  enum of potential node list types.
@@ -47,9 +38,9 @@ final public class MMKGetManager: NSObject {
         var link: String!
         switch type {
         case .network:
-            link = kExampleMicroServiceNetworkNodesLink
+            link = MMKConfigurationManager.exampleMicroServiceNetworkNodesLink()
         case .nearby:
-            link = kExampleMicroServiceNearbyNodesLink
+            link = MMKConfigurationManager.exampleMicroServiceNearbyNodesLink()
         }
         
         let headers = ["Authorization" : "Bearer \(accessToken)" ]
@@ -88,7 +79,7 @@ final public class MMKGetManager: NSObject {
      */
     class func getHelloResponse( node: MMKEdgeNode, completion: @escaping ((json: JSON?, error: Error?)) -> Void) {
     
-        let link = node.urlString! + kExampleMicroServiceHelloEndpoint
+        let link = node.urlString! + MMKConfigurationManager.exampleMicroServiceHelloEndpoint()
         
         Alamofire.request(link).responseJSON { response in
             switch response.result {

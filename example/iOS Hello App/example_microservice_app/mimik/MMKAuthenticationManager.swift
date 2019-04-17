@@ -1,6 +1,6 @@
 //
 //  MMKAuthenticationManager.swift
-//  mimik access
+//  example_microservice_app
 //
 //  Created by Raduz Benicky on 2018-03-06.
 //  Copyright © 2018 mimik. All rights reserved.

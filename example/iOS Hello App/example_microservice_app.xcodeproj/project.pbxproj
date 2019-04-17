@@ -10,6 +10,7 @@
 		6135ADE8210652D30004E19E /* MMKGetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615976E420AF4DE400C7B053 /* MMKGetManager.swift */; };
 		618BDCF9207E6F9F00B46E44 /* MMKAuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618BDCF8207E6F9F00B46E44 /* MMKAuthenticationManager.swift */; };
 		618BDCFB207E703100B46E44 /* MMKEdgeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618BDCFA207E703000B46E44 /* MMKEdgeNode.swift */; };
+		61A536D42267861E00D3A3AF /* MMKConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A536D32267861E00D3A3AF /* MMKConfigurationManager.swift */; };
 		61D24D0121DE96FD00E831A0 /* MMKLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D24D0021DE96FD00E831A0 /* MMKLocationManager.swift */; };
 		61DA4E76201A5B19009AFF4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DA4E75201A5B19009AFF4D /* AppDelegate.swift */; };
 		61DA4E78201A5B19009AFF4D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DA4E77201A5B19009AFF4D /* ViewController.swift */; };
@@ -41,6 +42,7 @@
 		615976E420AF4DE400C7B053 /* MMKGetManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMKGetManager.swift; sourceTree = "<group>"; };
 		618BDCF8207E6F9F00B46E44 /* MMKAuthenticationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMKAuthenticationManager.swift; sourceTree = "<group>"; };
 		618BDCFA207E703000B46E44 /* MMKEdgeNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMKEdgeNode.swift; sourceTree = "<group>"; };
+		61A536D32267861E00D3A3AF /* MMKConfigurationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMKConfigurationManager.swift; sourceTree = "<group>"; };
 		61D24D0021DE96FD00E831A0 /* MMKLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMKLocationManager.swift; sourceTree = "<group>"; };
 		61DA4E72201A5B19009AFF4D /* example_microservice_app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = example_microservice_app.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61DA4E75201A5B19009AFF4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				618BDCF8207E6F9F00B46E44 /* MMKAuthenticationManager.swift */,
+				61A536D32267861E00D3A3AF /* MMKConfigurationManager.swift */,
 				618BDCFA207E703000B46E44 /* MMKEdgeNode.swift */,
 				615976E420AF4DE400C7B053 /* MMKGetManager.swift */,
 				61D24D0021DE96FD00E831A0 /* MMKLocationManager.swift */,
@@ -282,6 +285,7 @@
 				618BDCFB207E703100B46E44 /* MMKEdgeNode.swift in Sources */,
 				61DA4E78201A5B19009AFF4D /* ViewController.swift in Sources */,
 				61DA4E76201A5B19009AFF4D /* AppDelegate.swift in Sources */,
+				61A536D42267861E00D3A3AF /* MMKConfigurationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
