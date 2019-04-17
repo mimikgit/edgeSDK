@@ -8,13 +8,11 @@ First start by creating a [mimik Developer Account](https://developers.mimik360.
 
 Select a platform from the list below and follow the instructions to learn: how to run the edgeSDK, how to build and deploy microservices, and how to run an example application using the edgeSDK and microservices.
 
-- [Android 5.0+](https://developers.mimik360.com/docs/1.1.0/installation/android.html)
-- [iOS 9.0+](https://developers.mimik360.com/docs/1.1.0/installation/ios.html)
-- [Linux - Ubuntu 16.04 LTS](https://developers.mimik360.com/docs/1.1.0/installation/linux-ubuntu.html)
-- [Linux - Debian](https://developers.mimik360.com/docs/1.1.0/installation/linux-debian.html)
-- [Raspberry Pi - Raspbian 8.1](https://developers.mimik360.com/docs/1.1.0/installation/raspberry-pi.html)
-- [mac OS El Capitan+](https://developers.mimik360.com/docs/1.1.0/installation/macos.html)
-- [Windows 10](https://developers.mimik360.com/docs/1.1.0/installation/windows.html)
+- [Android 5.0+](https://developer.mimik.com/docs/installation/android)
+- [iOS 9.0+](https://developer.mimik.com/docs/installation/ios)
+- [Linux - Ubuntu 16.04 LTS](https://developer.mimik.com/docs/installation/linux)
+- [mac OS El Capitan+](https://developer.mimik.com/docs/installation/macos)
+- [Windows 10](https://developer.mimik.com/docs/installation/windows)
 
 ## Account Association
 
