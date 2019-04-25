@@ -107,6 +107,6 @@ Call Hello and get account cluster nodes from microservice
 
 ## Recommended guides
 
-- [How to run edgeSDK example app on Linux Ubuntu 16.04](https://developers.mimik360.com//docs/1.2.0/example-apps/how-to-run-edgesdk-example-app-on-Linux-Ubuntu.html)
-- [How to install and run mBeam microservice](https://developers.mimik360.com//docs/1.2.0/microservices/how-to-deploy-mbeam-microservice.html)
-- [mimik serverless JavaScript programming API](https://developers.mimik360.com//docs/1.2.0/resources/how-to-use-mimik-serverless-javascript-programming-api.html)
+- [How to run edgeSDK example app on Linux Ubuntu 16.04](https://developer.mimik.com/docs/installation/linux)
+- [How to install and run mBeam microservice](https://developer.mimik.com/docs/microservices/deploy)
+- [mimik serverless JavaScript programming API](https://developer.mimik.com/docs/api-guides/apis)
