@@ -2,7 +2,7 @@ The mimik edgeSDK provides a light container management technology that allows d
 
 ## Getting Started
 
-First start by creating a [mimik Developer Account](https://developers.mimik360.com/docs/1.1.0/getting-started/creating-a-developer-account.html). The Developer Portal is where you manage your the appID and SECRETS which are required for your application to access different aspects of the mimik platform.
+First start by creating a [mimik Developer Account](https://developer.mimik.com/docs/getting-started/developeraccount). The Developer Portal is where you manage your the appID and SECRETS which are required for your application to access different aspects of the mimik platform.
 
 ## Installation
 
@@ -16,20 +16,20 @@ Select a platform from the list below and follow the instructions to learn: how 
 
 ## Account Association
 
-All applications must register their account key provided by the Developer Portal in order to [associate their account](https://developers.mimik360.com/docs/1.1.0/getting-started/account-association.html) with the edgeSDK. The [example Android](https://developers.mimik360.com/docs/1.1.0/example-apps/how-to-run-edgesdk-example-app-on-android.html), [iOS](https://developers.mimik360.com/docs/1.1.0/example-apps/how-to-run-edgesdk-example-app-on-ios.html), and [PC applications](https://developers.mimik360.com/docs/1.1.0/example-apps/how-to-run-edgesdk-example-app-on-linux-ubuntu.html) allow you to quickly test this process.
+All applications must register their account key provided by the Developer Portal in order to [associate their account](https://developer.mimik.com/docs/getting-started/accountassociation) with the edgeSDK. Running the [example app](https://developer.mimik.com/docs/installation/exampleapp) allow you to quickly test this process.
 
 ## Microservices
 
 To show case the capabilities of the edgeSDK we have created a few microservices as examples in how to develop a microservice on our environment.
 
-- Our [Example](https://developers.mimik360.com/docs/1.1.0/microservices/how-to-deploy-example-microservice.html) microservice helps developers understand how to deploy a microservice to the edgeSDK runtime and call different methods for node and cluster discovery.
-- [mBeam](https://developers.mimik360.com/docs/1.1.0/microservices/how-to-deploy-mbeam-microservice.html) beams content from a node to node(s) and/or to service(s), peer-to-peer, one-to-one or one-to-many
-- [mDrive](https://developers.mimik360.com/docs/1.1.0/microservices/how-to-deploy-mdrive-microservice.html) abstracts access to storage available on edge nodes and provides distributed file management via a popular API.
-- [mSuperdrive](https://developers.mimik360.com/docs/1.1.0/microservices/how-to-deploy-msuperdrive-microservice.html) provides the core logic of [mimik access](#access) media services through the provided API well as showing all nodes (nearby, on the same Wi-Fi, remote and also friend’s ) that are equipped with [mimik access](#access).
+- Our [Example](https://developer.mimik.com/docs/microservices/deploy) microservice helps developers understand how to deploy a microservice to the edgeSDK runtime and call different methods for node and cluster discovery.
+- [mBeam](https://github.com/mimikgit/mbeam) beams content from a node to node(s) and/or to service(s), peer-to-peer, one-to-one or one-to-many
+- [mDrive](https://github.com/mimikgit/mDrive/releases/download/v1.2.1/drive-v1.tar) abstracts access to storage available on edge nodes and provides distributed file management via a popular API.
+- [mSuperdrive](https://github.com/mimikgit/mSuperdrive/releases/download/v1.2.3/superdrive-v1.tar) provides the core logic of [mimik access](#access) media services through the provided API well as showing all nodes (nearby, on the same Wi-Fi, remote and also friend’s ) that are equipped with [mimik access](#access).
 
 Build your own microservice using the edgeSDK JavaScript programming API for develop and deploy their microservices.
 
-[Learn how to use the Javascript Serverless Programming API](https://developers.mimik360.com/docs/1.1.0/resources/how-to-use-mimik-serverless-javascript-programming-api.html)
+[Learn how to use the Javascript Serverless Programming API](https://developer.mimik.com/docs/api-guides/apis)
 
 ## APIs
 
