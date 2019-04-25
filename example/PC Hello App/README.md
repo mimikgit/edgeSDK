@@ -37,7 +37,7 @@ npm install
 ```
 ## Start edgeSDK
 
-Refer to the platform specific guides for installing the edgeSDK service on [macOS](https://developers.mimik360.com/docs/1.2.0/installation/macos.html), [Windows](https://developers.mimik360.com/docs/1.2.0/installation/windows.html), or [Linux](https://developers.mimik360.com/docs/1.2.0/installation/linux-ubuntu.html).
+Refer to the platform specific guides for installing the edgeSDK service on [macOS](https://developer.mimik.com/docs/installation/macos), [Windows](https://developer.mimik.com/docs/installation/windows), or [Linux](https://developer.mimik.com/docs/installation/linux).
 
 On macOS and Windows, the edgeSDK service is started by double clicking the package you receive from completing the installation guide.
 
@@ -54,7 +54,7 @@ Then edgeSDK with the following command.
 
 ## Example microservice
 
-Follow the [example microservice](https://developers.mimik360.com/docs/1.2.0/microservices/how-to-deploy-example-microservice.html) installation guide and verify that the container image has been created. Once verified, the PC example app is able to detect this default installation path without needing to modify the source code.
+Follow the [example microservice](https://developer.mimik.com/docs/microservices/deploy) installation guide and verify that the container image has been created. Once verified, the PC example app is able to detect this default installation path without needing to modify the source code.
 
 ``` bash
 ls ../microsrevice/deploy
@@ -108,16 +108,12 @@ The source code is commented inline for further details.
 
 Below is the message sequence between example app, microservice and edgeSDK:
 
-![app registration](/assets/images/documentation/Hello App registration.png)
-
 1. First the example app associates edgeSDK with accountID
 1. Developer registers its sample app to mimik developer portal and receives the account information and account key
 1. In the sample app, it uses registered account key to associate sample app with edgeSDK 
 1. App verifies that edgeSDK associated with the correct account info.
 
 After  the following message flow is used to retrieve account cluster nodes:
-
-![account cluster](/assets/images/documentation/example microservice account cluster.png)
 
 1. Sample app first calls account service from example microservice to retrieve account cluster nodes from the BES using the authorization key of associated account
 1. mPO requests the nodes information  including BEP references of account cluster nodes.
@@ -131,4 +127,4 @@ After  the following message flow is used to retrieve account cluster nodes:
 
 ## Recommended guides
 
-- [mimik serverless JavaScript programming API](https://developers.mimik360.com/docs/1.2.0/resources/how-to-use-mimik-serverless-javascript-programming-api.html)
+- [mimik serverless JavaScript programming API](https://developer.mimik.com/docs/api-guides/apis)
