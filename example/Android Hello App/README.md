@@ -42,16 +42,12 @@ Tap on any of the devices to see a hello world response at the bottom of your sc
 
 Below is message sequence between example app, microservice and edgeSDK:
 
-[app registration](https://developer.mimik.com/assets/images/documentation/Hello App registration.png)
-
 1. First the example app associates edgeSDK with accountID
 1. Developer registers its sample app to mimik developer portal and receives the account information and account key
 1. In the sample app, it uses registered account key to associate sample app with edgeSDK
 1. App verifies that edgeSDK associated with the correct account info.
 
 After  the following message flow is used to retrieve account cluster nodes:
-
-[account cluster](https://developer.mimik.com/assets/images/documentation/example microservice account cluster.png)
 
 1. Sample app first calls account service from example microservice to retrieve account cluster nodes from the BES using the authorization key of associated account
 1. mPO requests the nodes information  including BEP references of account cluster nodes.
