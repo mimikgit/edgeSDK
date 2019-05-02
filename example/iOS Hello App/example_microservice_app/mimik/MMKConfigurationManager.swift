@@ -11,24 +11,20 @@ import edgeSDK_iOS
 
 class MMKConfigurationManager: NSObject {
 
-    //let kExampleMicroServiceNetworkNodesLink:String = kEdgeServiceLink+"/"+kExampleMicroserviceName+"/v1/drives?type=network"
     class func exampleMicroServiceNetworkNodesLink() -> String {
-        return self.edgeServiceLink() + "/" + self.exampleMicroServiceName() + "/v1/drives?type=network"
+        return self.edgeServiceLink() + "/" + self.clientId() + "/" + self.exampleMicroServiceName() + "/v1/drives?type=network"
     }
 
-    //let kExampleMicroServiceNearbyNodesLink:String = kEdgeServiceLink+"/"+kExampleMicroserviceName+"/v1/drives?type=nearby"
     class func exampleMicroServiceNearbyNodesLink() -> String {
-        return self.edgeServiceLink() + "/" + self.exampleMicroServiceName() + "/v1/drives?type=nearby"
+        return self.edgeServiceLink() + "/" + self.clientId() + "/" + self.exampleMicroServiceName() + "/v1/drives?type=nearby"
     }
 
-    //let kExampleMicroServiceHelloEndpoint:String = "/example-v1/v1/hello"
     class func exampleMicroServiceHelloEndpoint() -> String {
-        return "/example-v1/v1/hello"
+        return "/" + self.clientId() + "/" + self.exampleMicroServiceName() + "/v1/hello"
     }
 
-    //let kExampleMicroServiceNodesLink:String = kEdgeServiceLink+"/"+kExampleMicroserviceName+"/v1/nodes/"
     class func exampleMicroServiceNodesLink() -> String {
-        return self.edgeServiceLink() + "/" + self.exampleMicroServiceName() + "/v1/nodes/"
+        return self.edgeServiceLink() + "/" + self.clientId() + "/" + self.exampleMicroServiceName() + "/v1/nodes/"
     }
     
     class func edgeServiceLink() -> String {
@@ -55,11 +51,11 @@ extension MMKConfigurationManager {
     // This is where you'd put your own application id from the developer portal, using mimik app value here.
     //
     class func clientId() -> String {
-        return "fe6b7dca-a3ac-427e-a5c0-c0f0523c5baa"
+        return "ab933bf9-2131-4c08-8ab3-1f7086387ee2"
     }
     
     class func redirectURL() -> URL {
-        return URL.init(string: "com.exampleapp://example-authorization-code")!
+        return URL.init(string: "com.mimik.example.appauth://oauth2callback")!
     }
     
     class func authorizationURL() -> URL {

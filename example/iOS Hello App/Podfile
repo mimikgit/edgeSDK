@@ -8,9 +8,9 @@ target 'example_microservice_app' do
   use_frameworks!
   
   # Pods for example_microservice_app
-  pod 'edgeSDK-iOS', '~> 0.3.2'
-  pod 'edgeSDK-iOS-app-auth', '~> 0.3.2'
-  pod 'edgeSDK-iOS-app-ops', '~> 0.3.2'
+  pod 'edgeSDK-iOS', '2.0.2'
+  pod 'edgeSDK-iOS-app-auth', '2.0.1'
+  pod 'edgeSDK-iOS-app-ops', '2.0.1'
   pod 'Alamofire'
   pod 'JWTDecode'
   pod 'SwiftyJSON'
