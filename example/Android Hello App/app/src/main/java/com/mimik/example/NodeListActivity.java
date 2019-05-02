@@ -30,9 +30,10 @@ import com.mimik.edgeappops.EdgeAppOps;
 import com.mimik.edgeappops.edgeservice.EdgeConfig;
 import com.mimik.edgeappops.edgeservice.EdgeInfoResponse;
 import com.mimik.edgeappops.edgeservice.EdgeLocationResponse;
+import com.mimik.edgeappops.microserviceobjects.MicroserviceContainer;
 import com.mimik.edgeappops.microserviceobjects.MicroserviceDeploymentConfig;
 import com.mimik.edgeappops.microserviceobjects.MicroserviceDeploymentStatus;
-import com.mimik.edgeappsupport.EdgeRequestStatus;
+import com.mimik.edgeappcommon.EdgeRequestStatus;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -65,6 +66,8 @@ public class NodeListActivity extends AppCompatActivity {
 
     // Arbitrary code
     private final int GPS_PERMISSION_CODE = 23;
+
+    private String mApiRoot = "";
 
     // Views
     ListView mListView;
@@ -586,6 +589,10 @@ public class NodeListActivity extends AppCompatActivity {
         protected void onPostExecute(final MicroserviceDeploymentStatus ret) {
             if (ret.response != null) {
                 toast(getResources().getString(R.string.toast_mcm));
+                MicroserviceContainer container = ret.response.getContainer();
+                mApiRoot = container.getApiRootUri().toString();
+                if (!mApiRoot.startsWith("/")) { mApiRoot = "/" + mApiRoot; }
+                if (!mApiRoot.endsWith("/")) { mApiRoot = mApiRoot + "/"; }
                 updateState(EdgeState.MCM);
             } else {
                 toast(getResources().getString(R.string.toast_failed_mcm));
@@ -638,7 +645,7 @@ public class NodeListActivity extends AppCompatActivity {
                             ExampleProvider.getDevices(
                                     filterType[0],
                                     mEdgeAccessToken,
-                                    "").execute();
+                                    mApiRoot).execute();
                     if (response.isSuccessful() && response.body() != null) {
                         ret = response.body().data;
                     }
@@ -681,7 +688,7 @@ public class NodeListActivity extends AppCompatActivity {
                                 ExampleProvider.checkNodePresence(
                                         device.id,
                                         mEdgeAccessToken,
-                                        "").execute();
+                                        mApiRoot).execute();
                         if (deviceResponse.isSuccessful()
                                 && deviceResponse.body() != null) {
                             // New device object has a working url
@@ -694,7 +701,7 @@ public class NodeListActivity extends AppCompatActivity {
                                     deviceUrl = deviceUrl + "/";
                                 }
                                 Response<HelloMessage> response =
-                                        ExampleProvider.getMessage(deviceUrl)
+                                        ExampleProvider.getMessage(deviceUrl, mApiRoot)
                                                 .execute();
                                 if (response.isSuccessful()
                                         && response.body() != null) {

@@ -7,6 +7,8 @@ import GetNearbyDrives from './usecase/get-nearby-drives';
 import GetMyDrives from './usecase/get-my-drives';
 import ApiError from './helper/api-error';
 import FindNodeByNodeId from './usecase/find-node-by-node-id';
+import { extendEdgeContext } from './edge-pollyfill';
+import requestRemoteBep from './helper/remote-bep';
 
 const app = Router({
   mergeParams: true,
@@ -18,19 +20,21 @@ function toJson(obj) {
 
 function mimikInject(context, req) {
   const { uMDS } = context.env;
-  const edge = context.edge;
-  const http = context.http;
+  const mimikContext = extendEdgeContext(context);
+
+  const edge = mimikContext.edge;
+  const serviceType = context.info.serviceType;
   const authorization = req.authorization;
   parseUrl(req);
 
-  const getNearByDrives = new GetNearbyDrives(uMDS, http, authorization, edge);
-  const getProximityDrives = new GetProximityDrives(uMDS, http, authorization, edge);
+  const getNearByDrives = new GetNearbyDrives(authorization, edge, serviceType);
+  const getProximityDrives = new GetProximityDrives(authorization, edge, serviceType);
 
-  const getMyDrives = new GetMyDrives(getNearByDrives, uMDS, http,
-    edge, authorization);
+  const getMyDrives = new GetMyDrives(getNearByDrives, uMDS,
+    edge, authorization, serviceType);
 
   const findNode = new FindNodeByNodeId(getNearByDrives, getMyDrives,
-     getProximityDrives);
+    getProximityDrives);
 
   return ({
     ...context,
@@ -94,15 +98,18 @@ app.get('/drives', (req, res) => {
     })
     .go();
 });
+
 app.get('/hello', (req, res) => {
   const json = toJson({
     JSONMessage: 'Hello WORLD!!!',
   });
   res.end(json);
 });
-const requestBep = edge => new Action(
+
+const requestBep = (edge, hmac) => new Action(
   (cb) => {
     edge.requestBep({
+      code: hmac,
       success: (result) => {
         cb({
           href: result.data,
@@ -113,30 +120,10 @@ const requestBep = edge => new Action(
       },
     });
   });
-const requestRemoteBep = (drive, http) => new Action(
-  (cb) => {
-    const sepHeader = `\r\nx-mimik-port: ${drive.routing.port}\r\nx-mimik-routing: ${drive.routing.id}`;
-    http.request(({
-      url: `${drive.routing.url}/superdrive/v1/bep`,
-      authorization: sepHeader,
-      success: (result) => {
-        cb(JSON.parse(result.data));
-      },
-      error: (err) => {
-        console.log(`sep error: ${err.message}`);
-        cb(new Error(err.message));
-      },
-    }));
-  });
 
 app.get('/nodes/:nodeId', (req, res) => {
   const { nodeId } = req.params;
   const { findNode } = req.mimikContext;
-  const query = queryString.parse(req._parsedUrl.query);
-  if (!(query && query.userAccessToken)) {
-    res.writeError(new ApiError(403, 'userAccessToken must not be null'));
-    return;
-  }
 
   findNode.buildAction(nodeId)
     .next((drive) => {
@@ -145,14 +132,12 @@ app.get('/nodes/:nodeId', (req, res) => {
         return 0;
       }
 
-      const { http } = req.mimikContext;
-      return requestRemoteBep(drive, http)
+      return requestRemoteBep(req, drive)
         .next(url => Object.assign({}, drive, {
           url: url.href,
         }))
         .next(d => res.end(toJson(d)));
     })
-    // .next(drive => res.end(toJson(drive)))
     .guard(e => res.writeError(new ApiError(400, e)))
     .go();
 });
@@ -160,7 +145,15 @@ app.get('/nodes/:nodeId', (req, res) => {
 app.get('/bep', (req, res) => {
   const { edge } = req.mimikContext;
 
-  requestBep(edge)
+  const query = queryString.parse(req._parsedUrl.query);
+  const { hmac } = query;
+
+  if (!hmac) {
+    res.writeError(new ApiError(403, 'hmac is missing'));
+    return;
+  }
+
+  requestBep(edge, hmac)
     .next(bep => res.end(toJson(bep)))
     .guard(e => res.writeError(new ApiError(400, e)))
     .go();

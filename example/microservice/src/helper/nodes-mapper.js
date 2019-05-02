@@ -33,12 +33,12 @@ export default class NodesMapper {
     return local.url.href;
   }
 
-  static transformMdsNodes(nodes, avatarData) {
+  static transformMdsNodes(nodes, avatarData, serviceType) {
     try {
       const copy = [];
       nodes.forEach((node) => {
-        const example = find(node.services, srv => srv.serviceType === 'example-v1');
-        if (example) {
+        const superDrive = find(node.services, srv => srv.serviceType === serviceType);
+        if (superDrive) {
           const name = find(node.attributes, att => att.name === 'name');
           const os = find(node.characteristics, att => att.name === 'os');
           copy.push({
@@ -48,6 +48,7 @@ export default class NodesMapper {
             routing: NodesMapper.getRouting(node),
             os: os && os.value,
             avatar: avatarData,
+            location: node.location,
             url: NodesMapper.getUrl(node), // node.addresses[0].url.href,
           });
         }

@@ -7,121 +7,32 @@ import NodesMapper from '../helper/nodes-mapper';
 import { extractToken } from '../helper/authorization-helper';
 
 export default class GetMyDrives {
-  constructor(getNearByDrives, localMds, http, edge, authorization) {
+  constructor(getNearByDrives, mpo, edge, authorization, serviceType) {
     this.getNearByDrives = getNearByDrives;
-    this.localMds = localMds;
-    this.http = http;
+    this.mpo = mpo;
     this.edge = edge;
     this.authorization = authorization;
+    this.serviceType = serviceType;
   }
 
-  static transform(data, edge, authorization) {
-    const accountNodes = data.include.devices.data.account;
-    const encryptedNodes = accountNodes.cipheredNodes;
-    const accessToken = extractToken(authorization);
+  static transform(data, serviceType) {
+    const obj = {
+      accountId: data.accountId,
+      devices: NodesMapper.transformMdsNodes(data.nodes, null, serviceType),
+    };
 
-    // console.log(`authorization: ${authorization}, accessToken: ${accessToken}`);
-    if (!accessToken) {
-      return new Error('invalid access token format');
-    }
-
-    // console.log(`accountNodes: ${JSON.stringify(accountNodes, null, 2)}`);
-    // return GetMyDrives.transformMdsNodes(nodes, data.data.avatar);
-    return new Action(
-      (cb) => {
-        const encryptedJson = JSON.stringify(encryptedNodes);
-        // console.log(`encryptedJson: ${encryptedJson}`);
-
-        edge.decryptEncryptedNodesJson({
-          type: 'account',
-          token: accessToken,
-          data: encryptedJson,
-          success: (result) => {
-            cb(result.data);
-          },
-          error: (err) => {
-            cb(new Error(err.message));
-          },
-        });
-      }).next((json) => {
-        try {
-          const decryptedNodes = JSON.parse(json);
-          return decryptedNodes;
-        } catch (e) {
-          return new Error(e.message);
-        }
-      }).next((nodes) => {
-        const obj = {
-          accountId: data.data.id,
-          devices: NodesMapper.transformMdsNodes(nodes, data.data.avatar),
-        };
-
-        return obj;
-      });
+    return Action.wrap(obj);
   }
 
   getMpoDevices() {
-    const { http, authorization, localMds, edge } = this;
+    const { authorization, edge, serviceType } = this;
     const accessToken = extractToken(authorization);
 
     return new Action(
       (cb) => {
-        http.request(({
-          url: `${localMds}/nodes?clusters=account`,
-          success: (result) => {
-            cb(result.data);
-          },
-          error: (err) => {
-            cb(new Error(err.message));
-          },
-        }));
-      },
-    ).next((json) => {
-      try {
-        const nodes = JSON.parse(json);
-        return JSON.stringify(nodes.data);
-      } catch (e) {
-        return new Error(e.message);
-      }
-    }).next(encryptedJson => new Action(
-      (cb) => {
-        edge.decryptEncryptedNodesJson({
-          type: 'local',
-          token: accessToken,
-          data: encryptedJson,
-          success: (result) => {
-            cb(result.data);
-          },
-          error: (err) => {
-            cb(new Error(err.message));
-          },
-        });
-      }))
-      .next((json) => {
-        try {
-          const nodes = JSON.parse(json);
-          console.log(JSON.stringify(nodes, null, 2));
-          return nodes;
-        } catch (e) {
-          return new Error(e.message);
-        }
+        edge.clusterDiscovery('account', accessToken, nodes => cb(nodes), err => cb(err));
       })
-      .next((nodes) => {
-        const data = {
-          data: {
-            id: nodes.account.accountId,
-          },
-          include: {
-            devices: {
-              data: {
-                account: nodes.account,
-              },
-            },
-          },
-        };
-
-        return GetMyDrives.transform(data, edge, authorization);
-      });
+      .next(nodes => GetMyDrives.transform(nodes, serviceType));
   }
 
   buildAction(_nearbyAction) {
@@ -137,11 +48,6 @@ export default class GetMyDrives {
         const nodes1 = keyBy(n.filter(node => node.accountId === accountId), 'id');
         const nodes2 = keyBy(a, 'id');
         return values(mergeWith(nodes1, nodes2, oldVal => oldVal));
-        // return _(n)
-        //   .filter(node => node.accountId === accountId)
-        //   .keyBy('id')
-        //   .mergeWith(_.keyBy(a, 'id'), oldVal => oldVal)
-        //   .values();
       });
   }
 }
