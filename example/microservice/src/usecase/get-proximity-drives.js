@@ -4,69 +4,29 @@ import NodesMapper from '../helper/nodes-mapper';
 import { extractToken } from '../helper/authorization-helper';
 
 export default class GetProximityDrives {
-  constructor(localMds, http, authorization, edge) {
-    this.localMds = localMds;
-    this.http = http;
+  constructor(authorization, edge, serviceType) {
     this.edge = edge;
     this.authorization = authorization;
+    this.serviceType = serviceType;
   }
 
   buildAction() {
-    const { localMds, http, authorization, edge } = this;
+    const { authorization, edge, serviceType } = this;
     const accessToken = extractToken(authorization);
 
-    return new Action(
+    const request = new Action(
       (cb) => {
-        http.request(({
-          url: `${localMds}/nodes?clusters=proximity`,
-          success: (result) => {
-            cb(result.data);
-          },
-          error: (err) => {
-            cb(new Error(err.message));
-          },
-        }));
-      },
-    )
-    .next((json) => {
-      try {
-        const nodes = JSON.parse(json);
-        return JSON.stringify(nodes.data);
-      } catch (e) {
-        return new Error('not a valid json');
-      }
-    })
-    .next(encryptedJson => new Action(
-      (cb) => {
-        edge.decryptEncryptedNodesJson({
-          type: 'local',
-          token: accessToken,
-          data: encryptedJson,
-          success: (result) => {
-            cb(result.data);
-          },
-          error: (err) => {
-            cb(new Error(err.message));
-          },
-        });
-      }))
-    .next((json) => {
-      try {
-        const nodes = JSON.parse(json);
-        console.log(JSON.stringify(nodes, null, 2));
-        return nodes;
-      } catch (e) {
-        return new Error(e.message);
-      }
-    })
-    .next((nodes) => {
-      const proximity = (nodes &&
-        Array.isArray(nodes.proximity.nodes) &&
-        nodes.proximity) ||
-        new Error('failed to search for devices');
-      return proximity;
-    })
-    .next(proximity => NodesMapper.transformMdsNodes(proximity.nodes));
+        edge.clusterDiscovery('proximity', accessToken, nodes => cb(nodes), err => cb(err));
+      });
+
+    return request
+      .next((nodes) => {
+        const proximity = (nodes &&
+          Array.isArray(nodes.proximity.nodes) &&
+          nodes.proximity) ||
+          new Error('failed to search for devices');
+        return proximity;
+      })
+      .next(proximity => NodesMapper.transformMdsNodes(proximity.nodes, null, serviceType));
   }
 }
-

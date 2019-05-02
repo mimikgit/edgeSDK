@@ -19,7 +19,7 @@ import retrofit2.http.Query;
 
 public class ExampleProvider {
 
-    public static final String API_URL = "http://127.0.0.1:8083/example/v1/";
+    private static final String ROOT_URL = "http://127.0.0.1:8083";
     private static final Gson gson = new GsonBuilder()
             .disableHtmlEscaping()
             .create();
@@ -31,7 +31,8 @@ public class ExampleProvider {
     }
 
     // Get list of devices
-    public static Call<DeviceListObject> getDevices(final DeviceFilter filter, final String edgeAccessToken, final String userAccessToken) {
+    public static Call<DeviceListObject> getDevices(final DeviceFilter filter, final String edgeAccessToken, String apiRoot) {
+        if (apiRoot == null) { return null; }
         final HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
         final OkHttpClient client = new OkHttpClient.Builder()
@@ -47,8 +48,10 @@ public class ExampleProvider {
                 })
                 .build();
 
+        String baseUrl = ROOT_URL + apiRoot;
+
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(API_URL)
+                .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(client)
                 .build();
@@ -57,28 +60,32 @@ public class ExampleProvider {
         String type;
         switch (filter) {
             case PROXIMITY:
-                type = "proximity";
+                type = "nearby";
                 break;
             case ACCOUNT:
                 type = "account";
                 break;
             case NETWORK:
             default:
-                type = "nearby";
+                type = "network";
         }
-        return service.getDevices(type, userAccessToken);
+        return service.getDevices(type);
     }
 
     // Get message from a device
-    public static Call<HelloMessage> getMessage(String url) {
+    public static Call<HelloMessage> getMessage(String url, String apiRoot) {
+        if (apiRoot == null) { return null; }
         final HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
         final OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(logging)
                 .build();
 
+        if (url.endsWith("/")) { url = url.substring(0, url.length() - 1); }
+        String baseUrl = url + apiRoot;
+
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(url)
+                .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(client)
                 .build();
@@ -87,7 +94,8 @@ public class ExampleProvider {
         return service.getMessage();
     }
 
-    public static Call<Device> checkNodePresence(final String deviceId, final String edgeAccessToken, final String userAccessToken) {
+    public static Call<Device> checkNodePresence(final String deviceId, final String edgeAccessToken, String apiRoot) {
+        if (apiRoot == null) { return null; }
         final HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
         final OkHttpClient client = new OkHttpClient.Builder()
@@ -103,26 +111,28 @@ public class ExampleProvider {
                 })
                 .build();
 
+        String baseUrl = ROOT_URL + apiRoot;
+
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(API_URL)
+                .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(client)
                 .build();
 
         MimikExampleService service = retrofit.create(MimikExampleService.class);
-        return service.getPresence(deviceId, userAccessToken);
+        return service.getPresence(deviceId);
     }
 
     interface MimikExampleService {
         // Get a list of nearby devices
         @GET("drives")
-        Call<DeviceListObject> getDevices(@Query("type") String type, @Query("userAccessToken") String userAccessToken);
+        Call<DeviceListObject> getDevices(@Query("type") String type);
 
         // Get a message from a device
-        @GET("example/v1/hello")
+        @GET("hello")
         Call<HelloMessage> getMessage();
 
         @GET("nodes/{id}")
-        Call<Device> getPresence(@Path("id") String id, @Query("userAccessToken") String userToken);
+        Call<Device> getPresence(@Path("id") String id);
     }
 }
