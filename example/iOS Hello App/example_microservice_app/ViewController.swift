@@ -178,7 +178,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         
         // Configuration information is located in the MMKConfigurationManager class
-        let authConfig = AuthConfig.init(clientId: MMKConfigurationManager.clientId(), redirectUrl: MMKConfigurationManager.redirectURL(), additionalScopes: ["edge:gps:update"], authorizationRootUrl: MMKConfigurationManager.authorizationURL())
+        let authConfig = MMKAuthConfig.init(clientId: MMKConfigurationManager.clientId(), redirectUrl: MMKConfigurationManager.redirectURL(), additionalScopes: ["edge:gps:update"], authorizationRootUrl: MMKConfigurationManager.authorizationURL())
         
         appAuthWrapper.authorize(authConfig: authConfig, viewController: self, completion: { state in
             
@@ -229,7 +229,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             return
         }
         
-        let config: MicroserviceDeploymentConfig = self.microserviceConfig()
+        let config: MMKMicroserviceDeploymentConfig = self.microserviceConfig()
         appOpsWrapper.deployMicroservice(edgeAccessToken: edgeAccessToken, config: config) { state in
             
             DispatchQueue.main.async {
@@ -468,7 +468,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             return
         }
         
-        let config: MicroserviceDeploymentConfig = self.microserviceConfig()
+        let config: MMKMicroserviceDeploymentConfig = self.microserviceConfig()
         appOpsWrapper.removeMicroservice(edgeAccessToken: edgeAccessToken, config: config) { state in
             
             DispatchQueue.main.async {
@@ -502,7 +502,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         
         // Configuration information is located in the MMKConfigurationManager class
-        let authConfig = AuthConfig.init(clientId: MMKConfigurationManager.clientId(), redirectUrl: MMKConfigurationManager.redirectURL(), additionalScopes: nil, authorizationRootUrl: MMKConfigurationManager.authorizationURL())
+        let authConfig = MMKAuthConfig.init(clientId: MMKConfigurationManager.clientId(), redirectUrl: MMKConfigurationManager.redirectURL(), additionalScopes: nil, authorizationRootUrl: MMKConfigurationManager.authorizationURL())
         
         appAuthWrapper.unauthorize(authConfig: authConfig, viewController: self) { state in
          
@@ -710,7 +710,7 @@ extension ViewController {
     /**
      A configuration object for each micro service.
      */
-    func microserviceConfig() -> MicroserviceDeploymentConfig {
+    func microserviceConfig() -> MMKMicroserviceDeploymentConfig {
         
         guard let imageUrl = self.microServiceBundleStorageURL(name: "example-v1") else {
             fatalError()
@@ -721,7 +721,7 @@ extension ViewController {
             "uMDS": MMKConfigurationManager.edgeServiceLink() + "/mds/v1"
         ]
         
-        return MicroserviceDeploymentConfig.init(name: "example-v1", apiRootUrl: "/example-v1/v1", imagePath: imageUrl.path, envVariables: envVariables)
+        return MMKMicroserviceDeploymentConfig.init(name: "example-v1", apiRootUrl: "/example-v1/v1", imagePath: imageUrl.path, envVariables: envVariables)
     }
     
     /**
@@ -787,8 +787,8 @@ extension ViewController {
 /**
  EdgeAppOpsProtocol. Getting calls about edgeSDK state changes.
  */
-extension ViewController: EdgeAppOpsProtocol {
-    func edgeStatusChanged(status: EdgeStatus) {
+extension ViewController: MMKEdgeAppOpsProtocol {
+    func edgeStatusChanged(status: MMKEdgeStatus) {
         MMKLog.log(message: "edgeStatusChanged.", type: .info, value: "state: \(status.edgeState.rawValue) event: \(status.stateChangingEvent.rawValue)", subsystem: .edgeSDK_iOS_example)
         DispatchQueue.main.async {
             self.bottomInfoLabel.text = "state: \(status.edgeState.rawValue) event: \(status.stateChangingEvent.rawValue)"

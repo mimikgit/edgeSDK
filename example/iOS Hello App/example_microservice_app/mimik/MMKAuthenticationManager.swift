@@ -19,7 +19,7 @@ final public class MMKAuthenticationManager: NSObject {
     let kEdgeIdTokenKey: String = "com.mimik.exampleapp.kEdgeIdTokenKey"
     let kAccessTokenKey: String = "com.mimik.exampleapp.kAccessTokenKey"
     let kAuthStatusKey: String = "com.mimik.exampleapp.kAuthStatusKey"
-    public var edgeConfig: EdgeConfig?
+    public var edgeConfig: MMKEdgeConfig?
     var savedAuthStatusData: Data?
     
     /**
@@ -48,17 +48,17 @@ public extension MMKAuthenticationManager {
     /**
      Saves AuthStatus to memory as encoded data.
      */
-    func saveAuthStatus(status: AuthStatus) -> Void {
-        let codedAuthStatus = NSKeyedArchiver.archivedData(withRootObject: status as AuthStatus)
+    func saveAuthStatus(status: MMKAuthStatus) -> Void {
+        let codedAuthStatus = NSKeyedArchiver.archivedData(withRootObject: status as MMKAuthStatus)
         self.savedAuthStatusData = codedAuthStatus
     }
 
     /**
      Recreates AuthStatus object from memory where it was stored as encoded data.
      */
-    func loadAuthStatus() -> AuthStatus? {
+    func loadAuthStatus() -> MMKAuthStatus? {
         if let authStatusData = self.savedAuthStatusData,
-            let unarchivedAuthStatus = NSKeyedUnarchiver.unarchiveObject(with: authStatusData) as? AuthStatus {
+            let unarchivedAuthStatus = NSKeyedUnarchiver.unarchiveObject(with: authStatusData) as? MMKAuthStatus {
             return unarchivedAuthStatus
         }
         
