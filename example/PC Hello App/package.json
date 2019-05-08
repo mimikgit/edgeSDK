@@ -2,10 +2,10 @@
   "name": "mimik-sample-app",
   "productName": "mimik Sample App",
   "description": "mimik Sample App demonstrating mimik container manager",
-  "version": "1.2.1",
+  "version": "2.0.0",
   "private": true,
   "author": "mimik technology inc. <info@mimik.com> (https://mimik.com)",
-  "copyright": "© 2018, mimik technology inc.",
+  "copyright": "© 2019, mimik technology inc.",
   "homepage": "https://mimik.com",
   "main": "app/background.js",
   "build": {

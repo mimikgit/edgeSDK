@@ -2,6 +2,7 @@ import fs from 'fs';
 import WebSocket from 'ws';
 import JsonRPC from 'simple-jsonrpc-js';
 import { remote } from 'electron';
+import { appId } from '../helpers/constants';
 
 const { app } = remote;
 
@@ -19,7 +20,7 @@ function getEdgeToken() {
 
 function getUserToken() {
   const token = JSON.parse(sessionStorage.getItem('token'));
-  return token.userToken;
+  return token.access_token;
 }
 
 // return a text for greeting
@@ -41,11 +42,11 @@ function fetchGET(Url) {
     headers: authHeader,
   })
     .then(response => response.json())
-    .then((response) => {
-    // console.log(JSON.stringify(response));
-      const data = response;
-      return { data };
-    })
+    // .then((response) => {
+    //   console.log(Url);
+    //   console.log(JSON.stringify(response));
+    //   return response;
+    // })
     .catch((error) => {
       console.log(error);
     });
@@ -66,11 +67,10 @@ function fetchUPLOAD(fileName, buffer, Url) {
     body: form,
   })
     .then(response => response.json())
-    .then((response) => {
-    // console.log(JSON.stringify(response));
-      const { data } = response;
-      return { data };
-    })
+    // .then((response) => {
+    //   console.log(`Upload: ${JSON.stringify(response)}`);
+    //   return response;
+    // })
     .catch((error) => {
       console.log(error);
     });
@@ -88,11 +88,10 @@ function fetchPOST(containerData, Url) {
     body: containerData,
   })
     .then(response => response.json())
-    .then((response) => {
-    // console.log(JSON.stringify(response));
-      const { data } = response;
-      return { data };
-    })
+    // .then((response) => {
+    //   console.log(JSON.stringify(response));
+    //   return response;
+    // })
     .catch((error) => {
       console.log(error);
     });
@@ -271,7 +270,7 @@ export function getImageState(cb) {
   const fetchData = fetchGET(`${LOCAL_URL}/mcm/v1/images`);
   fetchData.then((data) => {
     // console.log(data);
-    cb(data.data);
+    cb(data);
   });
 }
 
@@ -293,13 +292,13 @@ export function addImage(cb) {
     const appExe = app.getPath('exe').replace('/MimikSampleApp', '');
     switch (process.platform) {
       case 'win32':
-        containersPath = `${appData}\\appData\\Local\\Programs\\mimik-sample-app\\containers\\`;
+        containersPath = `${appData}\\appData\\Local\\Programs\\mimik-sample-app\\containers`;
         break;
       case 'darwin':
-        containersPath = '/Applications/mimik Sample App.app/Contents/containers/';
+        containersPath = '/Applications/mimik Sample App.app/Contents/containers';
         break;
       default:
-        containersPath = `${appExe}/containers/`;
+        containersPath = `${appExe}/containers`;
     }
   }
   const fileName = 'example-v1.tar';
@@ -307,7 +306,7 @@ export function addImage(cb) {
   const url = `${LOCAL_URL}/mcm/v1/images`;
   const fetchData = fetchUPLOAD(fileName, buffer, url);
   fetchData.then((data) => {
-    // console.log(data.data);
+    console.log(data);
     cb(data.data);
   });
 }
@@ -318,26 +317,26 @@ export function addContainer(cb) {
   const url = `${LOCAL_URL}/mcm/v1/containers`;
   const fetchData = fetchPOST(containerData, url);
   fetchData.then((data) => {
-    // console.log(data.data);
+    console.log(data);
     cb(data.data);
   });
 }
 
 // Get the list of devices on the same network return response via call back
 export function getNetworkDevices(cb) {
-  const fetchData = fetchGET(`${LOCAL_URL}/example/v1/drives?type=network&userAccessToken=${getUserToken()}`);
+  const fetchData = fetchGET(`${LOCAL_URL}/${appId}/example/v1/drives?type=network&userAccessToken=${getUserToken()}`);
   fetchData.then((data) => {
     // console.log(data);
-    cb(data.data);
+    cb(data);
   });
 }
 
 // Get the list of devices nearby return response via call back
 export function getNearbyDevices(cb) {
-  const fetchData = fetchGET(`${LOCAL_URL}/example/v1/drives?type=nearby&userAccessToken=${getUserToken()}`);
+  const fetchData = fetchGET(`${LOCAL_URL}/${appId}/example/v1/drives?type=nearby&userAccessToken=${getUserToken()}`);
   fetchData.then((data) => {
     // console.log(data);
-    cb(data.data);
+    cb(data);
   });
 }
 
@@ -351,20 +350,19 @@ export function sayHello(Url, cb) {
 }
 
 export function findNodeAndSayHello(id, cb) {
-  const fetchData = fetchGET(`${LOCAL_URL}/example/v1/nodes/${id}?userAccessToken=${getUserToken()}`);
+  const fetchData = fetchGET(`${LOCAL_URL}/${appId}/example/v1/nodes/${id}?userAccessToken=${getUserToken()}`);
   fetchData
     .then((data) => {
       // console.log(`NODE DATA: ${JSON.stringify(data)}`);
-      const item = data.data;
-      if (item && item.url) {
-        sayHello(`${item.url}/example/v1/hello`, (result) => {
+      if (data && data.url) {
+        sayHello(`${data.url}/${appId}/example/v1/hello`, (result) => {
           // Handle the call back
           cb(result);
         });
       } else {
         const err = {};
         err.data = {};
-        err.error = item;
+        err.error = data;
         err.data.JSONMessage = 'Error connecting to this device. It may not be online at this moment :(';
         cb(err);
       }

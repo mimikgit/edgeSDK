@@ -16,6 +16,7 @@ import {
   sayHello,
   findNodeAndSayHello,
 } from './hello_world/hello_world';
+import { appId } from './helpers/constants';
 
 
 function showMessage(msg) {
@@ -32,7 +33,7 @@ function getImageButtonState() {
   // Get the list of images
   getImageState((res) => {
     // Handle the call back by filtering the response to find an image with id of example
-    const match = res.data.filter(item => item.id === 'example-v1');
+    const match = res.data.filter(item => item.id === `${appId}-example-v1`);
     // If image is found we can disable the button
     document.querySelector('#add-image').disabled = match.length > 0;
   });
@@ -40,10 +41,10 @@ function getImageButtonState() {
 
 // Function to get the list of available containers and find if example-v1 has been added
 function getContainerButtonState() {
-  // Get teh list of containers
+  // Get the list of containers
   getContainerState((res) => {
     // Handle the call back by filtering the response to find a container with id of example-v1
-    const match = res.data.filter(item => item.id === 'example-v1');
+    const match = res.filter(item => item.id === `${appId}-example-v1`);
     // If container is found we can disable the add container button
     document.querySelector('#add-container').disabled = match.length > 0;
     // If container is found we can enable the get devices buttons
@@ -99,7 +100,7 @@ ipcRenderer.on('oauth-login-reply', (event, arg) => {
 // Setting up the onclick event for associate button
 document.querySelector('#associate').onclick = () => {
   // Calling accountAssociation function in the hello_world.js
-  accountAssociation((data) => {
+  accountAssociation(() => {
     // console.log(`accountAssociation: ${JSON.stringify(data)}`);
     // Check the state again after the callback
     getAssociationState();
@@ -122,7 +123,7 @@ ipcRenderer.on('oauth-unassociate-reply', (event, arg) => {
       sessionStorage.setItem('token', JSON.stringify(arg.data));
     }
     // Calling accountAssociation function in the hello_world.js
-    undoAccountAssociation((data) => {
+    undoAccountAssociation(() => {
       // console.log(`undoAccountAssociation: ${JSON.stringify(data)}`);
       document.querySelector('#devicelist').innerHTML = '';
       document.querySelector('#login').disabled = false;
@@ -199,11 +200,11 @@ document.querySelector('#get-network-devices').onclick = () => {
       // Create an on click event handler for the button that was just created
       document.querySelector(`#btn${index}`).onclick = () => {
         // Call the hello API on the given device
-        sayHello(`${item.url}/example/v1/hello`, (result) => {
+        sayHello(`${item.url}/${appId}/example/v1/hello`, (result) => {
           // Handle the call back
           // console.log(result);
           // Display the response from the API call to the given device
-          document.querySelector(`#resp${index}`).innerHTML = result.data.JSONMessage;
+          document.querySelector(`#resp${index}`).innerHTML = result.JSONMessage;
         });
       };
       return false;
@@ -264,7 +265,7 @@ document.querySelector('#get-nearby-devices').onclick = () => {
             document.querySelector(`#resp${index}`).style.color = '#000';
           }
           // Display the response from the API call to the given device
-          document.querySelector(`#resp${index}`).innerHTML = result.data.JSONMessage;
+          document.querySelector(`#resp${index}`).innerHTML = result.JSONMessage;
         });
       };
       return false;
