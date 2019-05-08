@@ -8,14 +8,16 @@ import url from 'url';
 import crypto from 'crypto';
 import queryString from 'query-string';
 import rp from 'request-promise';
+import WebSocket from 'ws';
+import JsonRPC from 'simple-jsonrpc-js';
 import { app, Menu, ipcMain, protocol } from 'electron';
-import { devMenuTemplate } from './menu/dev_menu_template';
-import { editMenuTemplate } from './menu/edit_menu_template';
-import createWindow from './helpers/window';
-
 // Special module holding environment variables which you declared
 // in config/env_xxx.json file.
 import env from 'env';
+import { devMenuTemplate } from './menu/dev_menu_template';
+import { editMenuTemplate } from './menu/edit_menu_template';
+import createWindow from './helpers/window';
+import { appId, redirectProtocol } from './helpers/constants';
 
 let mainWindow;
 let authWindow;
@@ -23,10 +25,17 @@ let token;
 
 const MID_URI = 'https://mid.mimik360.com'; // 'https://mid-dev.mimikdev.com';
 
+const EDGE_SDK_IP = '127.0.0.1'; // '172.22.2.23'; // Assume the edge SDK is running locally
+const EDGE_SDK_PORT = 8083; // Currently the edge SDK default port is 8083
+const LOCAL_EDGE_WS_URL = `ws://${EDGE_SDK_IP}:${EDGE_SDK_PORT}/ws/edge-service-api/v1`;
+
 // Information to be filled in from mimik developer portal
-const APP_ID = 'b8fe2181-c145-41a9-9a96-a833b7a562b2'; // '54969434-c133-4952-b05d-289117dcafb6'; // This is the app id of your app as it was generated on mimik developer portal
-const REDIRECT_PROTOCOL = 'com.mimik.example'; // this would be the protocol section of the redirect uri from mimik developer portal (i.e. com.example)
-const REDIRECT_URI = `${REDIRECT_PROTOCOL}://callback`; // Adjust the URI to reflect the path you have entered in the mimik developer portal
+// This is the app id of your app as it was generated on mimik developer portal
+const APP_ID = appId;
+// this would be the protocol section of the redirect uri
+// from mimik developer portal (i.e. com.example)
+const REDIRECT_PROTOCOL = redirectProtocol;
+const REDIRECT_URI = `${REDIRECT_PROTOCOL}://oauth2callback`; // Adjust the URI to reflect the path you have entered in the mimik developer portal
 
 function base64URLEncode(str) {
   return str.toString('base64')
@@ -56,8 +65,6 @@ const state =
         .substring(2, 15);
 
 const audience = 'generic-edge';
-const authUrl = `${MID_URI}/auth?audience=${audience}&scope=${scope}&response_type=code&client_id=${clientId}&code_challenge=${challenge}&code_challenge_method=S256&redirect_uri=${redirect}&state=${state}`;
-const authUnassociateUrl = `${MID_URI}/auth?audience=${audience}&scope=${unassociateScope}&response_type=code&client_id=${clientId}&code_challenge=${challenge}&code_challenge_method=S256&redirect_uri=${redirect}&state=${state}`;
 
 // console.log(`v: ${verifier} / c: ${challenge}`);
 
@@ -144,46 +151,101 @@ app.on('ready', () => {
     }
   });
 
+  function getEdgeIdTokenCB(cb) {
+    const ws = new WebSocket(LOCAL_EDGE_WS_URL);
+    const jrpc = new JsonRPC();
+    ws.jrpc = jrpc;
+    ws.jrpc.toStream = (_msg) => {
+      ws.send(_msg);
+    };
+
+    ws.on('open', () => {
+      jrpc.call('getEdgeIdToken', null).then((result) => {
+        cb(result);
+        setImmediate(() => {
+          ws.onmessage = undefined;
+          ws.close();
+        });
+      }).catch((e) => {
+        setImmediate(() => {
+          ws.onmessage = undefined;
+          ws.close();
+        });
+        cb(e);
+      });
+    });
+
+    ws.on('message', (msgData) => {
+      // const msg = JSON.parse(msgData);
+      // debug('getMe socket message: ', msg);
+      jrpc.messageHandler(msgData);
+    });
+
+    ws.on('error', (err) => {
+      cb(err);
+    });
+
+    ws.on('close', () => {
+      console.log('edge ws close');
+    });
+  }
+
   ipcMain.on('oauth-login', (event, arg) => {
     console.log(arg); // prints "login"
     // console.log(`AuthUrl: ${authUrl}`);
 
-    authWindow = createWindow('auth', {
-      parent: mainWindow,
-      modal: true,
-      width: 1000,
-      height: 600,
-      webPreferences: {
-        nodeIntegration: false,
-      },
-    });
+    getEdgeIdTokenCB((getEdgeIdTokenResult) => {
+      if (getEdgeIdTokenResult && getEdgeIdTokenResult.id_token) {
+        authWindow = createWindow('auth', {
+          parent: mainWindow,
+          modal: true,
+          width: 1000,
+          height: 600,
+          webPreferences: {
+            nodeIntegration: false,
+          },
+        });
 
-    authWindow.loadURL(authUrl);
-    if (env.name === 'development') {
-      authWindow.openDevTools();
-    }
-    authWindow.show();
+        const authUrl = `${MID_URI}/auth?audience=${audience}&scope=${scope}&response_type=code&`
+        + `client_id=${clientId}&code_challenge=${challenge}&code_challenge_method=S256&`
+        + `edge_id_token=${getEdgeIdTokenResult.id_token}&redirect_uri=${redirect}&state=${state}`;
+
+        authWindow.loadURL(authUrl);
+        if (env.name === 'development') {
+          authWindow.openDevTools();
+        }
+        authWindow.show();
+      }
+    });
   });
 
   ipcMain.on('oauth-unassociate', (event, arg) => {
     console.log(arg); // prints "unassociate"
     // console.log(`AuthUrl: ${authUrl}`);
 
-    authWindow = createWindow('auth', {
-      parent: mainWindow,
-      modal: true,
-      width: 1000,
-      height: 600,
-      webPreferences: {
-        nodeIntegration: false,
-      },
-    });
+    getEdgeIdTokenCB((getEdgeIdTokenResult) => {
+      if (getEdgeIdTokenResult && getEdgeIdTokenResult.id_token) {
+        authWindow = createWindow('auth', {
+          parent: mainWindow,
+          modal: true,
+          width: 1000,
+          height: 600,
+          webPreferences: {
+            nodeIntegration: false,
+          },
+        });
+        const authUnassociateUrl = `${MID_URI}/auth?audience=${audience}&scope=${unassociateScope}&response_type=code&`
+        + `client_id=${clientId}&code_challenge=${challenge}&code_challenge_method=S256&`
+        + `edge_id_token=${getEdgeIdTokenResult.id_token}&redirect_uri=${redirect}&state=${state}`;
 
-    authWindow.loadURL(authUnassociateUrl);
-    if (env.name === 'development') {
-      authWindow.openDevTools();
-    }
-    authWindow.show();
+
+        authWindow.loadURL(authUnassociateUrl);
+        if (env.name === 'development') {
+          authWindow.openDevTools();
+        }
+        authWindow.show();
+      }
+    });
   });
 });
 
