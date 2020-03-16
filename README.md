@@ -2,67 +2,16 @@ The mimik edgeSDK provides a light container management technology that allows d
 
 ## Getting Started
 
-First start by creating a [mimik Developer Account](https://developer.mimik.com/docs/getting-started/developeraccount). The Developer Portal is where you manage your the appID and SECRETS which are required for your application to access different aspects of the mimik platform.
+Please click on Releases tab above to view the latest packeges. For more information on edgeSDK and its capabilities visit [mimik developer portal](https://developers.mimik.com/products/edgesdk)
 
-## Installation
+## Contact us
 
-Select a platform from the list below and follow the instructions to learn: how to run the edgeSDK, how to build and deploy microservices, and how to run an example application using the edgeSDK and microservices.
+Please contact us if you have any further questions regarding troubleshooting or if you want to provide feedback. You can also read more about our solution on our wiki. To contact our SDK support team send us an email to [support.sdk@mimik.com](mailto:support.sdk@mimik.com) Check out our website at mimik.com to learn more about our company.
 
-- [Android 5.0+](https://developer.mimik.com/docs/installation/android)
-- [iOS 9.0+](https://developer.mimik.com/docs/installation/ios)
-- [Linux - Ubuntu 16.04 LTS](https://developer.mimik.com/docs/installation/linux)
-- [mac OS El Capitan+](https://developer.mimik.com/docs/installation/macos)
-- [Windows 10](https://developer.mimik.com/docs/installation/windows)
+We are active on Stackoverflow and can answer your questions there as well 
 
-## Account Association
-
-All applications must register their account key provided by the Developer Portal in order to [associate their account](https://developer.mimik.com/docs/getting-started/accountassociation) with the edgeSDK. Running the [example app](https://developer.mimik.com/docs/installation/exampleapp) allow you to quickly test this process.
-
-## Microservices
-
-To show case the capabilities of the edgeSDK we have created a few microservices as examples in how to develop a microservice on our environment.
-
-- Our [Example](https://developer.mimik.com/docs/microservices/deploy) microservice helps developers understand how to deploy a microservice to the edgeSDK runtime and call different methods for node and cluster discovery.
-- [mBeam](https://github.com/mimikgit/mbeam) beams content from a node to node(s) and/or to service(s), peer-to-peer, one-to-one or one-to-many
-- [mDrive](https://github.com/mimikgit/mDrive/releases/download/v1.2.1/drive-v1.tar) abstracts access to storage available on edge nodes and provides distributed file management via a popular API.
-- [mSuperdrive](https://github.com/mimikgit/mSuperdrive/releases/download/v1.2.3/superdrive-v1.tar) provides the core logic of [mimik access](#access) media services through the provided API well as showing all nodes (nearby, on the same Wi-Fi, remote and also friend’s ) that are equipped with [mimik access](#access).
-
-Build your own microservice using the edgeSDK JavaScript programming API for develop and deploy their microservices.
-
-[Learn how to use the Javascript Serverless Programming API](https://developer.mimik.com/docs/api-guides/apis)
-
-## APIs
-
-Information on mimik API components are accessible on SwaggerHub
-
-- [mDS: The mimik discovery API](https://app.swaggerhub.com/apis/mimik/mDS)
-- [mSS: The mimik Signaling Service API](https://app.swaggerhub.com/apis/mimik/mSS)
-- [mPO: The mimik Profile Server API](https://app.swaggerhub.com/apis/mimik/mPO)
-- [mST: The mimik server to server token service](https://app.swaggerhub.com/apis/mimik/mST)
-- [mID: The mimik ID and user management API](https://app.swaggerhub.com/apis/mimik/mID)
-
-## mimik access
-
-mimik access is an application built on top of mimik edgeSDK showcasing the power of distributed edge cloud. Information on mimik access API components are available on SwaggerHub
-
-- [mFD: The mimik friends Server API for mimik services](https://app.swaggerhub.com/apis/mimik/mFD)
-- [mTS: The mimik Thumbnail Service](https://app.swaggerhub.com/apis/mimik/mTS)
-- [mTV: TV QrCode Service API](https://app.swaggerhub.com/apis/mimik/mTV)
-
-[Learn more about mimik access](http://access.mimik.com)
-
-## Reference Materials
-
-- [Decentralization provides choice, consent and control and is the only way to achieve digital freedom.](https://mimik.com/siavash-alamouti-keynote-at-ieee-pimrc17)
-- [Cloud Decentralization & the Trustless Revolution](https://mimik.com/cloud-decentralization-trustless-revolution)
-- [Use cases](https://mimik.com/use-cases)
+The information provided in this page is intended for informational purposes only and is subject to change without notice. Information may be changed or updated without notice. mimik may also make improvements and/or changes in the products specifications or APIs in this information at any time without notice.
 
 ## License
 
 Unless otherwise noted, use of the mimik edgeSDK is licensed under our [License Agreement](/license.html) and the code shown on GitHub is available under the [MIT License](http://opensource.org/licenses/MIT).
-
-## Contact us
-
-We want to hear from you. Please contact us for question, troubleshooting, feedback or others. You can also read more about our solution on our wiki. To contact our SDK support team send us an email to [support.sdk@mimik.com](mailto:support.sdk@mimik.com) Check out our website at mimik.com to learn more about our company.
-
-The information provided in this page is intended for informational purposes only and is subject to change without notice. Information may be changed or updated without notice. mimik may also make improvements and/or changes in the products specifications or APIs in this information at any time without notice.
