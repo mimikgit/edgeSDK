@@ -4,11 +4,7 @@ You can access OAuthtool code from [OAuthtool repository](https://github.com/mim
 
 Download oauthtool tool from the <b>following links</b>: (This guide will start from the Download directory of the OAuthtool application.)
 
-[OAuthtool application for Windows](https://github.com/mimikgit/oauthtool/releases/download/v1.1.0/mimik.OAuth.tool.Setup.1.1.0.exe)
-
-[OAuthtool application for MacOs](https://github.com/mimikgit/oauthtool/releases/download/v1.1.0/mimik.OAuth.tool-1.1.0.dmg)
-
-[OAuthtool application for Linux](https://github.com/mimikgit/oauthtool/releases/download/v1.1.0/mimik-oauth-tool-1.1.0-x86_64.AppImage)
+[OAuthtool application](https://developer.mimik.com/resources/downloads/?asset=edgeSDKTool)
 
 <h3>How to use OAuthtool application:</h3>
 
