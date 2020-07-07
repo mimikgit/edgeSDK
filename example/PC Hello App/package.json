@@ -58,7 +58,7 @@
     "babel-plugin-transform-object-rest-spread": "^7.0.0-beta.3",
     "chai": "^4.2.0",
     "css-loader": "^0.28.11",
-    "electron": "2.0.2",
+    "electron": "7.2.4",
     "electron-builder": "^20.14.7",
     "electron-mocha": "^6.0.2",
     "eslint-config-airbnb-base": "^12.1.0",
