@@ -2,11 +2,11 @@ The mimik edgeSDK provides a light container management technology that allows d
 
 ## Getting Started
 
-Please click on [Releases](https://github.com/mimikgit/edgeSDK/releases) tab above to view the latest packeges. For more information on edgeSDK and its capabilities visit [mimik developer portal](https://developer.mimik.com/edgeengine/)
+Please click on [Releases](https://github.com/mimikgit/edgeSDK/releases) tab above to view the latest packeges. For more information on edgeEngine and its capabilities visit [mimik developer portal](https://developer.mimik.com/edgeengine/)
 
 ## Contact us
 
-Please contact us if you have any further questions regarding troubleshooting or if you want to provide feedback. You can also read more about our solution on our wiki. To contact our SDK support team send us an email to [support.sdk@mimik.com](mailto:support.sdk@mimik.com) Check out our website at mimik.com to learn more about our company.
+Please contact us if you have any further questions regarding troubleshooting or if you want to provide feedback. You can also read more about our solution on our wiki. To contact our edgeEngine support team send us an email to [support@mimik.com](mailto:support@mimik.com) Check out our website at mimik.com to learn more about our company.
 
 We are active on Stackoverflow and can answer your questions there as well 
 
