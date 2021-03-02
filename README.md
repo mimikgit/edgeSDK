@@ -2,7 +2,7 @@ The mimik edgeSDK provides a light container management technology that allows d
 
 ## Getting Started
 
-Please click on [Releases](https://github.com/mimikgit/edgeSDK/releases) tab above to view the latest packeges. For more information on edgeSDK and its capabilities visit [mimik developer portal](https://developers.mimik.com/products/edgesdk)
+Please click on [Releases](https://github.com/mimikgit/edgeSDK/releases) tab above to view the latest packeges. For more information on edgeSDK and its capabilities visit [mimik developer portal](https://developer.mimik.com/)
 
 ## Contact us
 
